@@ -6,7 +6,7 @@ import android.os.Bundle;
 public class paginabusqueda extends AppCompatActivity {
     @Override
 // Cambio
-
+//otro cambio
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
