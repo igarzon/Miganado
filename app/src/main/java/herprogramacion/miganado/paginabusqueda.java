@@ -7,12 +7,6 @@ public class paginabusqueda extends AppCompatActivity {
     @Override
 
 
-    /**/
-
-    //
-
-//hola22
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paginabusqueda);
