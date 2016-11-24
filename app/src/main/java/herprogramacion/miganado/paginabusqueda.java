@@ -8,6 +8,8 @@ public class paginabusqueda extends AppCompatActivity {
 // Cambio
 //otro cambio
 
+    //Sin sync
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paginabusqueda);
