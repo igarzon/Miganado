@@ -38,7 +38,7 @@ public class BaseDatos extends SQLiteOpenHelper {
     // Creating Tables
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_GANADO + "(" + " PRIMARY KEY," + KEY_CROTAL + " SEX,"
+        String CREATE_CONTACTS_TABLE = "CREATE TABLE " + TABLE_GANADO + "(" + " PRI MARY KEY," + KEY_CROTAL + " SEX,"
                 + KEY_SEXO + ")";
         db.execSQL(CREATE_CONTACTS_TABLE);
     }
