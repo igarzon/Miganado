@@ -3,7 +3,7 @@ package miganado.Operaciones;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import miganado.loginyregistro.R;
+import miganado.Loginyregistro.R;
 
 public class FichaanimalActivity extends AppCompatActivity {
 

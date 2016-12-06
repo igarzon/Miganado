@@ -28,10 +28,7 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
-<<<<<<< HEAD
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.google.android.gms:play-services-ads:10.0.0'
     compile 'com.google.android.gms:play-services-maps:10.0.0'
-=======
->>>>>>> origin/master
 }

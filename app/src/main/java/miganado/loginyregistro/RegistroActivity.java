@@ -1,4 +1,4 @@
-package miganado.loginyregistro;
+package miganado.Loginyregistro;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
