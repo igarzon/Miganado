@@ -11,7 +11,7 @@
     tools:context="miganado.Loginyregistro.RegistroActivity"
     android:elevation="1dp"
     android:clickable="true"
-    android:background="@android:color/white">
+    android:background="@android:color/holo_green_dark">
 
     <EditText
         android:layout_width="wrap_content"
@@ -77,7 +77,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:id="@+id/rbtipotitular"
+        android:id="@+id/rbTipoacceso"
         android:layout_below="@+id/etNombreyapellidos"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
@@ -97,15 +97,106 @@
             android:layout_weight="1" />
     </RadioGroup>
 
-    <CheckedTextView
-        android:text="CheckedTextView"
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/rbtipotitular"
-        android:layout_alignRight="@+id/rbtipotitular"
-        android:layout_alignEnd="@+id/rbtipotitular"
-        android:layout_marginRight="58dp"
-        android:layout_marginEnd="58dp"
-        android:layout_marginTop="23dp"
-        android:id="@+id/checkedTextView" />
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/etDatosespecificos"
+        tools:text="Datos específicos de la explotación"
+        android:layout_below="@+id/rbTipoacceso"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/etDato1"
+        android:text="campo_libre_1"
+        android:background="@android:color/white" />
+
+    <Button
+        android:text="Registro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etDato6"
+        android:layout_marginTop="38dp"
+        android:id="@+id/btnRegistro"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="campo_libre_2"
+        android:ems="10"
+        android:id="@+id/etDato2"
+        android:background="@android:color/white"
+        android:layout_alignBaseline="@+id/etDato1"
+        android:layout_alignBottom="@+id/etDato1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="campo_libre_3"
+        android:ems="10"
+        android:id="@+id/etDato3"
+        android:background="@android:color/white"
+        android:layout_below="@+id/etDato1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="43dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="campo_libre_4"
+        android:ems="10"
+        android:id="@+id/etDato4"
+        android:layout_alignTop="@+id/etDato3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/etDato3"
+        android:background="@android:color/white" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="campo_libre_5"
+        android:ems="10"
+        android:layout_marginTop="36dp"
+        android:id="@+id/etDato5"
+        android:background="@android:color/white"
+        android:layout_below="@+id/etDato3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="campo_libre_6"
+        android:ems="10"
+        android:id="@+id/etDato6"
+        android:background="@android:color/white"
+        android:layout_alignBaseline="@+id/etDato5"
+        android:layout_alignBottom="@+id/etDato5"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
