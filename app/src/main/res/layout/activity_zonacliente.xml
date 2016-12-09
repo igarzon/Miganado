@@ -1,33 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_zonacliente"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="miganado.Loginyregistro.ZonaclienteActivity">
+    tools:context="miganado.Loginyregistro.ZonaclienteActivity"
+    android:background="@drawable/fondo2">
 
-    <TextView
-        android:text="Bienvenido a Gestión de mi ganado"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="65dp"
-        android:layout_marginStart="65dp"
-        android:layout_marginTop="38dp"
-        android:id="@+id/tvMensajebienvenida"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:id="@+id/layout_checkbox">
+    </LinearLayout>
 
-    <TextView
-        android:text="Username"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvUsername"
-        android:layout_below="@+id/tvMensajebienvenida"
-        android:layout_alignLeft="@+id/tvMensajebienvenida"
-        android:layout_alignStart="@+id/tvMensajebienvenida" />
-</RelativeLayout>
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:id="@+id/layout_menu">
+
+        <Button
+            android:text="Explotaciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnExplotaciones"
+            tools:text="Explotaciones"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="20dp"
+            android:onClick="clickExplotaciones"
+            />
+        <!--android:layout_below="@+id/password"
+            android:layout_centerHorizontal="true"
+            Width = parent porque el mas grande es explotaciones y se añade ese ancho-->
+
+        <Button
+            android:text="Ficha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnFicha"
+            tools:text="Ficha"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:onClick="clickFichaAnimal"/>
+        <!--android:layout_below="@+id/password"
+            android:layout_centerHorizontal="true"-->
+
+        <Button
+            android:text="Busqueda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnBusqueda"
+            tools:text="Busqueda"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:onClick="clickBusqueda"/>
+        <!--android:layout_below="@+id/password"
+            android:layout_centerHorizontal="true"-->
+
+        <Button
+            android:text="Alta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAlta"
+            tools:text="Alta"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:onClick="clickAlta"/>
+        <!--android:layout_below="@+id/password"
+            android:layout_centerHorizontal="true"-->
+
+    </LinearLayout>
+
+</LinearLayout>
