@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,199 +13,206 @@
     tools:context="miganado.Operaciones.FichaanimalActivity"
     android:layout_gravity="center"
     android:weightSum="1">
-
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tituloCrotal"
-        android:layout_marginTop="150dp"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Crotal" />
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Crotal"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloCrotal"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Crotal"
+        />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloCrotalOriginal"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Crotal Original" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Crotal"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/CrotalOriginal"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloCrotalOriginal"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Crotal Original" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloMarcaLidia"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Marca de lidia" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CrotalOriginal"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/MarcaLidia"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloMarcaLidia"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Marca de lidia" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloCrotalMadre"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Crotal madre" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/MarcaLidia"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/CrotalMadre"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloCrotalMadre"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Crotal madre" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloSexo"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Sexo" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CrotalMadre"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Sexo"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloSexo"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Sexo" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloRaza"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Raza" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Sexo"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/Raza"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloRaza"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Raza" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloFechaNacimiento"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Fecha de nacimiento" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/Raza"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/FechaNacimiento"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloFechaNacimiento"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Fecha de nacimiento" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloCeaNaciemiento"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Cea de nacimiento" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/FechaNacimiento"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/CeaNaciemiento"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloCeaNaciemiento"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Cea de nacimiento" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloCeaOrigen"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Cea de origen" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CeaNaciemiento"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/CeaOrigen"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloCeaOrigen"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Cea de origen" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloFechaLlegada"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Fecha de llegada" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CeaOrigen"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/FechaLlegada"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloFechaLlegada"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Fecha de llegada" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloCeaLocalizacion"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Cea de localizacion" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/FechaLlegada"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/CeaLocalizacion"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloCeaLocalizacion"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Cea de localizacion" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tituloUltimoParto"
-        android:textSize="25dp"
-        android:textColor="@android:color/holo_blue_light"
-        android:text="Ultimo parto" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CeaLocalizacion"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/UltimoParto"
-        android:textSize="30dp"
-        android:textColor="@android:color/black"
-        android:text="---" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tituloUltimoParto"
+            android:textSize="25dp"
+            android:textColor="@android:color/holo_blue_light"
+            android:text="Ultimo parto" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/UltimoParto"
+            android:textSize="30dp"
+            android:textColor="@android:color/black"
+            android:text="---" />
+    </LinearLayout>
+    </ScrollView>
 </LinearLayout>
-</ScrollView>

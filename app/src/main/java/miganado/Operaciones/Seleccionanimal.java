@@ -24,7 +24,7 @@ public class Seleccionanimal extends AppCompatActivity {
 
         for(String key : b.keySet()){
 
-            //TODO Aqui obtendriamos las explotaciones seleccionadas
+            //Aqui obtendriamos las explotaciones seleccionadas
 
         }
 
