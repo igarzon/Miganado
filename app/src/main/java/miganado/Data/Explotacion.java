@@ -11,7 +11,6 @@ import android.database.Cursor;
 
 
 public class Explotacion {
-    private String explotacion;
     private String crotal;
     private String crotalOriginal;
     private String marcaLidia;
@@ -30,7 +29,7 @@ public class Explotacion {
     private String dato5;
     private String dato6;
 
-    public Explotacion( String explotacion, String crotal,
+    public Explotacion(String crotal,
              String crotalOriginal,
              String marcaLidia,
              String crotalMadre,
@@ -48,7 +47,6 @@ public class Explotacion {
              String dato5,
              String dato6) {
 
-        this.explotacion=explotacion;
         this.crotal=crotal;
         this.crotalOriginal=crotalOriginal;
         this.marcaLidia=marcaLidia;
@@ -69,7 +67,6 @@ public class Explotacion {
     }
 
     public Explotacion(Cursor cursor) {
-        explotacion = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.EXPLOTACION));
         crotal = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.CROTAL));
         crotalOriginal = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.CROTAL_ORIGINAL));
         marcaLidia = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.MARCA_LIDIA));
@@ -91,7 +88,6 @@ public class Explotacion {
 
     public ContentValues toContentValues() {
         ContentValues values = new ContentValues();
-        values.put(ExplotacionContract.ExplotacionEntry.EXPLOTACION, explotacion);
         values.put(ExplotacionContract.ExplotacionEntry.CROTAL, crotal);
         values.put(ExplotacionContract.ExplotacionEntry.CROTAL_ORIGINAL, crotalOriginal);
         values.put(ExplotacionContract.ExplotacionEntry.MARCA_LIDIA, marcaLidia);

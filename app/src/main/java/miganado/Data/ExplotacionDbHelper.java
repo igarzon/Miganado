@@ -12,7 +12,7 @@ import miganado.Data.ExplotacionContract.ExplotacionEntry;
  */
 public class ExplotacionDbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "Explotacion.db";
+    public static final String DATABASE_NAME = "ExplotacionPrueba.db";
 
     public ExplotacionDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -22,7 +22,6 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + ExplotacionEntry.TABLE_NAME + " ("
                 + ExplotacionEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + ExplotacionEntry.EXPLOTACION + " TEXT NOT NULL "
                 + ExplotacionEntry.CROTAL + " TEXT NOT NULL,"
                 + ExplotacionEntry.CROTAL_ORIGINAL + " TEXT NOT NULL,"
                 + ExplotacionEntry.MARCA_LIDIA + " TEXT NOT NULL,"
@@ -48,9 +47,30 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
     }
 
     private void mockData(SQLiteDatabase sqLiteDatabase) {
-        mockExplotacion(sqLiteDatabase, new Explotacion("Explotacion1","ES0008026351836","ES000802635184","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
-                 "10/05/2010","CEA1","10/02/2000","GRANADA","NOPARTOS","1","2","3","4","5","6"));
-
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351831","ES000802635184","lIDIA1","ES000802635184", "MACHO","MESTIZA",
+                 "10/05/2010","CEA1","10/02/2001","GRANADA","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351832","ES000802635184","lIDIA1","ES000802635184", "MACHO","MESTIZA",
+                "10/05/2010","CEA1","10/02/2000","GRANADA","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351833","ES000802635184","lIDIA1","ES000802635184", "MACHO","MESTIZA",
+                "10/05/2010","CEA2","10/02/2004","MADRID","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351834","ES000802635184","lIDIA1","ES000802635184", "MACHO","MESTIZA",
+                "10/05/2010","CEA2","10/02/2000","MADRID","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351835","ES000802635184","lIDIA1","ES000802635184", "MACHO","MESTIZA",
+                "10/05/2010","CEA1","10/02/2005","SEVILLA","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351836","ES000802635185","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
+                "10/05/2010","CEA4","10/02/2000","GRANADA","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351837","ES000802635185","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
+                "10/05/2010","CEA4","10/02/2006","CADIZ","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351838","ES000802635185","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
+                "10/05/2010","CEA1","10/02/2000","GRANADA","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351839","ES000802635185","lIDIA1","ES000802635184", "MACHO","MESTIZA",
+                "10/05/2010","CEA3","10/02/2008","NAVARRA","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351840","ES000802635186","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
+                "10/05/2010","CEA3","10/02/2000","GRANADA","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351841","ES000802635186","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
+                "10/05/2010","CEA1","10/02/2009","GRANADA","NOPARTOS","1","2","3","4","5","6"));
+        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351842","ES000802635187","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
+                "10/05/2010","CEA1","10/02/2015","GRANADA","NOPARTOS","1","2","3","4","5","6"));
 
 
     }
@@ -77,10 +97,10 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getExplotacion() {
+    public Cursor getExplotaciones() {
         return getReadableDatabase()
                 .query(
-                        ExplotacionEntry.TABLE_NAME,
+                        ExplotacionEntry.CEA_LOCALIZACION,
                         null,
                         null,
                         null,

@@ -33,7 +33,6 @@ public class ExplotacionContract {
     public static abstract class ExplotacionEntry implements BaseColumns{
         public static final String TABLE_NAME ="Miganado";
 
-        public static final String EXPLOTACION = "Expltacion";
         public static final String CROTAL = "crotal";
         public static final String CROTAL_ORIGINAL = "crotalOriginal";
         public static final String MARCA_LIDIA = "marcaLidia";
