@@ -12,10 +12,17 @@ package miganado.Loginyregistro;
         import com.android.volley.RequestQueue;
         import com.android.volley.Response;
         import com.android.volley.toolbox.Volley;
+        import com.google.android.gms.appindexing.Action;
+        import com.google.android.gms.appindexing.AppIndex;
+        import com.google.android.gms.appindexing.Thing;
+        import com.google.android.gms.common.api.GoogleApiClient;
 
 
         import org.json.JSONException;
         import org.json.JSONObject;
+        import org.json.JSONArray;
+
+        import java.sql.Array;
 
         import miganado.Loginyregistro.LoginRequest;
         import miganado.Loginyregistro.R;
@@ -24,6 +31,12 @@ package miganado.Loginyregistro;
 
 public class LoginActivity extends AppCompatActivity {
 
+
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,37 +55,52 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.startActivity(registerIntent);
             }
         }));
+
+        resetlink.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://gestiondemiganado.com/resetearpassword"));
+                LoginActivity.this.startActivity(intent);
+            }
+        }));
+
+
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String username = etUsername.getText().toString();
                 final String password = etPassword.getText().toString();
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
+
                     @Override
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
-                            if (success){
-                                Intent intent=new Intent(LoginActivity.this, ZonaclienteActivity.class);
+                            if (success) {
+                                Intent intent = new Intent(LoginActivity.this, ZonaclienteActivity.class);
                                 intent.putExtra("username", username);
                                 LoginActivity.this.startActivity(intent);
                             } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder (LoginActivity.this);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage(" Ha fallado el Login")
-                                        .setNegativeButton("Retry",null)
+                                        .setNegativeButton("Retry", null)
                                         .create()
                                         .show();
                             }
-
-
-                        } catch (JSONException e){e.printStackTrace();}
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
+
                 };
                 LoginRequest LoginRequest = new LoginRequest(username, password, responseListener);
-                RequestQueue queue= Volley.newRequestQueue(LoginActivity.this);
+                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
                 queue.add(LoginRequest);
             }
         });
+
     }
+
 }

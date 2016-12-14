@@ -86,6 +86,7 @@
             android:text="Titular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:id="@+id/rbTitular"
             android:layout_weight="1" />
 
@@ -93,6 +94,7 @@
             android:text="Tercero Autorizado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="false"
             android:id="@+id/rbtercero"
             android:layout_weight="1" />
     </RadioGroup>

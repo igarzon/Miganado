@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -19,6 +22,7 @@ import org.json.JSONObject;
 
 public class RegistroActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +31,6 @@ public class RegistroActivity extends AppCompatActivity {
         final EditText etPassword = (EditText) findViewById(R.id.etPassword);
         final EditText etPassword2 = (EditText) findViewById(R.id.etPassword2);
         final EditText etNombre = (EditText) findViewById(R.id.etNombreyapellidos);
-        final RadioGroup rbTipoacceso = (RadioGroup) findViewById(R.id.rbTipoacceso);
         final Button btnRegisro = (Button) findViewById(R.id.btnRegistro);
         final EditText etDato1 = (EditText) findViewById(R.id.etDato1);
         final EditText etDato2 = (EditText) findViewById(R.id.etDato2);
@@ -35,6 +38,7 @@ public class RegistroActivity extends AppCompatActivity {
         final EditText etDato4 = (EditText) findViewById(R.id.etDato4);
         final EditText etDato5 = (EditText) findViewById(R.id.etDato5);
         final EditText etDato6 = (EditText) findViewById(R.id.etDato6);
+        final RadioButton rbTitular = (RadioButton) findViewById(R.id.rbTitular);
 
         btnRegisro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +47,18 @@ public class RegistroActivity extends AppCompatActivity {
                 final String password = etPassword.getText().toString();
                 final String password2 = etPassword2.getText().toString();
                 final String nombre = etNombre.getText().toString();
-                final String tipoacceso = etNombre.getText().toString();
+
+                boolean estado = rbTitular.isChecked();
+                String tipoacceso="";
+                if (estado) {
+                    tipoacceso  = "titular";
+                }
+                else
+                {
+                    tipoacceso = "terceros";
+                }
+
+
                 final String dato1 = etDato1.getText().toString();
                 final String dato2 = etDato2.getText().toString();
                 final String dato3 = etDato3.getText().toString();
@@ -83,4 +98,6 @@ public class RegistroActivity extends AppCompatActivity {
 
 
     }
+
+
 }
