@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 import miganado.Data.ExplotacionContract.ExplotacionEntry;
 
@@ -97,16 +100,69 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getExplotaciones() {
-        return getReadableDatabase()
-                .query(
-                        ExplotacionEntry.CEA_LOCALIZACION,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null);
+    public ArrayList<String> getExplotaciones() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res = null;
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CEA_LOCALIZACION+" FROM "+ExplotacionEntry.TABLE_NAME,null);
+        res.moveToFirst();
+
+        while(!res.isLast()){
+            String a = res.getString(0);
+            if(!array_list.contains(a)) {
+                array_list.add(a);
+            }
+            res.moveToNext();
+        }
+        if(!array_list.contains(res.getString(0))) {
+            array_list.add(res.getString(0));
+        }
+        res.close();
+        return array_list;
+    }
+
+    public ArrayList<String> getVacasExplotacion(String exp) {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res = null;
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CEA_LOCALIZACION+" LIKE '"+exp+"'",null);
+        res.moveToFirst();
+
+        while(!res.isLast()){
+            String a = res.getString(0);
+            array_list.add(a);
+            res.moveToNext();
+        }
+        array_list.add(res.getString(0));
+
+        res.close();
+        return array_list;
+    }
+
+    public ArrayList<String> getCrotal(String crotal) {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res = null;
+        res = db.rawQuery("SELECT * FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CROTAL+" LIKE '"+crotal+"'",null);
+
+        for(int i = 0; i<res.getColumnCount();i++) {
+            res.moveToFirst();
+            while (!res.isLast()) {
+                String a = res.getString(0);
+                array_list.add(a);
+                res.moveToNext();
+            }
+            array_list.add(res.getString(0));
+        }
+
+        res.close();
+        return array_list;
     }
 
     public Cursor getExplotacionCrotal(String crotal) {

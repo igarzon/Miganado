@@ -1,6 +1,8 @@
 package miganado.Loginyregistro;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Color;
@@ -10,11 +12,13 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import java.util.ArrayList;
+import android.database.sqlite.SQLiteDatabase;
 
 import miganado.Operaciones.Seleccionanimal;
 import miganado.Operaciones.AltaanimalActivity;
 import miganado.Operaciones.BusquedasActivity;
 import miganado.Operaciones.ExplotacionesActivity;
+import miganado.Data.ExplotacionDbHelper;
 
 public class ZonaclienteActivity extends AppCompatActivity {
 
@@ -37,19 +41,23 @@ public class ZonaclienteActivity extends AppCompatActivity {
 
     //Hacemos checkBox global para poder acceder desde las funciones
     private ArrayList<CheckBox> checkBox = new ArrayList<CheckBox>();
+    private ExplotacionDbHelper mydb;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zonacliente);
 
+        mydb = new ExplotacionDbHelper(this);
+
         //Bundle b = this.getIntent().getExtras(); //Obtenemos las explotaciones del login
         //Ver si es mejor cogerlas de la base de datos
-        ArrayList<String> explotaciones = new ArrayList<String>(); //Nombre de las explotaciones
+        ArrayList<String> explotaciones = mydb.getExplotaciones(); //Nombre de las explotaciones
         //Pruebas, hay que borrarlo adelate
-        explotaciones.add("explotacion 1");
-        explotaciones.add("explotacion 2");
-        explotaciones.add("explotacion 3");
-        explotaciones.add("explotacion 4");
+        //explotaciones.add("explotacion 1");
+        //explotaciones.add("explotacion 2");
+        //explotaciones.add("explotacion 3");
+        //explotaciones.add("explotacion 4");
+        /*
 
         /*
         for(String key : b.keySet()){
@@ -69,7 +77,7 @@ public class ZonaclienteActivity extends AppCompatActivity {
 
             CheckBox aux = new CheckBox(this);
             aux.setLayoutParams(lparams);
-            aux.setText(explotaciones.get(i)+"  ");
+            aux.setText(explotaciones.get(i));
             aux.setTextColor(Color.BLACK);
             aux.setTextSize(20);
             aux.setPadding(1,1,1,1);

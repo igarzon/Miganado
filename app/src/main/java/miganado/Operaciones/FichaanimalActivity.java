@@ -9,6 +9,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
+import miganado.Data.ExplotacionDbHelper;
 import miganado.Loginyregistro.R;
 
 public class FichaanimalActivity extends AppCompatActivity {
@@ -21,8 +24,13 @@ public class FichaanimalActivity extends AppCompatActivity {
         Bundle b = this.getIntent().getExtras();
         //ImageView relative = (ImageView) findViewById(R.id.ivAnimal);
 
+        ExplotacionDbHelper mydb;
+        mydb = new ExplotacionDbHelper(this);
+        ArrayList<String> datos = mydb.getCrotal(b.getString((String) b.keySet().toArray()[0]));
+
+
         TextView crotal = (TextView) findViewById(R.id.Crotal);
-        crotal.setText(b.getString((String) b.keySet().toArray()[0]));
+        crotal.setText(datos.get(1));
 
     }
 }

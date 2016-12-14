@@ -10,6 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+import miganado.Data.ExplotacionDbHelper;
 import miganado.Loginyregistro.R;
 
 public class Seleccionanimal extends AppCompatActivity {
@@ -21,16 +26,29 @@ public class Seleccionanimal extends AppCompatActivity {
         setContentView(R.layout.activity_seleccionanimal);
 
         Bundle b = this.getIntent().getExtras();
+        ExplotacionDbHelper mydb;
+        mydb = new ExplotacionDbHelper(this);
+        ArrayList<String> spin = new ArrayList<String>();
 
         for(String key : b.keySet()){
 
             //Aqui obtendriamos las explotaciones seleccionadas
+            ArrayList<String> vacas = mydb.getVacasExplotacion(key);
+            spin.addAll(vacas);
+
 
         }
 
+        Collections.sort(spin, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return  o1.compareTo(o2);
+            }
+        });
+
         spinner = (Spinner) findViewById(R.id.spinner);
         //Estos valores serian los crotales que habria que obtenerlos de la base de datos
-        String[] valores = {"uno","dos","tres","cuatro","cinco","seis", "siete", "ocho"};
+        String[] valores = spin.toArray(new String [spin.size()]);
         spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
 
     }
