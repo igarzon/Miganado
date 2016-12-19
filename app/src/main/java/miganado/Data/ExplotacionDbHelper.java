@@ -143,7 +143,7 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         return array_list;
     }
 
-    public ArrayList<String> getCrotal(String crotal) {
+    public Cursor /*ArrayList<String>*/ getCrotal(String crotal) {
         ArrayList<String> array_list = new ArrayList<String>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -151,18 +151,14 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         Cursor res = null;
         res = db.rawQuery("SELECT * FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CROTAL+" LIKE '"+crotal+"'",null);
 
-        for(int i = 0; i<res.getColumnCount();i++) {
+        /*for(int i = 1; i<res.getColumnCount();i++) {
             res.moveToFirst();
-            while (!res.isLast()) {
-                String a = res.getString(0);
-                array_list.add(a);
-                res.moveToNext();
-            }
-            array_list.add(res.getString(0));
-        }
+            String a = res.getString(i);
+            array_list.add(a);
+        }*/
 
-        res.close();
-        return array_list;
+        //res.close();
+        return res; //array_list;
     }
 
     public Cursor getExplotacionCrotal(String crotal) {
@@ -207,6 +203,10 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
                 ExplotacionEntry.CROTAL + " LIKE ?",
                 new String[]{CrotalID}
         );
+    }
+
+    public void insertVaca(Explotacion vaca){
+        getWritableDatabase().insert(ExplotacionEntry.TABLE_NAME, null, vaca.toContentValues());
     }
 
 }

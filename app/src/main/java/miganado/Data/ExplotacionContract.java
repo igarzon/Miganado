@@ -33,23 +33,23 @@ public class ExplotacionContract {
     public static abstract class ExplotacionEntry implements BaseColumns{
         public static final String TABLE_NAME ="Miganado";
 
-        public static final String CROTAL = "crotal";
-        public static final String CROTAL_ORIGINAL = "crotalOriginal";
-        public static final String MARCA_LIDIA = "marcaLidia";
-        public static final String CROTAL_MADRE = "crotalMadre";
-        public static final String SEXO = "sexo";
-        public static final String RAZA = "raza";
-        public static final String FECHA_NACIMIENTO = "fechaNacimiento";
-        public static final String CEA_NACIMIENTO = "ceaNacimiento";
-        public static final String FECHA_LLEGADA = "fechaLlegada";
-        public static final String CEA_LOCALIZACION = "ceaLocalizacion";
-        public static final String ULTIMO_PARTO = "ultimoParto";
-        public static final String DATO1 = "dato1";
-        public static final String DATO2 = "dato2";
-        public static final String DATO3 = "dato3";
-        public static final String DATO4 = "dato4";
-        public static final String DATO5 = "dato5";
-        public static final String DATO6 = "dato6";
+        public static final String CROTAL = "Crotal";
+        public static final String CROTAL_ORIGINAL = "CrotalOriginal";
+        public static final String MARCA_LIDIA = "MarcaLidia";
+        public static final String CROTAL_MADRE = "CrotalMadre";
+        public static final String SEXO = "Sexo";
+        public static final String RAZA = "Raza";
+        public static final String FECHA_NACIMIENTO = "FechaNacimiento";
+        public static final String CEA_NACIMIENTO = "CeaNacimiento";
+        public static final String FECHA_LLEGADA = "FechaLlegada";
+        public static final String CEA_LOCALIZACION = "CeaLocalizacion";
+        public static final String ULTIMO_PARTO = "UltimoParto";
+        public static final String DATO1 = "Dato1";
+        public static final String DATO2 = "Dato2";
+        public static final String DATO3 = "Dato3";
+        public static final String DATO4 = "Dato4";
+        public static final String DATO5 = "Dato5";
+        public static final String DATO6 = "Dato6";
 
     }
 }

@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import java.util.ArrayList;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.TextView;
 
 import miganado.Operaciones.Seleccionanimal;
 import miganado.Operaciones.AltaanimalActivity;
@@ -46,6 +47,12 @@ public class ZonaclienteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zonacliente);
+
+        Intent intent =getIntent();
+        String name = intent.getStringExtra("username");
+        TextView username = (TextView) findViewById(R.id.tvUser);
+        username.setText(name);
+        username.setTextColor(Color.GREEN);
 
         mydb = new ExplotacionDbHelper(this);
 
@@ -156,7 +163,11 @@ public class ZonaclienteActivity extends AppCompatActivity {
                 System.out.println((String) checkBox.get(i).getText());
             }
         }
-        if(!b.isEmpty()){
+        if(b.size()>1){
+            Snackbar.make(v, "Debes seleccionar SOLO UNA explotación", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+        else if(!b.isEmpty()){
             Intent intent = new Intent(this, AltaanimalActivity.class);
             intent.putExtras(b);
             startActivity(intent);
