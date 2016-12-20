@@ -10,6 +10,6 @@ public class BusquedasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_busquedas);
+        setContentView(R.layout.fragment_busquedas);
     }
 }

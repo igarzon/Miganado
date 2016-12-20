@@ -10,4 +10,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="miganado.Operaciones.BusquedasActivity">
 
+
+    <fragment android:name="miganado.Operaciones.Busquedas_Fragment"
+        android:id="@+id/fragment_busquedas"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/fragment_busquedas" />
+
 </RelativeLayout>
