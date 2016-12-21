@@ -48,7 +48,7 @@ public class ZonaclienteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zonacliente);
 
-        Intent intent =getIntent();
+        Intent intent = getIntent();
         String name = intent.getStringExtra("username");
         TextView username = (TextView) findViewById(R.id.tvUser);
         username.setText(name);

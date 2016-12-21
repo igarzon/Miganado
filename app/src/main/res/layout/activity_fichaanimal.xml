@@ -26,15 +26,17 @@
         android:id="@+id/btnRestablecer"
         android:textSize="15sp"
         android:layout_gravity="start"
+        android:onClick="restablecer"
         />
 
     <Button
-        android:text="Actualizar"
+        android:text="Modificar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnActualizar"
+        android:id="@+id/btnModificar"
         android:textSize="15sp"
         android:layout_gravity="center_vertical"
+        android:onClick="modificar"
         />
 
     <Button

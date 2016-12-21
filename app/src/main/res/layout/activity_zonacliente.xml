@@ -35,11 +35,11 @@
         android:id="@+id/layout_menu">
 
         <Button
-            android:text="Explotaciones"
+            android:text="     Censo     "
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnExplotaciones"
-            tools:text="Explotaciones"
+            tools:text="    Censo    "
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"

@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -104,7 +106,24 @@ public class AltaanimalActivity extends AppCompatActivity {
         }
         Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
                 .show();
-        Intent intent = new Intent(this, ZonaclienteActivity.class);
-        startActivity(intent);
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            //Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(this, ZonaclienteActivity.class);
+        startActivity(setIntent);
+    }
+
 }

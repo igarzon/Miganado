@@ -20,12 +20,13 @@ import miganado.Loginyregistro.R;
 public class Seleccionanimal extends AppCompatActivity {
 
     private Spinner spinner;
+    private Bundle b;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccionanimal);
 
-        Bundle b = this.getIntent().getExtras();
+        b = this.getIntent().getExtras();
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         ArrayList<String> spin = new ArrayList<String>();
@@ -54,12 +55,13 @@ public class Seleccionanimal extends AppCompatActivity {
     }
 
     public void clickAceptar(View v) {
-        Bundle b = new Bundle();
-        b.putString((String) spinner.getSelectedItem(), (String) spinner.getSelectedItem());
+        Bundle bun = new Bundle();
+        bun.putString((String) spinner.getSelectedItem(), (String) spinner.getSelectedItem());
+        bun.putBundle("Explotaciones",b);
 
         if(!b.isEmpty()){
             Intent intent = new Intent(this, FichaanimalActivity.class);
-            intent.putExtras(b);
+            intent.putExtras(bun);
             startActivity(intent);
         }
         else {

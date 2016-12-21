@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -15,17 +16,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import miganado.Data.ExplotacionDbHelper;
+import miganado.Loginyregistro.ZonaclienteActivity;
 import miganado.Operaciones.FichaanimalActivity;
 import miganado.Loginyregistro.R;
 
 public class ExplotacionesActivity extends AppCompatActivity {
+
+    private Bundle b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explotaciones);
 
-        Bundle b = this.getIntent().getExtras();
+        /*final Bundle*/ b = this.getIntent().getExtras();
         LinearLayout relative = (LinearLayout) findViewById(R.id.listado);
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
@@ -53,10 +57,11 @@ public class ExplotacionesActivity extends AppCompatActivity {
                 aux2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Bundle b = new Bundle();
-                        b.putString((String) aux2.getText(), (String) aux2.getText());
+                        Bundle bun = new Bundle();
+                        bun.putString((String) aux2.getText(), (String) aux2.getText());
+                        bun.putBundle("Explotaciones",b);
                         Intent intent = new Intent(context, FichaanimalActivity.class);
-                        intent.putExtras(b);
+                        intent.putExtras(bun);
                         startActivity(intent);
                     }
                 });
@@ -65,5 +70,22 @@ public class ExplotacionesActivity extends AppCompatActivity {
 
 
         }
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            //Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(this, ZonaclienteActivity.class);
+        startActivity(setIntent);
     }
 }
