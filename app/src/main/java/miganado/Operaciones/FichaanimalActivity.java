@@ -86,12 +86,15 @@ public class FichaanimalActivity extends AppCompatActivity {
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         mydb.deleteCrotal(crotal.getText().toString());
-        crotal.setText("");
-        for(int i = 0; i<editText.size(); i++){
-            editText.get(i).setText("");
-        }
         Snackbar.make(v, "Borrado realizado correctamente", Snackbar.LENGTH_LONG)
                 .show();
+        Bundle bun = b.getBundle("Explotaciones");
+        for(String key : bun.keySet()){
+            bun.putString(key,key);
+        }
+        Intent setIntent = new Intent(this, ExplotacionesActivity.class);
+        setIntent.putExtras(bun);
+        startActivity(setIntent);
     }
 
     public void restablecer(View v) {
