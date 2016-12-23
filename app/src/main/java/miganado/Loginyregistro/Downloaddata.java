@@ -1,6 +1,8 @@
 package miganado.Loginyregistro;
 
 import android.content.ContentValues;
+import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,7 @@ import org.json.JSONObject;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import miganado.Data.Explotacion;
@@ -53,7 +56,7 @@ public class Downloaddata extends AppCompatActivity {
                             //
                             JSONArray jsonArray = new JSONArray(response);
                             for(int i=0; i<jsonArray.length(); i++){
-                                //System.out.println(jsonArray.get(i));
+                                System.out.println(jsonArray.get(i));
 
                                 //Almacenamos linea a linea cada una de las filas de la tabla
                                 String Linea=jsonArray.get(i).toString();
@@ -71,6 +74,31 @@ public class Downloaddata extends AppCompatActivity {
                                 //Diseccionamos la cadena
                                 String[] parts = newLine.split(":");
 
+
+                                ArrayList<String> datos = new ArrayList<String>();
+
+                                datos.add(parts[3]);
+                                datos.add(parts[7]);
+                                datos.add(parts[11]);
+                                datos.add(parts[15]);
+                                datos.add(parts[19]);
+                                datos.add(parts[23]);
+                                datos.add(parts[27]);
+                                datos.add(parts[31]);
+                                datos.add(parts[35]);
+                                datos.add(parts[39]);
+                                datos.add(parts[43]);
+                                datos.add(parts[47]);
+                                datos.add(parts[51]);
+                                datos.add(parts[55]);
+                                datos.add(parts[59]);
+                                datos.add(parts[63]);
+                                datos.add(parts[67]);
+                                datos.add(parts[71]);
+                                datos.add(parts[75]);
+
+                                darAlta(datos);
+
                                 //Actualizamos los String de cada uno de los elementos de la tabla
                                  String crotal = parts[3];
                                  String crotalOriginal = parts[7];
@@ -78,21 +106,24 @@ public class Downloaddata extends AppCompatActivity {
                                  String crotalMadre = parts[15];
                                  String sexo= parts[19];
                                  String raza= parts[23];
-                                 String fechaNacimiento=parts[27];;
-                                 String ceaNacimiento=parts[31];;
-                                 String fechaLlegada=parts[35];;
-                                 String ceaLocalizacion=parts[39];;
-                                 String ultimoParto=parts[43];;
-                                 String dato1=parts[47];;
-                                 String dato2=parts[51];;
-                                 String dato3=parts[55];;
-                                 String dato4=parts[59];;
-                                 String dato5=parts[63];;
-                                 String dato6=parts[67];;
+                                 String fechaNacimiento=parts[27];
+                                 String ceaNacimiento=parts[31];
+                                 String fechaLlegada=parts[35];
+                                 String ceaLocalizacion=parts[39];
+                                 String ultimoParto=parts[43];
+                                 String dato1=parts[47];
+                                 String dato2=parts[51];
+                                 String dato3=parts[55];
+                                 String dato4=parts[59];
+                                 String dato5=parts[63];
+                                 String dato6=parts[67];
+                                String fechaModificacion=parts[71];
+                                String baja=parts[74];
 
-                              /*  for (int j = 3; j < parts.length; j+=4) {
+
+                                for (int j = 3; j < parts.length; j+=4) {
                                     System.out.println(parts[j]);
-                                }*/
+                                }
 
                                 Datos[i]=Linea;
 
@@ -111,5 +142,39 @@ public class Downloaddata extends AppCompatActivity {
                 queue.add(DownloaddataRequest);
             }
         });
+
+        Intent intent = new Intent(Downloaddata.this, ZonaclienteActivity.class);
+        Downloaddata.this.startActivity(intent);
+
+
+    }
+
+
+    public void darAlta(ArrayList<String> datos) {
+
+        //cur.
+        Explotacion vaca = new Explotacion(datos.get(0),
+                datos.get(1),
+                datos.get(2),
+                datos.get(3),
+                datos.get(4),
+                datos.get(5),
+                datos.get(6),
+                datos.get(7),
+                datos.get(8),
+                datos.get(9),
+                datos.get(10),
+                datos.get(11),
+                datos.get(12),
+                datos.get(13),
+                datos.get(14),
+                datos.get(15),
+                datos.get(16),
+                datos.get(17),
+                datos.get(18));
+        ExplotacionDbHelper mydb;
+        mydb = new ExplotacionDbHelper(this);
+        mydb.insertVaca(vaca);
+
     }
 }

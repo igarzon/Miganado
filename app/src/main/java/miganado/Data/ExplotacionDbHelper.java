@@ -42,41 +42,13 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
                 + ExplotacionEntry.DATO4 + " TEXT NOT NULL,"
                 + ExplotacionEntry.DATO5 + " TEXT NOT NULL,"
                 + ExplotacionEntry.DATO6 + " TEXT NOT NULL,"
+                + ExplotacionEntry.FECHA_MODIFICACION + " TEXT NOT NULL,"
+                + ExplotacionEntry.BAJA + " TEXT NOT NULL,"
                 + "UNIQUE (" + ExplotacionEntry.CROTAL + "))");
 
-        // Insertar datos ficticios para prueba inicial
-        mockData(db);
-
     }
 
-    private void mockData(SQLiteDatabase sqLiteDatabase) {
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351831","ES000802635184","lIDIA1","ES000802635184", "MACHO","MESTIZA",
-                 "10/05/2010","CEA1","10/02/2001","GRANADA","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351832","ES000802635184","lIDIA1","ES000802635184", "MACHO","MESTIZA",
-                "10/05/2010","CEA1","10/02/2000","GRANADA","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351833","ES000802635184","lIDIA1","ES000802635184", "MACHO","MESTIZA",
-                "10/05/2010","CEA2","10/02/2004","MADRID","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351834","ES000802635184","lIDIA1","ES000802635184", "MACHO","MESTIZA",
-                "10/05/2010","CEA2","10/02/2000","MADRID","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351835","ES000802635184","lIDIA1","ES000802635184", "MACHO","MESTIZA",
-                "10/05/2010","CEA1","10/02/2005","SEVILLA","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351836","ES000802635185","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
-                "10/05/2010","CEA4","10/02/2000","GRANADA","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351837","ES000802635185","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
-                "10/05/2010","CEA4","10/02/2006","CADIZ","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351838","ES000802635185","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
-                "10/05/2010","CEA1","10/02/2000","GRANADA","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351839","ES000802635185","lIDIA1","ES000802635184", "MACHO","MESTIZA",
-                "10/05/2010","CEA3","10/02/2008","NAVARRA","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351840","ES000802635186","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
-                "10/05/2010","CEA3","10/02/2000","GRANADA","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351841","ES000802635186","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
-                "10/05/2010","CEA1","10/02/2009","GRANADA","NOPARTOS","1","2","3","4","5","6"));
-        mockExplotacion(sqLiteDatabase, new Explotacion("ES0008026351842","ES000802635187","lIDIA1","ES000802635184", "HEMBRA","MESTIZA",
-                "10/05/2010","CEA1","10/02/2015","GRANADA","NOPARTOS","1","2","3","4","5","6"));
 
-
-    }
 
     public long mockExplotacion(SQLiteDatabase db, Explotacion vaca) {
         return db.insert(
@@ -121,6 +93,28 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         }
         res.close();
         return array_list;
+    }
+
+
+    public boolean existExplotaciones() {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        boolean result = false;
+
+        String sql = "SELECT COUNT (*) FROM " + ExplotacionEntry.TABLE_NAME;
+
+        Cursor mcursor = db.rawQuery(sql, null);
+        mcursor.moveToFirst();
+        int icount = mcursor.getInt(0);
+        if(icount>0){
+            //hay contenido
+            result = true;
+
+        }
+
+        return result;
+
     }
 
     public ArrayList<String> getVacasExplotacion(String exp) {

@@ -54,24 +54,13 @@ public class ZonaclienteActivity extends AppCompatActivity {
         username.setText(name);
         username.setTextColor(Color.GREEN);
 
+
         mydb = new ExplotacionDbHelper(this);
 
         //Bundle b = this.getIntent().getExtras(); //Obtenemos las explotaciones del login
         //Ver si es mejor cogerlas de la base de datos
-        ArrayList<String> explotaciones = mydb.getExplotaciones(); //Nombre de las explotaciones
-        //Pruebas, hay que borrarlo adelate
-        //explotaciones.add("explotacion 1");
-        //explotaciones.add("explotacion 2");
-        //explotaciones.add("explotacion 3");
-        //explotaciones.add("explotacion 4");
-        /*
 
-        /*
-        for(String key : b.keySet()){
-            //hay que ver como devuelve el nombre de la explotacion y ver si es mejor añadir key
-            explotaciones.add((String)b.get(key));
-        }
-        */
+        ArrayList<String> explotaciones = mydb.getExplotaciones(); //Nombre de las explotaciones
 
         //Referencia al layout
         LinearLayout relative = (LinearLayout) findViewById(R.id.layout_checkbox);
@@ -80,14 +69,14 @@ public class ZonaclienteActivity extends AppCompatActivity {
         //Tenemos todas las checkBox en el arrayList
 
 
-        for(int i=0;i<explotaciones.size();i++){
+        for (int i = 0; i < explotaciones.size(); i++) {
 
             CheckBox aux = new CheckBox(this);
             aux.setLayoutParams(lparams);
             aux.setText(explotaciones.get(i));
             aux.setTextColor(Color.BLACK);
             aux.setTextSize(20);
-            aux.setPadding(1,1,1,1);
+            aux.setPadding(1, 1, 1, 1);
             aux.setBackgroundColor(Color.WHITE);
             aux.setId(i); //Añadimos un id para poder referenciarle luego de  0 a n-1 explotaciones
             relative.addView(aux);

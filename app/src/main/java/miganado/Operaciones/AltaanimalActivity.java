@@ -97,7 +97,9 @@ public class AltaanimalActivity extends AppCompatActivity {
                 datos.get(13),
                 datos.get(14),
                 datos.get(15),
-                datos.get(16));
+                datos.get(16),
+                "",
+                "1");
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         mydb.insertVaca(vaca);

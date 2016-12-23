@@ -50,6 +50,9 @@ public class ExplotacionContract {
         public static final String DATO4 = "Dato4";
         public static final String DATO5 = "Dato5";
         public static final String DATO6 = "Dato6";
+        public static final String FECHA_MODIFICACION = "FechaModificacion";
+        public static final String BAJA = "Baja";
+
 
     }
 }

@@ -25,6 +25,7 @@ package miganado.Loginyregistro;
 
         import java.sql.Array;
 
+        import miganado.Data.ExplotacionDbHelper;
         import miganado.Loginyregistro.LoginRequest;
         import miganado.Loginyregistro.R;
         import miganado.Loginyregistro.RegistroActivity;
@@ -80,10 +81,25 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
-                                Intent intent = new Intent(LoginActivity.this, ZonaclienteActivity.class);
-                                intent.putExtra("username", username);
-                                LoginActivity.this.startActivity(intent);
-                            } else {
+
+                               /* ExplotacionDbHelper mydb;
+                                mydb = new ExplotacionDbHelper(getApplicationContext());
+
+
+                                if (!mydb.existExplotaciones()) {*/
+
+                                    Intent intent = new Intent(LoginActivity.this, Downloaddata.class);
+                                    LoginActivity.this.startActivity(intent);
+
+                                /*} else {
+
+                                    Intent intent = new Intent(LoginActivity.this, ZonaclienteActivity.class);
+                                    intent.putExtra("username", username);
+                                    LoginActivity.this.startActivity(intent);
+                                }*/
+
+
+                            }else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                                 builder.setMessage(" Ha fallado el Login")
                                         .setNegativeButton("Retry", null)
