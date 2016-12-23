@@ -41,8 +41,8 @@ public class ExplotacionContract {
         public static final String RAZA = "Raza";
         public static final String FECHA_NACIMIENTO = "FechaNacimiento";
         public static final String CEA_NACIMIENTO = "CeaNacimiento";
-        public static final String FECHA_LLEGADA = "FechaLlegada";
         public static final String CEA_LOCALIZACION = "CeaLocalizacion";
+        public static final String FECHA_LLEGADA = "FechaLlegada";
         public static final String ULTIMO_PARTO = "UltimoParto";
         public static final String DATO1 = "Dato1";
         public static final String DATO2 = "Dato2";

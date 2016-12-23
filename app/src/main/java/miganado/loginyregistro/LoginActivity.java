@@ -82,21 +82,21 @@ public class LoginActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
 
-                               /* ExplotacionDbHelper mydb;
+                               ExplotacionDbHelper mydb;
                                 mydb = new ExplotacionDbHelper(getApplicationContext());
 
-
-                                if (!mydb.existExplotaciones()) {*/
+                                System.out.print("DDBB=   "+mydb.existExplotaciones());
+                                if (mydb.existExplotaciones()==false) {
 
                                     Intent intent = new Intent(LoginActivity.this, Downloaddata.class);
                                     LoginActivity.this.startActivity(intent);
 
-                                /*} else {
-
+                                }
+                                if (mydb.existExplotaciones()==true) {
                                     Intent intent = new Intent(LoginActivity.this, ZonaclienteActivity.class);
                                     intent.putExtra("username", username);
                                     LoginActivity.this.startActivity(intent);
-                                }*/
+                                }
 
 
                             }else {

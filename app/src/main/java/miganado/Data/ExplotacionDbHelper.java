@@ -33,8 +33,8 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
                 + ExplotacionEntry.RAZA + " TEXT NOT NULL,"
                 + ExplotacionEntry.FECHA_NACIMIENTO + " TEXT NOT NULL,"
                 + ExplotacionEntry.CEA_NACIMIENTO + " TEXT NOT NULL,"
-                + ExplotacionEntry.FECHA_LLEGADA + " TEXT NOT NULL,"
                 + ExplotacionEntry.CEA_LOCALIZACION + " TEXT NOT NULL,"
+                + ExplotacionEntry.FECHA_LLEGADA + " TEXT NOT NULL,"
                 + ExplotacionEntry.ULTIMO_PARTO + " TEXT NOT NULL,"
                 + ExplotacionEntry.DATO1 + " TEXT NOT NULL,"
                 + ExplotacionEntry.DATO2 + " TEXT NOT NULL,"
@@ -107,11 +107,13 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         Cursor mcursor = db.rawQuery(sql, null);
         mcursor.moveToFirst();
         int icount = mcursor.getInt(0);
-        if(icount>0){
+        if(icount>1){
             //hay contenido
             result = true;
 
         }
+
+        System.out.println("RESULTADO: "+result);
 
         return result;
 

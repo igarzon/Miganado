@@ -36,6 +36,10 @@ public class Downloaddata extends AppCompatActivity {
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
         final Button btDownload = (android.widget.Button) findViewById(R.id.btnDownloaddata);
 
+        final Button btAcceso = (android.widget.Button) findViewById(R.id.btnAcceso);
+
+        final boolean[] begin = new boolean[1];
+
 
 
 
@@ -99,6 +103,8 @@ public class Downloaddata extends AppCompatActivity {
 
                                 darAlta(datos);
 
+                                begin[0] =true;
+
                                 //Actualizamos los String de cada uno de los elementos de la tabla
                                  String crotal = parts[3];
                                  String crotalOriginal = parts[7];
@@ -143,8 +149,17 @@ public class Downloaddata extends AppCompatActivity {
             }
         });
 
-        Intent intent = new Intent(Downloaddata.this, ZonaclienteActivity.class);
-        Downloaddata.this.startActivity(intent);
+        btAcceso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(begin[0]==true) {
+                    Intent intent = new Intent(Downloaddata.this, ZonaclienteActivity.class);
+                    Downloaddata.this.startActivity(intent);
+                }
+
+            }});
+
 
 
     }

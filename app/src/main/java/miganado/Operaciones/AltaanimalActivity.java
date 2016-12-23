@@ -18,6 +18,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import miganado.Data.Explotacion;
+import miganado.Data.ExplotacionContract;
 import miganado.Data.ExplotacionDbHelper;
 import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.ZonaclienteActivity;
@@ -33,7 +34,7 @@ public class AltaanimalActivity extends AppCompatActivity {
 
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
-        Cursor dbCursor = mydb.getReadableDatabase().query("Miganado", null, null, null, null, null, null);
+        Cursor dbCursor = mydb.getReadableDatabase().query(ExplotacionContract.ExplotacionEntry.TABLE_NAME, null, null, null, null, null, null);
         String[] columnNames = dbCursor.getColumnNames();
 
         LinearLayout linear = (LinearLayout) findViewById(R.id.alta);

@@ -19,8 +19,8 @@ public class Explotacion {
     private String raza;
     private String fechaNacimiento;
     private String ceaNacimiento;
-    private String fechaLlegada;
     private String ceaLocalizacion;
+    private String fechaLlegada;
     private String ultimoParto;
     private String dato1;
     private String dato2;
@@ -39,8 +39,8 @@ public class Explotacion {
              String raza,
              String fechaNacimiento,
              String ceaNacimiento,
-             String fechaLlegada,
              String ceaLocalizacion,
+             String fechaLlegada,
              String ultimoParto,
              String dato1,
              String dato2,
@@ -59,8 +59,8 @@ public class Explotacion {
         this.raza=raza;
         this.fechaNacimiento=fechaNacimiento;
         this.ceaNacimiento=ceaNacimiento;
-        this.fechaLlegada=fechaLlegada;
         this.ceaLocalizacion=ceaLocalizacion;
+        this.fechaLlegada=fechaLlegada;
         this.ultimoParto=ultimoParto;
         this.dato1=dato1;
         this.dato2=dato2;
@@ -104,8 +104,8 @@ public class Explotacion {
         values.put(ExplotacionContract.ExplotacionEntry.RAZA, raza);
         values.put(ExplotacionContract.ExplotacionEntry.FECHA_NACIMIENTO, fechaNacimiento);
         values.put(ExplotacionContract.ExplotacionEntry.CEA_NACIMIENTO, ceaNacimiento);
-        values.put(ExplotacionContract.ExplotacionEntry.FECHA_LLEGADA, fechaLlegada);
         values.put(ExplotacionContract.ExplotacionEntry.CEA_LOCALIZACION, ceaLocalizacion);
+        values.put(ExplotacionContract.ExplotacionEntry.FECHA_LLEGADA, fechaLlegada);
         values.put(ExplotacionContract.ExplotacionEntry.ULTIMO_PARTO, ultimoParto);
         values.put(ExplotacionContract.ExplotacionEntry.DATO1, dato1);
         values.put(ExplotacionContract.ExplotacionEntry.DATO2, dato2);
