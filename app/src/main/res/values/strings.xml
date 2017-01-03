@@ -4,4 +4,5 @@
     <string name="enviar">ENVIAR</string>
     <string name="gesti_n_de_explotaciones">Gestión de Explotaciones</string>
     <string name="title_activity_paraborrar">paraborrar</string>
+    <string name="title_activity_resultado_busqueda">ResultadoBusquedaActivity</string>
 </resources>

@@ -139,13 +139,83 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         return array_list;
     }
 
+
+    public ArrayList<String> Busqueda(String crotal, String crotalMadre, String fecha1, String fecha2) {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        if(crotal.equals("")){
+            crotal="%";
+
+        }
+        if(crotalMadre.equals("")){
+            crotalMadre="%";
+
+        }
+        if(fecha1.equals("")){
+            fecha1="0000-00-00";
+
+        }
+        if(fecha2.equals("")){
+            fecha1="3000-00-00";
+
+        }
+
+
+        Cursor res = null;
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+","+ExplotacionEntry.FECHA_NACIMIENTO+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE " + ExplotacionEntry.CROTAL + " LIKE '"+crotal+"'" + " AND " + ExplotacionEntry.CROTAL_MADRE + " LIKE '"+crotalMadre+"'",null);
+        res.moveToFirst();
+
+
+        while(!res.isLast()) {
+            String a = res.getString(1);
+            String[] fecha11 = fecha1.split("-");
+            int fechaFinal1 = Integer.parseInt(fecha11[0] + fecha11[1] + fecha11[2]);
+
+            String[] fecha12 = fecha2.split("-");
+            int fechaFinal2 = Integer.parseInt(fecha12[0] + fecha12[1] + fecha12[2]);
+
+
+            String[] fechaCrotal = a.split("-");
+            int fechaFinalCrotal = Integer.parseInt(fechaCrotal[0] + fechaCrotal[1] + fechaCrotal[2]);
+
+
+            if (fechaFinalCrotal <= fechaFinal2 && fechaFinalCrotal >= fechaFinal1) {
+                array_list.add(res.getString(0));
+
+            }
+            res.moveToNext();
+        }
+
+
+        String a = res.getString(1);
+        String[] fecha11 = fecha1.split("-");
+        int fechaFinal1 = Integer.parseInt(fecha11[0] + fecha11[1] + fecha11[2]);
+
+        String[] fecha12 = fecha2.split("-");
+        int fechaFinal2 = Integer.parseInt(fecha12[0] + fecha12[1] + fecha12[2]);
+
+
+        String[] fechaCrotal = a.split("-");
+        int fechaFinalCrotal = Integer.parseInt(fechaCrotal[0] + fechaCrotal[1] + fechaCrotal[2]);
+
+
+        if (fechaFinalCrotal <= fechaFinal2 && fechaFinalCrotal >= fechaFinal1) {
+            array_list.add(res.getString(0));
+
+        }
+        res.close();
+        return array_list;
+    }
+
     public Cursor /*ArrayList<String>*/ getCrotal(String crotal) {
         ArrayList<String> array_list = new ArrayList<String>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor res = null;
-        res = db.rawQuery("SELECT * FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CROTAL+" LIKE '"+crotal+"'",null);
+        res = db.rawQuery("SELECT * FROM "+ ExplotacionEntry.TABLE_NAME +" WHERE "+ExplotacionEntry.CROTAL+" LIKE '"+crotal+"'",null);
 
         /*for(int i = 1; i<res.getColumnCount();i++) {
             res.moveToFirst();
