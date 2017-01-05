@@ -28,7 +28,7 @@ public class ResultadosBusquedasActivity extends AppCompatActivity {
         /*final Bundle*/ b = this.getIntent().getExtras().getStringArrayList("resultado");
         LinearLayout relative = (LinearLayout) findViewById(R.id.activity_resultados_busquedas);
 
-        final Context context = this;
+        final Context context = getApplicationContext();
 
         for(String key : b){
 

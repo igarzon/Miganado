@@ -158,13 +158,13 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
 
         }
         if(fecha2.equals("")){
-            fecha1="3000-00-00";
+            fecha2="3000-00-00";
 
         }
 
 
         Cursor res = null;
-        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+","+ExplotacionEntry.FECHA_NACIMIENTO+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE " + ExplotacionEntry.CROTAL + " LIKE '"+crotal+"'" + " AND " + ExplotacionEntry.CROTAL_MADRE + " LIKE '"+crotalMadre+"'",null);
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+","+ExplotacionEntry.FECHA_NACIMIENTO+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE " + ExplotacionEntry.CROTAL + " LIKE '%"+crotal+"%'" + " AND " + ExplotacionEntry.CROTAL_MADRE + " LIKE '%"+crotalMadre+"%'",null);
         res.moveToFirst();
 
 
@@ -215,7 +215,7 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor res = null;
-        res = db.rawQuery("SELECT * FROM "+ ExplotacionEntry.TABLE_NAME +" WHERE "+ExplotacionEntry.CROTAL+" LIKE '"+crotal+"'",null);
+        res = db.rawQuery("SELECT * FROM "+ ExplotacionEntry.TABLE_NAME +" WHERE "+ExplotacionEntry.CROTAL+" LIKE '%"+crotal+"%'",null);
 
         /*for(int i = 1; i<res.getColumnCount();i++) {
             res.moveToFirst();
