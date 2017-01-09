@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                                ExplotacionDbHelper mydb;
                                 mydb = new ExplotacionDbHelper(getApplicationContext());
 
-                                System.out.print("DDBB=   "+mydb.existExplotaciones());
+                                System.out.print("DDBB=   " + mydb.existExplotaciones());
                                 if (mydb.existExplotaciones()==false) {
 
                                     Intent intent = new Intent(LoginActivity.this, Downloaddata.class);
