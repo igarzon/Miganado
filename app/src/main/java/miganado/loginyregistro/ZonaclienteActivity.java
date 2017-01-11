@@ -20,6 +20,7 @@ import java.util.Date;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import miganado.Data.GlobalVariable;
 import miganado.Operaciones.Seleccionanimal;
@@ -37,9 +38,26 @@ public class ZonaclienteActivity extends AppCompatActivity {
     private GlobalVariable gb = new GlobalVariable();
     private ArrayList<String> gbExp = gb.getExplotaciones();
 
+    SessionManager sessionManager;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zonacliente);
+
+
+        // Session class instance
+        sessionManager = new SessionManager(getApplicationContext());
+
+
+        Toast.makeText(getApplicationContext(), "User Login Status: " + sessionManager.isLoggedIn(), Toast.LENGTH_LONG).show();
+
+
+        /**
+         * Call this function whenever you want to check user login
+         * This will redirect user to LoginActivity is he is not
+         * logged in
+         * */
+        sessionManager.checkLogin();
 
         //Intent intent = getIntent();
         //String name = intent.getStringExtra("username");
