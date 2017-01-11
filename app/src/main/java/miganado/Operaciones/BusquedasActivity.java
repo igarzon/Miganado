@@ -63,15 +63,13 @@ public class BusquedasActivity extends AppCompatActivity {
 
                 fecha2 = in_date2.getText().toString();
 
-                System.out.println(textCrotal);
+                /*System.out.println(textCrotal);
                 System.out.println(textCrotalMadre);
                 System.out.println(fecha1);
-                System.out.println(fecha2);
+                System.out.println(fecha2);*/
 
                 ExplotacionDbHelper mydb;
                 mydb = new ExplotacionDbHelper(getApplicationContext());
-
-                System.out.println("AAAAAAAAAAAAAAAAAAAAA");
 
 
                 ArrayList<String> datos = mydb.Busqueda(textCrotal,textCrotalMadre,fecha1,fecha2);

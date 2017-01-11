@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,23 +16,26 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import miganado.Data.ExplotacionDbHelper;
+import miganado.Data.GlobalVariable;
 import miganado.Loginyregistro.R;
+import miganado.Loginyregistro.ZonaclienteActivity;
 
 public class Seleccionanimal extends AppCompatActivity {
 
     private Spinner spinner;
-    private Bundle b;
+    private GlobalVariable gb = new GlobalVariable();
+    private ArrayList<String> gbExp = gb.getExplotaciones();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccionanimal);
 
-        b = this.getIntent().getExtras();
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         ArrayList<String> spin = new ArrayList<String>();
 
-        for(String key : b.keySet()){
+        for(String key : gbExp){
 
             //Aqui obtendriamos las explotaciones seleccionadas
             ArrayList<String> vacas = mydb.getVacasExplotacion(key);
@@ -57,9 +61,9 @@ public class Seleccionanimal extends AppCompatActivity {
     public void clickAceptar(View v) {
         Bundle bun = new Bundle();
         bun.putString((String) spinner.getSelectedItem(), (String) spinner.getSelectedItem());
-        bun.putBundle("Explotaciones",b);
+        gb.setActivityAnterior(Seleccionanimal.class);
 
-        if(!b.isEmpty()){
+        if(!bun.isEmpty()){
             Intent intent = new Intent(this, FichaanimalActivity.class);
             intent.putExtras(bun);
             startActivity(intent);
@@ -68,5 +72,23 @@ public class Seleccionanimal extends AppCompatActivity {
             Snackbar.make(v, "Debes seleccionar un crotal", Snackbar.LENGTH_LONG)
                     .show();
         }
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            //Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(this, ZonaclienteActivity.class);
+        startActivity(setIntent);
     }
 }

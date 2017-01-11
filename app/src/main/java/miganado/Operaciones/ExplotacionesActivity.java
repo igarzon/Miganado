@@ -62,6 +62,7 @@ public class ExplotacionesActivity extends AppCompatActivity {
                         bun.putString((String) aux2.getText(), (String) aux2.getText());
                         Intent intent = new Intent(context, FichaanimalActivity.class);
                         intent.putExtras(bun);
+                        gb.setActivityAnterior(ExplotacionesActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -86,7 +87,6 @@ public class ExplotacionesActivity extends AppCompatActivity {
     public void onBackPressed() {
         //Log.d("CDA", "onBackPressed Called");
         Intent setIntent = new Intent(this, ZonaclienteActivity.class);
-        gb.setActivityAnterior(ExplotacionesActivity.class);
         startActivity(setIntent);
     }
 }
