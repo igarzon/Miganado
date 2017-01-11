@@ -5,7 +5,6 @@ package miganado.Loginyregistro;
         import android.content.Intent;
         import android.net.Uri;
         import android.os.Bundle;
-        import android.util.Log;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
@@ -13,23 +12,15 @@ package miganado.Loginyregistro;
         import com.android.volley.RequestQueue;
         import com.android.volley.Response;
         import com.android.volley.toolbox.Volley;
-        import com.google.android.gms.appindexing.Action;
-        import com.google.android.gms.appindexing.AppIndex;
-        import com.google.android.gms.appindexing.Thing;
         import com.google.android.gms.common.api.GoogleApiClient;
+
+        import android.widget.Toast;
 
 
         import org.json.JSONException;
         import org.json.JSONObject;
-        import org.json.JSONArray;
-
-        import java.sql.Array;
 
         import miganado.Data.ExplotacionDbHelper;
-        import miganado.Loginyregistro.LoginRequest;
-        import miganado.Loginyregistro.R;
-        import miganado.Loginyregistro.RegistroActivity;
-        import miganado.Loginyregistro.ZonaclienteActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -39,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +41,11 @@ public class LoginActivity extends AppCompatActivity {
         final Button btLogin = (Button) findViewById(R.id.btnLogin);
         final TextView registerlink = (TextView) findViewById(R.id.tvLinkregistro);
         final TextView resetlink = (TextView) findViewById(R.id.tvLinkreseteopassword);
+
+        sessionManager = new SessionManager(getApplicationContext());
+
+
+
 
         registerlink.setOnClickListener((new View.OnClickListener() {
             @Override
@@ -81,6 +78,8 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonResponse = new JSONObject(response);
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
+
+                                sessionManager.createLoginSession(username);
 
                                ExplotacionDbHelper mydb;
                                 mydb = new ExplotacionDbHelper(getApplicationContext());

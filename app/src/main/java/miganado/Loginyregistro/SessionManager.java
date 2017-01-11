@@ -7,7 +7,7 @@ import android.content.SharedPreferences.Editor;
 
 import java.util.HashMap;
 
-public class Sesion {
+public class SessionManager {
     // Shared Preferences
     SharedPreferences pref;
 
@@ -33,24 +33,22 @@ public class Sesion {
     public static final String KEY_EMAIL = "email";
 
     // Constructor
-    public Sesion(Context context){
+    public SessionManager(Context context){
         this._context = context;
         pref = _context.getSharedPreferences(PREF_NAME, PRIVATE_MODE);
         editor = pref.edit();
     }
 
     /**
-     * Create login session
+     * Create login sessionManager
      * */
-    public void createLoginSession(String name, String email){
+    public void createLoginSession(String name){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
         // Storing name in pref
         editor.putString(KEY_NAME, name);
 
-        // Storing email in pref
-        editor.putString(KEY_EMAIL, email);
 
         // commit changes
         editor.commit();
@@ -81,22 +79,19 @@ public class Sesion {
 
 
     /**
-     * Get stored session data
+     * Get stored sessionManager data
      * */
     public HashMap<String, String> getUserDetails(){
         HashMap<String, String> user = new HashMap<String, String>();
         // user name
         user.put(KEY_NAME, pref.getString(KEY_NAME, null));
 
-        // user email id
-        user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
-
         // return user
         return user;
     }
 
     /**
-     * Clear session details
+     * Clear sessionManager details
      * */
     public void logoutUser(){
         // Clearing all data from Shared Preferences
