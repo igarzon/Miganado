@@ -19,8 +19,9 @@ public class Explotacion {
     private String raza;
     private String fechaNacimiento;
     private String ceaNacimiento;
-    private String ceaLocalizacion;
+    private String ceaOrigen;
     private String fechaLlegada;
+    private String ceaLocalizacion;
     private String ultimoParto;
     private String dato1;
     private String dato2;
@@ -39,8 +40,9 @@ public class Explotacion {
              String raza,
              String fechaNacimiento,
              String ceaNacimiento,
-             String ceaLocalizacion,
+             String ceaOrigen,
              String fechaLlegada,
+             String ceaLocalizacion,
              String ultimoParto,
              String dato1,
              String dato2,
@@ -57,8 +59,9 @@ public class Explotacion {
         this.crotalMadre=crotalMadre;
         this.sexo=sexo;
         this.raza=raza;
-        this.fechaNacimiento=fechaNacimiento;
         this.ceaNacimiento=ceaNacimiento;
+        this.ceaOrigen=ceaOrigen;
+        this.fechaNacimiento=fechaNacimiento;
         this.ceaLocalizacion=ceaLocalizacion;
         this.fechaLlegada=fechaLlegada;
         this.ultimoParto=ultimoParto;
@@ -81,6 +84,7 @@ public class Explotacion {
         raza = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.RAZA));
         fechaNacimiento = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.FECHA_NACIMIENTO));
         ceaNacimiento = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.CEA_NACIMIENTO));
+        ceaOrigen = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.CEA_ORIGEN));
         fechaLlegada = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.FECHA_LLEGADA));
         ceaLocalizacion = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.CEA_LOCALIZACION));
         ultimoParto = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.ULTIMO_PARTO));
@@ -104,6 +108,7 @@ public class Explotacion {
         values.put(ExplotacionContract.ExplotacionEntry.RAZA, raza);
         values.put(ExplotacionContract.ExplotacionEntry.FECHA_NACIMIENTO, fechaNacimiento);
         values.put(ExplotacionContract.ExplotacionEntry.CEA_NACIMIENTO, ceaNacimiento);
+        values.put(ExplotacionContract.ExplotacionEntry.CEA_ORIGEN, ceaOrigen);
         values.put(ExplotacionContract.ExplotacionEntry.CEA_LOCALIZACION, ceaLocalizacion);
         values.put(ExplotacionContract.ExplotacionEntry.FECHA_LLEGADA, fechaLlegada);
         values.put(ExplotacionContract.ExplotacionEntry.ULTIMO_PARTO, ultimoParto);

@@ -99,11 +99,15 @@ public class Downloaddata extends AppCompatActivity {
                                 datos.add(parts[63]);
                                 datos.add(parts[67]);
                                 datos.add(parts[71]);
-                                datos.add(parts[75]);
+
+                                String fechaModificacion=parts[73]+":"+parts[74]+":"+parts[75];
+
+                                datos.add(fechaModificacion);
+                                datos.add(parts[81]);
 
                                 darAlta(datos);
 
-                                begin[0] =true;
+                                begin[0] = true;
 
                                 //Actualizamos los String de cada uno de los elementos de la tabla
                                  String crotal = parts[3];
@@ -114,21 +118,26 @@ public class Downloaddata extends AppCompatActivity {
                                  String raza= parts[23];
                                  String fechaNacimiento=parts[27];
                                  String ceaNacimiento=parts[31];
-                                 String fechaLlegada=parts[35];
-                                 String ceaLocalizacion=parts[39];
-                                 String ultimoParto=parts[43];
-                                 String dato1=parts[47];
-                                 String dato2=parts[51];
-                                 String dato3=parts[55];
-                                 String dato4=parts[59];
-                                 String dato5=parts[63];
-                                 String dato6=parts[67];
-                                String fechaModificacion=parts[71];
-                                String baja=parts[74];
+                                 String ceaOrigen=parts[35];
+                                 String fechaLlegada=parts[39];
+                                 String ceaLocalizacion=parts[43];
+                                 String ultimoParto=parts[47];
+                                 String dato1=parts[51];
+                                 String dato2=parts[55];
+                                 String dato3=parts[59];
+                                 String dato4=parts[63];
+                                 String dato5=parts[67];
+                                 String dato6=parts[71];
+                                 fechaModificacion=parts[73]+":"+parts[74]+":"+parts[75];
+                                String baja=parts[81];
 
 
                                 for (int j = 3; j < parts.length; j+=4) {
                                     System.out.println(parts[j]);
+                                }
+
+                                for (int k = 0; k < parts.length; k+=1) {
+                                    System.out.println(k+" :"+parts[k]);
                                 }
 
                                 Datos[i]=Linea;
@@ -186,7 +195,8 @@ public class Downloaddata extends AppCompatActivity {
                 datos.get(15),
                 datos.get(16),
                 datos.get(17),
-                datos.get(18));
+                datos.get(18),
+                datos.get(19));
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         mydb.insertVaca(vaca);

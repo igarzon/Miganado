@@ -130,8 +130,9 @@ public class FichaanimalActivity extends AppCompatActivity {
                 datos.get(14),
                 datos.get(15),
                 datos.get(16),
+                datos.get(17),
                 "",
-        "");
+                "");
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         mydb.deleteCrotal(datos.get(0));
