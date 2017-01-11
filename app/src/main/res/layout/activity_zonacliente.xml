@@ -91,16 +91,6 @@
         <!--android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"-->
 
-        <Button
-            android:text="Guardar Explotaciones"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnGuardar"
-            tools:text="Guardar Explotaciones"
-            android:layout_margin="10dp"
-            android:textSize="20dp"
-            android:layout_gravity="center"
-            android:onClick="clickGuardarExplotaciones"/>
 
     </LinearLayout>
 

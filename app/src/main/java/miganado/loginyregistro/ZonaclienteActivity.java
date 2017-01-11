@@ -102,8 +102,16 @@ public class ZonaclienteActivity extends AppCompatActivity {
 
     //Funcion que se realiza al pulsar el boton explotaciones
     public void clickExplotaciones(View v) {
-        gbExp=gb.getExplotaciones();
-        if(!gbExp.isEmpty()){
+
+        ArrayList<String> aux = new ArrayList<String>();
+        for(int i=0; i<checkBox.size(); i++){
+            if(checkBox.get(i).isChecked()) {
+                aux.add((String) checkBox.get(i).getText());
+            }
+        }
+
+        if(!aux.isEmpty()){
+            gb.actualizarExplotaciones(aux);
             Intent intent = new Intent(this, ExplotacionesActivity.class);
             startActivity(intent);
         }
@@ -114,8 +122,18 @@ public class ZonaclienteActivity extends AppCompatActivity {
     }
 
     public void clickFichaAnimal(View v) {
-        gbExp=gb.getExplotaciones();
-        if(!gbExp.isEmpty()){
+
+
+        ArrayList<String> aux = new ArrayList<String>();
+        for(int i=0; i<checkBox.size(); i++){
+            if(checkBox.get(i).isChecked()) {
+                aux.add((String) checkBox.get(i).getText());
+            }
+        }
+
+        if(!aux.isEmpty()){
+
+            gb.actualizarExplotaciones(aux);
             Intent intent = new Intent(this, Seleccionanimal.class);
             startActivity(intent);
         }
@@ -126,35 +144,36 @@ public class ZonaclienteActivity extends AppCompatActivity {
     }
 
     public void clickBusqueda(View v) {
+
+        ArrayList<String> aux = new ArrayList<String>();
+        for(int i=0; i<checkBox.size(); i++){
+            if(checkBox.get(i).isChecked()) {
+                aux.add((String) checkBox.get(i).getText());
+            }
+        }
+
+        gb.actualizarExplotaciones(aux);
         Intent intent = new Intent(this, BusquedasActivity.class);
         startActivity(intent);
 
     }
 
     public void clickAlta(View v) {
-        Bundle b = new Bundle();
+
+        ArrayList<String> aux = new ArrayList<String>();
         for(int i=0; i<checkBox.size(); i++){
             if(checkBox.get(i).isChecked()) {
-                b.putString((String) checkBox.get(i).getText(), (String) checkBox.get(i).getText());
-                System.out.println((String) checkBox.get(i).getText());
+                aux.add((String) checkBox.get(i).getText());
             }
         }
-        if(b.size()>1){
-            Snackbar.make(v, "Debes seleccionar SOLO UNA explotación", Snackbar.LENGTH_LONG)
-                    .show();
-        }
-        else if(!b.isEmpty()){
+
+        gb.actualizarExplotaciones(aux);
             Intent intent = new Intent(this, AltaanimalActivity.class);
-            intent.putExtras(b);
             startActivity(intent);
-        }
-        else {
-            Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
-                    .show();
-        }
+
     }
 
-    public void clickGuardarExplotaciones(View v) {
+   /*public void clickGuardarExplotaciones(View v) {
         ArrayList<String> aux = new ArrayList<String>();
         for(int i=0; i<checkBox.size(); i++){
             if(checkBox.get(i).isChecked()) {
@@ -170,7 +189,7 @@ public class ZonaclienteActivity extends AppCompatActivity {
             Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
                     .show();
         }
-    }
+    }*/
 
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
