@@ -79,7 +79,7 @@ public class AltaanimalActivity extends AppCompatActivity {
             if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
                 datos.add(editText.get(i).getText().toString());
             else
-                datos.add("---");
+                datos.add("vacio");
         }
         //cur.
         Explotacion vaca = new Explotacion(datos.get(0),
@@ -101,7 +101,7 @@ public class AltaanimalActivity extends AppCompatActivity {
                 datos.get(16),
                 datos.get(17),
                 "",
-                "1");
+                "0");
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         mydb.insertVaca(vaca);

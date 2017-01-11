@@ -35,7 +35,7 @@
         android:id="@+id/layout_menu">
 
         <Button
-            android:text="     Censo     "
+            android:text="Censo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnExplotaciones"
@@ -45,6 +45,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:textSize="20dp"
+            android:layout_gravity="center"
             android:onClick="clickExplotaciones"
             />
         <!--android:layout_below="@+id/password"
@@ -53,39 +54,53 @@
 
         <Button
             android:text="Ficha"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnFicha"
             tools:text="Ficha"
             android:layout_margin="10dp"
             android:textSize="20dp"
+            android:layout_gravity="center"
             android:onClick="clickFichaAnimal"/>
         <!--android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"-->
 
         <Button
             android:text="Busqueda"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnBusqueda"
             tools:text="Busqueda"
             android:layout_margin="10dp"
             android:textSize="20dp"
+            android:layout_gravity="center"
             android:onClick="clickBusqueda"/>
         <!--android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"-->
 
         <Button
             android:text="Alta"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btnAlta"
             tools:text="Alta"
             android:layout_margin="10dp"
             android:textSize="20dp"
+            android:layout_gravity="center"
             android:onClick="clickAlta"/>
         <!--android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"-->
+
+        <Button
+            android:text="Guardar Explotaciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnGuardar"
+            tools:text="Guardar Explotaciones"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:onClick="clickGuardarExplotaciones"/>
 
     </LinearLayout>
 

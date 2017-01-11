@@ -16,30 +16,31 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import miganado.Data.ExplotacionDbHelper;
+import miganado.Data.GlobalVariable;
 import miganado.Loginyregistro.ZonaclienteActivity;
 import miganado.Operaciones.FichaanimalActivity;
 import miganado.Loginyregistro.R;
 
 public class ExplotacionesActivity extends AppCompatActivity {
 
-    private Bundle b;
+    private GlobalVariable gb = new GlobalVariable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_explotaciones);
 
-        /*final Bundle*/ b = this.getIntent().getExtras();
         LinearLayout relative = (LinearLayout) findViewById(R.id.listado);
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         final Context context = this;
+        ArrayList<String> gbExp = gb.getExplotaciones();
 
-        for(String key : b.keySet()){
+        for(String key : gbExp){
 
             TextView aux = new TextView(this);
             aux.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            aux.setText((String)b.get(key));
+            aux.setText(key);
             aux.setTextColor(Color.BLACK);
             aux.setTextSize(20);
             aux.setPadding(1,1,1,1);
@@ -59,7 +60,6 @@ public class ExplotacionesActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Bundle bun = new Bundle();
                         bun.putString((String) aux2.getText(), (String) aux2.getText());
-                        bun.putBundle("Explotaciones",b);
                         Intent intent = new Intent(context, FichaanimalActivity.class);
                         intent.putExtras(bun);
                         startActivity(intent);
@@ -86,6 +86,7 @@ public class ExplotacionesActivity extends AppCompatActivity {
     public void onBackPressed() {
         //Log.d("CDA", "onBackPressed Called");
         Intent setIntent = new Intent(this, ZonaclienteActivity.class);
+        gb.setActivityAnterior(ExplotacionesActivity.class);
         startActivity(setIntent);
     }
 }

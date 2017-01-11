@@ -16,10 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.database.Cursor;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionDbHelper;
+import miganado.Data.GlobalVariable;
 import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.ZonaclienteActivity;
 
@@ -28,6 +32,7 @@ public class FichaanimalActivity extends AppCompatActivity {
     private ArrayList<EditText> editText = new ArrayList<EditText>();
     private Bundle b = new Bundle();
     private TextView crotal;
+    private GlobalVariable gb = new GlobalVariable();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +49,7 @@ public class FichaanimalActivity extends AppCompatActivity {
         LinearLayout linear = (LinearLayout) findViewById(R.id.ficha);
         ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        for(int i = 1; i<datos.getColumnCount();i++) {
+        for(int i = 1; i<datos.getColumnCount()-2;i++) {
             datos.moveToFirst();
             String a = datos.getString(i);
 
@@ -88,12 +93,7 @@ public class FichaanimalActivity extends AppCompatActivity {
         mydb.deleteCrotal(crotal.getText().toString());
         Snackbar.make(v, "Borrado realizado correctamente", Snackbar.LENGTH_LONG)
                 .show();
-        Bundle bun = b.getBundle("Explotaciones");
-        for(String key : bun.keySet()){
-            bun.putString(key,key);
-        }
-        Intent setIntent = new Intent(this, ExplotacionesActivity.class);
-        setIntent.putExtras(bun);
+        Intent setIntent = new Intent(this, gb.getActivityAnterior());
         startActivity(setIntent);
     }
 
@@ -110,9 +110,13 @@ public class FichaanimalActivity extends AppCompatActivity {
             if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
                 datos.add(editText.get(i).getText().toString());
             else
-                datos.add("---");
+                datos.add("vacio");
         }
-        //cur.
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String time = dateFormat.format(date);
+
         Explotacion vaca = new Explotacion(datos.get(0),
                 datos.get(1),
                 datos.get(2),
@@ -131,8 +135,8 @@ public class FichaanimalActivity extends AppCompatActivity {
                 datos.get(15),
                 datos.get(16),
                 datos.get(17),
-                "",
-                "");
+                time,
+                "0");
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         mydb.deleteCrotal(datos.get(0));
@@ -154,12 +158,7 @@ public class FichaanimalActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //Log.d("CDA", "onBackPressed Called");
-        Bundle bun = b.getBundle("Explotaciones");
-        for(String key : bun.keySet()){
-            bun.putString(key,key);
-        }
-        Intent setIntent = new Intent(this, ExplotacionesActivity.class);
-        setIntent.putExtras(bun);
+        Intent setIntent = new Intent(this, gb.getActivityAnterior());
         startActivity(setIntent);
     }
 

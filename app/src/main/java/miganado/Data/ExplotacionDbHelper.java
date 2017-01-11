@@ -126,7 +126,7 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor res = null;
-        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CEA_LOCALIZACION+" LIKE '"+exp+"'",null);
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CEA_LOCALIZACION+" LIKE '"+exp+"' AND "+ExplotacionEntry.BAJA+" LIKE '0'",null);
         res.moveToFirst();
 
         while(!res.isLast()){

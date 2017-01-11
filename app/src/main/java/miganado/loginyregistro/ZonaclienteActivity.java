@@ -6,15 +6,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Color;
+import android.view.KeyEvent;
 import android.widget.LinearLayout;
 import android.widget.CheckBox;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.TextView;
 
+import miganado.Data.GlobalVariable;
 import miganado.Operaciones.Seleccionanimal;
 import miganado.Operaciones.AltaanimalActivity;
 import miganado.Operaciones.BusquedasActivity;
@@ -24,37 +31,23 @@ import miganado.Data.ExplotacionDbHelper;
 public class ZonaclienteActivity extends AppCompatActivity {
 
 
-    /*@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_zonacliente);
-        final EditText etUsername = (EditText) findViewById(R.id.etUsername);
-        final TextView Username = (TextView) findViewById(R.id.tvUsername);
-        final TextView Welcomessage = (TextView) findViewById(R.id.tvMensajebienvenida);
-
-        Intent intent =getIntent();
-        String username = intent.getStringExtra("username");
-        String message ="Bienvenido a tu área de cliente";
-        Welcomessage.setText(message);
-        Username.setText(username);
-    }
-    NO SE SI SIRVE DE ALGO*/
-
     //Hacemos checkBox global para poder acceder desde las funciones
     private ArrayList<CheckBox> checkBox = new ArrayList<CheckBox>();
     private ExplotacionDbHelper mydb;
+    private GlobalVariable gb = new GlobalVariable();
+    private ArrayList<String> gbExp = gb.getExplotaciones();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zonacliente);
 
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("username");
-        TextView username = (TextView) findViewById(R.id.tvUser);
-        username.setText(name);
-        username.setTextColor(Color.GREEN);
+        //Intent intent = getIntent();
+        //String name = intent.getStringExtra("username");
+        //TextView username = (TextView) findViewById(R.id.tvUser);
+        //username.setText(name);
+        //username.setTextColor(Color.GREEN);
 
-
+        gb.setActivityAnterior(ZonaclienteActivity.class);
         mydb = new ExplotacionDbHelper(this);
 
         //Bundle b = this.getIntent().getExtras(); //Obtenemos las explotaciones del login
@@ -79,6 +72,9 @@ public class ZonaclienteActivity extends AppCompatActivity {
             aux.setPadding(1, 1, 1, 1);
             aux.setBackgroundColor(Color.WHITE);
             aux.setId(i); //Añadimos un id para poder referenciarle luego de  0 a n-1 explotaciones
+            if(gbExp.contains(explotaciones.get(i))){
+                aux.setChecked(true);
+            }
             relative.addView(aux);
             checkBox.add(aux);
 
@@ -88,16 +84,9 @@ public class ZonaclienteActivity extends AppCompatActivity {
 
     //Funcion que se realiza al pulsar el boton explotaciones
     public void clickExplotaciones(View v) {
-        Bundle b = new Bundle();
-        for(int i=0; i<checkBox.size(); i++){
-            if(checkBox.get(i).isChecked()) {
-                b.putString((String) checkBox.get(i).getText(), (String) checkBox.get(i).getText());
-                System.out.println((String) checkBox.get(i).getText());
-            }
-        }
-        if(!b.isEmpty()){
+        gbExp=gb.getExplotaciones();
+        if(!gbExp.isEmpty()){
             Intent intent = new Intent(this, ExplotacionesActivity.class);
-            intent.putExtras(b);
             startActivity(intent);
         }
         else {
@@ -107,16 +96,9 @@ public class ZonaclienteActivity extends AppCompatActivity {
     }
 
     public void clickFichaAnimal(View v) {
-        Bundle b = new Bundle();
-        for(int i=0; i<checkBox.size(); i++){
-            if(checkBox.get(i).isChecked()) {
-                b.putString((String) checkBox.get(i).getText(), (String) checkBox.get(i).getText());
-                System.out.println((String) checkBox.get(i).getText());
-            }
-        }
-        if(!b.isEmpty()){
+        gbExp=gb.getExplotaciones();
+        if(!gbExp.isEmpty()){
             Intent intent = new Intent(this, Seleccionanimal.class);
-            intent.putExtras(b);
             startActivity(intent);
         }
         else {
@@ -126,22 +108,9 @@ public class ZonaclienteActivity extends AppCompatActivity {
     }
 
     public void clickBusqueda(View v) {
-        Bundle b = new Bundle();
-        for(int i=0; i<checkBox.size(); i++){
-            if(checkBox.get(i).isChecked()) {
-                b.putString((String) checkBox.get(i).getText(), (String) checkBox.get(i).getText());
-                System.out.println((String) checkBox.get(i).getText());
-            }
-        }
-        if(!b.isEmpty()){
-            Intent intent = new Intent(this, BusquedasActivity.class);
-            intent.putExtras(b);
-            startActivity(intent);
-        }
-        else {
-            Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
-                    .show();
-        }
+        Intent intent = new Intent(this, BusquedasActivity.class);
+        startActivity(intent);
+
     }
 
     public void clickAlta(View v) {
@@ -165,5 +134,41 @@ public class ZonaclienteActivity extends AppCompatActivity {
             Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
                     .show();
         }
+    }
+
+    public void clickGuardarExplotaciones(View v) {
+        ArrayList<String> aux = new ArrayList<String>();
+        for(int i=0; i<checkBox.size(); i++){
+            if(checkBox.get(i).isChecked()) {
+                aux.add((String) checkBox.get(i).getText());
+            }
+        }
+        if(!aux.isEmpty()){
+            gb.actualizarExplotaciones(aux);
+            Snackbar.make(v, "Explotaciones seleccionadas guardadas", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+        else {
+            Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            //Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Log.d("CDA", "onBackPressed Called");
+
+
     }
 }
