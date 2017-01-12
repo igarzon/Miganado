@@ -10,9 +10,11 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -40,11 +42,7 @@ public class AltaanimalActivity extends AppCompatActivity {
         LinearLayout linear = (LinearLayout) findViewById(R.id.alta);
         ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        Bundle b = this.getIntent().getExtras(); //b.getString((String) b.keySet().toArray()[0]) Explotacion
-        //Button btn = (Button) findViewById(R.id.btnAlta);
-        //btn.
-
-        for(int i = 1; i<columnNames.length; i++){
+        for(int i = 1; i<columnNames.length-2; i++){
 
             TextView aux1 = new TextView(this);
             aux1.setLayoutParams(lparams);
@@ -53,23 +51,28 @@ public class AltaanimalActivity extends AppCompatActivity {
             aux1.setTextColor(Color.BLACK);
             aux1.setTextSize(25);
 
+            linear.addView(aux1);
+
             EditText aux2 = new EditText(this);
-            if(!columnNames[i].equals("ceaLocalizacion")) {
+            if(!columnNames[i].equals("CeaLocalizacion")) {
                 aux2.setLayoutParams(lparams);
                 aux2.setHint(columnNames[i]);
                 aux2.setTextSize(25);
+                editText.add(aux2);
+                linear.addView(aux2);
             }
             else{
-                aux2.setHint(columnNames[i]);
-                aux2.setLayoutParams(lparams);
-                aux2.setText(b.getString((String) b.keySet().toArray()[0]));
-                aux2.setTextSize(25);
+                Spinner ceas = new Spinner(getApplicationContext());
+                String[] valores = mydb.getExplotaciones().toArray(new String [mydb.getExplotaciones().size()]);
+                ceas.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
+                //ceas.si
+                linear.addView(ceas);
             }
 
-            editText.add(aux2);
 
-            linear.addView(aux1);
-            linear.addView(aux2);
+
+
+
         }
     }
 

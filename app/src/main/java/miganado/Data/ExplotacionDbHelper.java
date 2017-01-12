@@ -141,7 +141,7 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
     }
 
 
-    public ArrayList<String> Busqueda(String crotal, String crotalMadre, String fecha1, String fecha2) {
+    public ArrayList<String> Busqueda(String crotal, String crotalMadre, String fecha1, String fecha2,String baja, String sexo) {
         ArrayList<String> array_list = new ArrayList<String>();
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -162,10 +162,13 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
             fecha2="3000-00-00";
 
         }
+        if(sexo.equals("AMBOS")){
+            sexo="%";
+        }
 
 
         Cursor res = null;
-        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+","+ExplotacionEntry.FECHA_NACIMIENTO+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE " + ExplotacionEntry.CROTAL + " LIKE '%"+crotal+"%'" + " AND " + ExplotacionEntry.CROTAL_MADRE + " LIKE '%"+crotalMadre+"%'",null);
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+","+ExplotacionEntry.FECHA_NACIMIENTO+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE " + ExplotacionEntry.CROTAL + " LIKE '%"+crotal+"%'" + " AND " + ExplotacionEntry.CROTAL_MADRE + " LIKE '%"+crotalMadre+"%'"+ " AND " + ExplotacionEntry.BAJA + " LIKE '%"+baja+"%'"+ " AND " + ExplotacionEntry.SEXO + " LIKE '%"+sexo+"%'",null);
         res.moveToFirst();
 
 

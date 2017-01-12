@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 public class GlobalVariable {
     public static ArrayList<String> explotaciones = new ArrayList<String>();
+    public static ArrayList<String> auxBusqueda = new ArrayList<String>();
     public static Class activityAnterior;
 
     public GlobalVariable(){}
@@ -19,6 +20,12 @@ public class GlobalVariable {
     public void addExplotaciones(String exp){
         this.explotaciones.add(exp);
     }
+
+    public ArrayList<String> getAuxBusqueda(){
+        return auxBusqueda;
+    }
+
+    public void setAuxBusqueda(ArrayList<String> resultado){ this.auxBusqueda = resultado;}
 
     public void actualizarExplotaciones(ArrayList<String> exp){
         this.explotaciones=exp;

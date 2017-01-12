@@ -112,18 +112,18 @@
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/rbTipoacceso"
+            android:id="@+id/rgSexo"
             android:layout_below="@+id/cbHistorico"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="26dp">
 
                 <RadioButton
-                    android:text="Macho"
+                    android:text="Ambos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:id="@+id/rbMacho"
+                    android:id="@+id/rbAmbos"
                     android:layout_weight="1" />
 
                 <RadioButton
@@ -135,12 +135,13 @@
                     android:layout_weight="1" />
 
                 <RadioButton
-                    android:text="Ambos"
+                    android:text="Macho"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="false"
-                    android:id="@+id/rbAmbos"
+                    android:id="@+id/rbMacho"
                     android:layout_weight="1" />
+
         </RadioGroup>
 
 

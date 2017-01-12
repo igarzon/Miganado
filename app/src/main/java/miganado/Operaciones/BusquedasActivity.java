@@ -8,13 +8,17 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import miganado.Data.ExplotacionDbHelper;
+import miganado.Data.GlobalVariable;
 import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.ZonaclienteActivity;
 
@@ -27,7 +31,10 @@ public class BusquedasActivity extends AppCompatActivity {
     private String textCrotalMadre;
     private String fecha1;
     private String fecha2;
+    private String baja;
+    private String sexo;
 
+    private GlobalVariable gb = new GlobalVariable();
 
     Button btnDatePicker;
     EditText txtDate;
@@ -48,10 +55,12 @@ public class BusquedasActivity extends AppCompatActivity {
         final EditText in_date = (EditText) findViewById(R.id.in_date);
         final EditText in_date2 = (EditText) findViewById(R.id.in_date2);
 
+        final CheckBox historico = (CheckBox) findViewById(R.id.cbHistorico);
+        final RadioGroup rg = (RadioGroup) findViewById(R.id.rgSexo);
+
 
         Button btnBuscar = (Button) findViewById(R.id.btnBuscar);
         Button btnRestablecer = (Button) findViewById(R.id.btnRestablecer);
-
 
         btnBuscar.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -66,6 +75,12 @@ public class BusquedasActivity extends AppCompatActivity {
 
                 fecha2 = in_date2.getText().toString();
 
+                baja = (historico.isChecked())?"1":"0";
+
+                int aux = rg.getCheckedRadioButtonId();
+                RadioButton aux2 = (RadioButton) findViewById(aux);
+                sexo = ((String) aux2.getText()).toUpperCase();
+
                 /*System.out.println(textCrotal);
                 System.out.println(textCrotalMadre);
                 System.out.println(fecha1);
@@ -75,7 +90,7 @@ public class BusquedasActivity extends AppCompatActivity {
                 mydb = new ExplotacionDbHelper(getApplicationContext());
 
 
-                ArrayList<String> datos = mydb.Busqueda(textCrotal,textCrotalMadre,fecha1,fecha2);
+                ArrayList<String> datos = mydb.Busqueda(textCrotal,textCrotalMadre,fecha1,fecha2,baja,sexo);
 
                 if(datos.isEmpty()){
 
@@ -84,11 +99,8 @@ public class BusquedasActivity extends AppCompatActivity {
 
                 } else{
 
-                    Bundle b = new Bundle();
-                    b.putStringArrayList("resultado", datos);
-
+                    gb.setAuxBusqueda(datos);
                     Intent intent = new Intent(getApplicationContext(), ResultadosBusquedasActivity.class);
-                    intent.putExtras(b);
                     startActivity(intent);
 
                 }
@@ -100,6 +112,18 @@ public class BusquedasActivity extends AppCompatActivity {
 
         });
 
+        btnRestablecer.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), BusquedasActivity.class);
+                startActivity(intent);
+
+            }
+
+
+
+        });
 
 
     }
