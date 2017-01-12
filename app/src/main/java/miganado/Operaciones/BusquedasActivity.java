@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 import miganado.Data.ExplotacionDbHelper;
 import miganado.Loginyregistro.R;
+import miganado.Loginyregistro.ZonaclienteActivity;
 
 import static miganado.Loginyregistro.R.id.etBuscarCrotal;
 
@@ -48,6 +50,7 @@ public class BusquedasActivity extends AppCompatActivity {
 
 
         Button btnBuscar = (Button) findViewById(R.id.btnBuscar);
+        Button btnRestablecer = (Button) findViewById(R.id.btnRestablecer);
 
 
         btnBuscar.setOnClickListener(new View.OnClickListener(){
@@ -99,5 +102,22 @@ public class BusquedasActivity extends AppCompatActivity {
 
 
 
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            //Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Log.d("CDA", "onBackPressed Called");
+        Intent setIntent = new Intent(this, ZonaclienteActivity.class);
+        startActivity(setIntent);
     }
 }

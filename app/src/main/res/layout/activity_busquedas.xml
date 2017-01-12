@@ -49,6 +49,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/in_date"
+            android:hint="Fecha inferior aaaa-mm-dd"
             android:background="@android:color/background_light"
             android:layout_alignBaseline="@+id/btn_date"
             android:layout_alignBottom="@+id/btn_date"
@@ -59,6 +60,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:id="@+id/in_date2"
+            android:hint="Fecha superior aaaa-mm-dd"
             android:background="@android:color/background_light"
             android:layout_alignBaseline="@+id/btn_date2"
             android:layout_alignBottom="@+id/btn_date2"
@@ -97,24 +99,49 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <RadioButton
-            android:text="RadioButton"
+        <Button
+            android:text="Restablecer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnBuscar"
+            android:layout_marginBottom="28dp"
+            android:id="@+id/btnRestablecer"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:id="@+id/rbTipoacceso"
+            android:layout_below="@+id/cbHistorico"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:id="@+id/radioButton2" />
+            android:layout_marginTop="26dp">
 
-        <RadioButton
-            android:text="RadioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/radioButton2"
-            android:layout_centerHorizontal="true"
-            android:id="@+id/radioButton3" />
+                <RadioButton
+                    android:text="Macho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:id="@+id/rbMacho"
+                    android:layout_weight="1" />
 
+                <RadioButton
+                    android:text="Hembra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:id="@+id/rbHembra"
+                    android:layout_weight="1" />
 
+                <RadioButton
+                    android:text="Ambos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:id="@+id/rbAmbos"
+                    android:layout_weight="1" />
+        </RadioGroup>
 
 
 </RelativeLayout>
