@@ -1,7 +1,9 @@
 package miganado.Operaciones;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -84,6 +86,20 @@ public class FichaanimalActivity extends AppCompatActivity {
 
 
         }
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(FichaanimalActivity.this);
+
+        String s = pref.getString("dato1", "");
+
+        TextView aux1 = new TextView(this);
+        aux1.setLayoutParams(lparams);
+        aux1.setText(s);
+        aux1.setTextColor(Color.BLUE);
+        aux1.setTextSize(25);
+
+        linear.addView(aux1);
+
+
 
     }
 

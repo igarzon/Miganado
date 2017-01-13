@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Ajustes">
+        <EditTextPreference
+            android:key="dato1"
+            android:title="Dato 1"
+            android:summary="Descripción de la preferencia 1"
+            android:dialogTitle="Introduce valor"
+            android:autoText="false"
+            android:cursorVisible="false"
+            android:duplicateParentState="true" />
+        <EditTextPreference
+            android:key="dato2"
+            android:title="Dato 2"
+            android:summary="Descripción de la preferencia 2"
+            android:dialogTitle="Introduce valor"
+            android:autoText="false"
+            android:cursorVisible="false"
+            android:duplicateParentState="true" />
+        <EditTextPreference
+            android:key="dato3"
+            android:title="Dato 3"
+            android:summary="Descripción de la preferencia 3"
+            android:dialogTitle="Introduce valor"
+            android:autoText="false"
+            android:cursorVisible="false"
+            android:duplicateParentState="true" />
+        <EditTextPreference
+            android:key="dato4"
+            android:title="Dato 4"
+            android:summary="Descripción de la preferencia 4"
+            android:dialogTitle="Introduce valor"
+            android:autoText="false"
+            android:cursorVisible="false"
+            android:duplicateParentState="true" />
+        <EditTextPreference
+            android:key="dato5"
+            android:title="Dato 5"
+            android:summary="Descripción de la preferencia 5"
+            android:dialogTitle="Introduce valor"
+            android:autoText="false"
+            android:cursorVisible="false"
+            android:duplicateParentState="true" />
+        <EditTextPreference
+            android:key="dato6"
+            android:title="Dato 6"
+            android:summary="Descripción de la preferencia 6"
+            android:dialogTitle="Introduce valor"
+            android:autoText="false"
+            android:cursorVisible="false"
+            android:duplicateParentState="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

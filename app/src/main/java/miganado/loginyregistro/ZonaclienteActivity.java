@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Color;
 import android.view.KeyEvent;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.CheckBox;
 import android.support.design.widget.Snackbar;
@@ -22,6 +23,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import miganado.Configuracion.PreferenciasActivity;
 import miganado.Data.GlobalVariable;
 import miganado.Operaciones.Seleccionanimal;
 import miganado.Operaciones.AltaanimalActivity;
@@ -98,6 +100,9 @@ public class ZonaclienteActivity extends AppCompatActivity {
 
         }
 
+
+
+
     }
 
     //Funcion que se realiza al pulsar el boton explotaciones
@@ -119,6 +124,14 @@ public class ZonaclienteActivity extends AppCompatActivity {
             Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
                     .show();
         }
+    }
+
+    //Funcion que se realiza al pulsar el boton explotaciones
+    public void ajustes(View v) {
+
+            Intent intent = new Intent(this, PreferenciasActivity.class);
+            startActivity(intent);
+
     }
 
     public void clickFichaAnimal(View v) {
