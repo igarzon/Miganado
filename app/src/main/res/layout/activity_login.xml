@@ -19,13 +19,14 @@
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:gravity="center_horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:weightSum="1">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Gestión de mi ganado"
                 android:id="@+id/ptNombreaplicacion"
-                android:textSize="36sp"
+                android:textSize="30sp"
                 android:textStyle="bold|italic"
                 android:background="@color/common_google_signin_btn_text_dark_focused"
                 android:textColor="@color/MiGanado_primary_color"
@@ -38,8 +39,7 @@
                 android:layout_marginTop="33dp"
                 android:id="@+id/imgLogogestion"
                 android:layout_below="@+id/ptNombreaplicacion"
-                android:baselineAlignBottom="false"
-                android:layout_weight="0.13" />
+                android:baselineAlignBottom="false" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -50,7 +50,8 @@
                 android:id="@+id/etUsername"
                 android:layout_below="@+id/imgLogogestion"
                 android:layout_marginTop="50dp"
-                android:background="@color/MiGanado_transparente" />
+                android:singleLine="false"
+                android:selectAllOnFocus="false" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -58,10 +59,9 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:layout_below="@+id/etUsername"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="8dp"
                 android:id="@+id/etPassword"
-                android:hint="Password"
-                android:background="@color/MiGanado_transparente" />
+                android:hint="Password"/>
 
             <Button
                 android:text="Login"

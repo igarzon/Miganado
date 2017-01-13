@@ -11,7 +11,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="miganado.Loginyregistro.ZonaclienteActivity"
-    android:background="@drawable/fondo2">
+    android:background="@android:color/background_dark">
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_gravity="center"
@@ -50,7 +50,7 @@
 
         <Button
             android:text="Censo"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnExplotaciones"
             tools:text="    Censo    "
@@ -61,47 +61,50 @@
             android:textSize="20dp"
             android:layout_gravity="center"
             android:onClick="clickExplotaciones"
-            />
+            android:background="@color/MiGanado_primary_color" />
         <!--android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"
             Width = parent porque el mas grande es explotaciones y se añade ese ancho-->
 
         <Button
             android:text="Ficha"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnFicha"
             tools:text="Ficha"
             android:layout_margin="10dp"
             android:textSize="20dp"
             android:layout_gravity="center"
-            android:onClick="clickFichaAnimal"/>
+            android:onClick="clickFichaAnimal"
+            android:background="@color/MiGanado_primary_color" />
         <!--android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"-->
 
         <Button
             android:text="Busqueda"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnBusqueda"
             tools:text="Busqueda"
             android:layout_margin="10dp"
             android:textSize="20dp"
             android:layout_gravity="center"
-            android:onClick="clickBusqueda"/>
+            android:onClick="clickBusqueda"
+            android:background="@color/MiGanado_primary_color" />
         <!--android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"-->
 
         <Button
             android:text="Alta"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/btnAlta"
             tools:text="Alta"
             android:layout_margin="10dp"
             android:textSize="20dp"
             android:layout_gravity="center"
-            android:onClick="clickAlta"/>
+            android:onClick="clickAlta"
+            android:background="@color/MiGanado_primary_color" />
         <!--android:layout_below="@+id/password"
             android:layout_centerHorizontal="true"-->
 

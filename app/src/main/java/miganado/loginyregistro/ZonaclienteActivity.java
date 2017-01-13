@@ -219,6 +219,7 @@ public class ZonaclienteActivity extends AppCompatActivity {
     public void onBackPressed() {
         //Log.d("CDA", "onBackPressed Called");
 
+        this.finishAffinity();
 
     }
 }
