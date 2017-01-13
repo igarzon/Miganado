@@ -119,6 +119,46 @@ public class FichaanimalActivity extends AppCompatActivity {
         startActivity(setIntent);
     }
 
+    public void darBaja(View v) {
+        ArrayList<String> datos = new ArrayList<String>();
+        datos.add(crotal.getText().toString());
+        for(int i = 0; i<editText.size(); i++){
+            if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
+                datos.add(editText.get(i).getText().toString());
+            else
+                datos.add("vacio");
+        }
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String time = dateFormat.format(date);
+
+        Explotacion vaca = new Explotacion(datos.get(0),
+                datos.get(1),
+                datos.get(2),
+                datos.get(3),
+                datos.get(4),
+                datos.get(5),
+                datos.get(6),
+                datos.get(7),
+                datos.get(8),
+                datos.get(9),
+                datos.get(10),
+                datos.get(11),
+                datos.get(12),
+                datos.get(13),
+                datos.get(14),
+                datos.get(15),
+                datos.get(16),
+                datos.get(17),
+                time,
+                "1");
+        ExplotacionDbHelper mydb;
+        mydb = new ExplotacionDbHelper(this);
+        mydb.deleteCrotal(datos.get(0));
+        mydb.insertVaca(vaca);
+    }
+
     public void modificar(View v) {
         ArrayList<String> datos = new ArrayList<String>();
         datos.add(crotal.getText().toString());

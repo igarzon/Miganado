@@ -24,6 +24,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionContract;
@@ -68,45 +70,64 @@ public class AltaanimalActivity extends AppCompatActivity {
         String crotal = etCrotal.getText().toString();
         String crotalMadre = etCrotalMadre.getText().toString();
         String fecha = in_date.getText().toString();
-
         int aux = rg.getCheckedRadioButtonId();
         RadioButton aux2 = (RadioButton) findViewById(aux);
         String sexo = ((String) aux2.getText()).toUpperCase();
-
         String ceaLocalizacion = (String) ceas.getSelectedItem();
 
-        //char a = crotal.toCharArray()[0];
+        Pattern pat1 = Pattern.compile("^ES[0-9]{12}$");
+        Matcher mat1 = pat1.matcher(crotal);
+        Matcher mat2 = pat1.matcher(crotalMadre);
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        String time = dateFormat.format(date);
+        Pattern pat2 = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
+        Matcher mat3 = pat2.matcher(fecha);
 
-        Explotacion vaca = new Explotacion(crotal,
-                "vacio",
-                "vacio",
-                crotalMadre,
-                sexo,
-                "vacio",
-                fecha,
-                "vacio",
-                "vacio",
-                "vacio",
-                ceaLocalizacion,
-                "vacio",
-                "vacio",
-                "vacio",
-                "vacio",
-                "vacio",
-                "vacio",
-                "vacio",
-                time,
-                "0");
-        ExplotacionDbHelper mydb;
-        mydb = new ExplotacionDbHelper(this);
-        mydb.insertVaca(vaca);
+        if (!mat1.matches()) {
+            Snackbar.make(v, "Crotal mal introducido", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+        else if(!mat2.matches()){
+            Snackbar.make(v, "Crotal madre mal introducido", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+        else if(!mat3.matches()){
+            Snackbar.make(v, "Fecha mal introducido", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+        else {
+            //char a = crotal.toCharArray()[0];
 
-        Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
-                .show();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            String time = dateFormat.format(date);
+
+            Explotacion vaca = new Explotacion(crotal,
+                    "vacio",
+                    "vacio",
+                    crotalMadre,
+                    sexo,
+                    "vacio",
+                    fecha,
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    ceaLocalizacion,
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    time,
+                    "0");
+            ExplotacionDbHelper mydb;
+            mydb = new ExplotacionDbHelper(this);
+            mydb.insertVaca(vaca);
+
+            Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
+                    .show();
+        }
     }
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {

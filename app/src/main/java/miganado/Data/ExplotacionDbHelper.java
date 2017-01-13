@@ -154,14 +154,6 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
             crotalMadre="%";
 
         }
-        if(fecha1.equals("")){
-            fecha1="0000-00-00";
-
-        }
-        if(fecha2.equals("")){
-            fecha2="3000-00-00";
-
-        }
         if(sexo.equals("AMBOS")){
             sexo="%";
         }

@@ -16,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import miganado.Data.ExplotacionDbHelper;
 import miganado.Data.GlobalVariable;
@@ -67,44 +69,59 @@ public class BusquedasActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 textCrotal =etBuscarCrotal.getText().toString();
-
                 textCrotalMadre = etBuscarCrotalMadre.getText().toString();
-
-
                 fecha1 = in_date.getText().toString();
-
                 fecha2 = in_date2.getText().toString();
-
                 baja = (historico.isChecked())?"1":"0";
-
                 int aux = rg.getCheckedRadioButtonId();
                 RadioButton aux2 = (RadioButton) findViewById(aux);
                 sexo = ((String) aux2.getText()).toUpperCase();
+
+                if(fecha1.equals("")){
+                    fecha1="0000-00-00";
+                }
+                if(fecha2.equals("")){
+                    fecha2="9999-00-00";
+                }
+
+                Pattern pat = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
+                Matcher mat1 = pat.matcher(fecha1);
+                Matcher mat2 = pat.matcher(fecha2);
+
+                if(!mat1.matches()){
+                    Snackbar.make(view , "Fecha1 mal introducido", Snackbar.LENGTH_LONG)
+                            .show();
+                }
+                else if(!mat2.matches()){
+                    Snackbar.make(view, "Fecha2 mal introducido", Snackbar.LENGTH_LONG)
+                            .show();
+                }
+                else {
 
                 /*System.out.println(textCrotal);
                 System.out.println(textCrotalMadre);
                 System.out.println(fecha1);
                 System.out.println(fecha2);*/
 
-                ExplotacionDbHelper mydb;
-                mydb = new ExplotacionDbHelper(getApplicationContext());
+                    ExplotacionDbHelper mydb;
+                    mydb = new ExplotacionDbHelper(getApplicationContext());
 
 
-                ArrayList<String> datos = mydb.Busqueda(textCrotal,textCrotalMadre,fecha1,fecha2,baja,sexo);
+                    ArrayList<String> datos = mydb.Busqueda(textCrotal, textCrotalMadre, fecha1, fecha2, baja, sexo);
 
-                if(datos.isEmpty()){
+                    if (datos.isEmpty()) {
 
-                    Snackbar.make(view, "Debes seleccionar algun dato valido", Snackbar.LENGTH_LONG)
-                            .show();
+                        Snackbar.make(view, "No hay resultados", Snackbar.LENGTH_LONG)
+                                .show();
 
-                } else{
+                    } else {
 
-                    gb.setAuxBusqueda(datos);
-                    Intent intent = new Intent(getApplicationContext(), ResultadosBusquedasActivity.class);
-                    startActivity(intent);
+                        gb.setAuxBusqueda(datos);
+                        Intent intent = new Intent(getApplicationContext(), ResultadosBusquedasActivity.class);
+                        startActivity(intent);
 
+                    }
                 }
-
 
             }
 

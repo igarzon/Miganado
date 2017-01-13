@@ -40,6 +40,16 @@
         />
 
     <Button
+        android:text="Dar baja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnBaja"
+        android:textSize="15sp"
+        android:layout_gravity="end"
+        android:onClick="darBaja"
+        />
+
+    <Button
         android:text="Borrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

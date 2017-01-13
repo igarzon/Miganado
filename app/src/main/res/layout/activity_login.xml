@@ -11,101 +11,103 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="miganado.Loginyregistro.LoginActivity"
-    android:background="@drawable/fondo1">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <LinearLayout
+    android:background="@android:color/background_dark">
+    <ScrollView
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
         android:layout_height="wrap_content">
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Gestión de mi ganado"
-            android:id="@+id/ptNombreaplicacion"
-            android:textSize="36sp"
-            android:textStyle="bold|italic"
-            android:background="@color/common_google_signin_btn_text_dark_focused"
-            android:textColor="?android:attr/colorActivatedHighlight"
-            android:textAlignment="center" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gestión de mi ganado"
+                android:id="@+id/ptNombreaplicacion"
+                android:textSize="36sp"
+                android:textStyle="bold|italic"
+                android:background="@color/common_google_signin_btn_text_dark_focused"
+                android:textColor="@color/MiGanado_primary_color"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logogestion"
-            android:layout_marginTop="33dp"
-            android:id="@+id/imgLogogestion"
-            android:layout_below="@+id/ptNombreaplicacion"
-            android:baselineAlignBottom="false"
-            android:layout_weight="0.13" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/logogestion"
+                android:layout_marginTop="33dp"
+                android:id="@+id/imgLogogestion"
+                android:layout_below="@+id/ptNombreaplicacion"
+                android:baselineAlignBottom="false"
+                android:layout_weight="0.13" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:inputType="textPersonName"
-            android:hint="Usuario o email"
-            android:ems="10"
-            android:id="@+id/etUsername"
-            android:layout_below="@+id/imgLogogestion"
-            android:layout_marginTop="50dp"
-            android:background="@android:color/background_light" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:inputType="textPersonName"
+                android:hint="Usuario o email"
+                android:ems="10"
+                android:id="@+id/etUsername"
+                android:layout_below="@+id/imgLogogestion"
+                android:layout_marginTop="50dp"
+                android:background="@color/MiGanado_transparente" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:inputType="textPassword"
-            android:ems="10"
-            android:layout_below="@+id/etUsername"
-            android:layout_marginTop="50dp"
-            android:id="@+id/etPassword"
-            android:hint="Password"
-            android:background="@android:color/white" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:layout_below="@+id/etUsername"
+                android:layout_marginTop="50dp"
+                android:id="@+id/etPassword"
+                android:hint="Password"
+                android:background="@color/MiGanado_transparente" />
 
-        <Button
-            android:text="Login"
-            android:layout_width="@android:dimen/thumbnail_height"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:id="@+id/btnLogin"
-            android:textAlignment="center"
-            android:layout_below="@+id/etPassword" />
+            <Button
+                android:text="Login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/MiGanado_primary_color"
+                android:id="@+id/btnLogin"
+                android:textAlignment="center"
+                android:layout_below="@+id/etPassword" />
 
-        <TextView
-            android:text="Regístrate aquí"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/btnLogin"
-            android:layout_centerHorizontal="false"
-            android:layout_marginTop="26dp"
-            android:id="@+id/tvLinkregistro"
-            android:textColor="@color/colorPrimary"
-            android:textColorHighlight="@android:color/holo_blue_light"
-            tools:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
-            android:textAlignment="center" />
+            <TextView
+                android:text="Regístrate aquí"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnLogin"
+                android:layout_centerHorizontal="false"
+                android:layout_marginTop="26dp"
+                android:id="@+id/tvLinkregistro"
+                android:textColor="@color/MiGanado_primary_color_dark"
+                android:textColorHighlight="@color/MiGanado_primary_color"
+                tools:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:textAlignment="center" />
 
-        <TextView
-            android:text="¿has olvidado tu password?"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/tvLinkreseteopassword"
-            android:textColor="@color/colorPrimary"
-            android:layout_below="@+id/tvLinkregistro"
-            android:layout_alignRight="@+id/imgLogogestion"
-            android:layout_alignEnd="@+id/imgLogogestion"
-            android:layout_marginTop="22dp"
-            android:textAlignment="center" />
+            <TextView
+                android:text="¿Has olvidado tu password?"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvLinkreseteopassword"
+                android:textColor="@color/MiGanado_primary_color_dark"
+                android:textColorHighlight="@color/MiGanado_primary_color"
+                android:layout_below="@+id/tvLinkregistro"
+                android:layout_alignRight="@+id/imgLogogestion"
+                android:layout_alignEnd="@+id/imgLogogestion"
+                android:layout_marginTop="22dp"
+                android:textAlignment="center" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            app:srcCompat="@drawable/logoroomsmall"
-            android:id="@+id/imglogoroom"
-            android:layout_below="@+id/tvLinkreseteopassword"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp" />
-    </LinearLayout>
-</ScrollView>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                app:srcCompat="@drawable/logo_room714_black"
+                android:id="@+id/imglogoroom"
+                android:layout_below="@+id/tvLinkreseteopassword"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
