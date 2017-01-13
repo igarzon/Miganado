@@ -12,105 +12,99 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionContract;
 import miganado.Data.ExplotacionDbHelper;
+import miganado.Data.GlobalVariable;
 import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.ZonaclienteActivity;
 
 public class AltaanimalActivity extends AppCompatActivity {
 
-    private ArrayList<EditText> editText = new ArrayList<EditText>();
+    private GlobalVariable gb = new GlobalVariable();
+    private EditText etCrotalMadre, etCrotal, in_date;
+    private RadioGroup rg;
+    private Spinner ceas;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_altaanimal);
 
-        ExplotacionDbHelper mydb;
+        /*ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         Cursor dbCursor = mydb.getReadableDatabase().query(ExplotacionContract.ExplotacionEntry.TABLE_NAME, null, null, null, null, null, null);
-        String[] columnNames = dbCursor.getColumnNames();
+        String[] columnNames = dbCursor.getColumnNames();*/
 
-        LinearLayout linear = (LinearLayout) findViewById(R.id.alta);
-        ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        etCrotal = (EditText) findViewById(R.id.etAltaCrotal);
+        etCrotalMadre = (EditText) findViewById(R.id.etAltaCrotalMadre);
 
-        for(int i = 1; i<columnNames.length-2; i++){
+        in_date = (EditText) findViewById(R.id.altadate);
 
-            TextView aux1 = new TextView(this);
-            aux1.setLayoutParams(lparams);
-            aux1.setText(columnNames[i]);
-            //aux1.s
-            aux1.setTextColor(Color.BLACK);
-            aux1.setTextSize(25);
+        rg = (RadioGroup) findViewById(R.id.rgAltaSexo);
 
-            linear.addView(aux1);
+        ceas = (Spinner) findViewById(R.id.spExp);
+        String[] valores = gb.getExplotaciones().toArray(new String [gb.getExplotaciones().size()]);
+        ceas.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
 
-            EditText aux2 = new EditText(this);
-            if(!columnNames[i].equals("CeaLocalizacion")) {
-                aux2.setLayoutParams(lparams);
-                aux2.setHint(columnNames[i]);
-                aux2.setTextSize(25);
-                editText.add(aux2);
-                linear.addView(aux2);
-            }
-            else{
-                Spinner ceas = new Spinner(getApplicationContext());
-                String[] valores = mydb.getExplotaciones().toArray(new String [mydb.getExplotaciones().size()]);
-                ceas.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
-                //ceas.si
-                linear.addView(ceas);
-            }
-
-
-
-
-
-        }
     }
 
     public void darAlta(View v) {
-        ArrayList<String> datos = new ArrayList<String>();
-        for(int i = 0; i<editText.size(); i++){
-            if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
-                datos.add(editText.get(i).getText().toString());
-            else
-                datos.add("vacio");
-        }
-        //cur.
-        Explotacion vaca = new Explotacion(datos.get(0),
-                datos.get(1),
-                datos.get(2),
-                datos.get(3),
-                datos.get(4),
-                datos.get(5),
-                datos.get(6),
-                datos.get(7),
-                datos.get(8),
-                datos.get(9),
-                datos.get(10),
-                datos.get(11),
-                datos.get(12),
-                datos.get(13),
-                datos.get(14),
-                datos.get(15),
-                datos.get(16),
-                datos.get(17),
-                "",
+
+        String crotal = etCrotal.getText().toString();
+        String crotalMadre = etCrotalMadre.getText().toString();
+        String fecha = in_date.getText().toString();
+
+        int aux = rg.getCheckedRadioButtonId();
+        RadioButton aux2 = (RadioButton) findViewById(aux);
+        String sexo = ((String) aux2.getText()).toUpperCase();
+
+        String ceaLocalizacion = (String) ceas.getSelectedItem();
+
+        //char a = crotal.toCharArray()[0];
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String time = dateFormat.format(date);
+
+        Explotacion vaca = new Explotacion(crotal,
+                "vacio",
+                "vacio",
+                crotalMadre,
+                sexo,
+                "vacio",
+                fecha,
+                "vacio",
+                "vacio",
+                "vacio",
+                ceaLocalizacion,
+                "vacio",
+                "vacio",
+                "vacio",
+                "vacio",
+                "vacio",
+                "vacio",
+                "vacio",
+                time,
                 "0");
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         mydb.insertVaca(vaca);
-        for(int i = 0; i<editText.size(); i++){
-            editText.get(i).setText("");
-        }
+
         Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
                 .show();
     }
