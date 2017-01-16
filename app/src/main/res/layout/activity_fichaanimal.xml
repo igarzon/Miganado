@@ -12,64 +12,62 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="miganado.Operaciones.FichaanimalActivity"
     android:layout_gravity="center"
-    android:weightSum="1">
-    <LinearLayout
-        android:layout_width="wrap_content"
+    android:weightSum="1"
+    android:background="@android:color/background_dark">
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/GridLayout1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:columnCount="2"
+        tools:context=".GridLayoutActivity" >
 
-    <Button
-        android:text="Restablecer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnRestablecer"
-        android:textSize="15sp"
-        android:layout_gravity="start"
-        android:onClick="restablecer"
-        />
+        <Button
+            android:id="@+id/btnRestablecer"
+            android:layout_column="1"
+            android:layout_gravity="fill_horizontal|top"
+            android:layout_row="0"
+            android:text="Restablecer"
+            android:background="@color/MiGanado_primary_color_dark"/>
 
-    <Button
-        android:text="Modificar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnModificar"
-        android:textSize="15sp"
-        android:layout_gravity="center_vertical"
-        android:onClick="modificar"
-        />
+        <Button
+            android:id="@+id/btnModificar"
+            android:layout_column="0"
+            android:layout_gravity="left|top"
+            android:layout_width="170dp"
+            android:layout_row="1"
+            android:text="Modificar"
+            android:background="@color/MiGanado_primary_color_dark"/>
 
-    <Button
-        android:text="Dar baja"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnBaja"
-        android:textSize="15sp"
-        android:layout_gravity="end"
-        android:onClick="darBaja"
-        />
+        <Button
+            android:id="@+id/btnBaja"
+            android:layout_column="0"
+            android:layout_gravity="left|top"
+            android:layout_width="170dp"
+            android:layout_row="0"
+            android:text="Dar baja"
+            android:background="@color/MiGanado_primary_color" />
 
-    <Button
-        android:text="Borrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnBorrar"
-        android:textSize="15sp"
-        android:layout_gravity="end"
-        android:onClick="borrar"
-        />
+        <Button
+            android:id="@+id/btnBorrar"
+            android:layout_column="1"
+            android:layout_gravity="fill_horizontal|top"
+            android:layout_row="1"
+            android:text="Eliminar"
+            android:background="@color/MiGanado_primary_color"/>
 
-    </LinearLayout>
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    </GridLayout>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:id="@+id/ficha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/ficha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
 
-    </LinearLayout>
+        </LinearLayout>
     </ScrollView>
+
 </LinearLayout>
