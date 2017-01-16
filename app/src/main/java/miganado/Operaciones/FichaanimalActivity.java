@@ -60,7 +60,8 @@ public class FichaanimalActivity extends AppCompatActivity {
             TextView aux1 = new TextView(this);
             aux1.setLayoutParams(lparams);
             aux1.setText(Character.toUpperCase(datos.getColumnName(i).charAt(0))+datos.getColumnName(i).substring(1));
-            aux1.setTextColor(Color.BLUE);
+            aux1.setTextColor(Color.WHITE);
+            aux1.setBackgroundColor(Color.GREEN);
             aux1.setTextSize(25);
 
             linear.addView(aux1);
@@ -79,7 +80,8 @@ public class FichaanimalActivity extends AppCompatActivity {
                 crotal = new TextView(this);
                 crotal.setLayoutParams(lparams);
                 crotal.setText(datos.getString(i));
-                crotal.setTextColor(Color.BLACK);
+                crotal.setTextColor(Color.WHITE);
+
                 crotal.setTextSize(25);
                 linear.addView(crotal);
             }
