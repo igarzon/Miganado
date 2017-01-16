@@ -24,6 +24,7 @@
 
         <Button
             android:id="@+id/btnRestablecer"
+            android:onClick="restablecer"
             android:layout_column="1"
             android:layout_gravity="fill_horizontal|top"
             android:layout_row="0"
@@ -32,6 +33,7 @@
 
         <Button
             android:id="@+id/btnModificar"
+            android:onClick="modificar"
             android:layout_column="0"
             android:layout_gravity="left|top"
             android:layout_width="170dp"
@@ -41,6 +43,7 @@
 
         <Button
             android:id="@+id/btnBaja"
+            android:onClick="darBaja"
             android:layout_column="0"
             android:layout_gravity="left|top"
             android:layout_width="170dp"
@@ -50,6 +53,7 @@
 
         <Button
             android:id="@+id/btnBorrar"
+            android:onClick="borrar"
             android:layout_column="1"
             android:layout_gravity="fill_horizontal|top"
             android:layout_row="1"

@@ -69,7 +69,7 @@ public class FichaanimalActivity extends AppCompatActivity {
                 EditText aux2 = new EditText(this);
                 aux2.setLayoutParams(lparams);
                 aux2.setText(datos.getString(i));
-                aux2.setTextColor(Color.BLACK);
+                aux2.setTextColor(Color.WHITE);
                 aux2.setTextSize(25);
                 editText.add(aux2);
                 linear.addView(aux2);
