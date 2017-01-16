@@ -75,22 +75,22 @@ public class AltaanimalActivity extends AppCompatActivity {
         String sexo = ((String) aux2.getText()).toUpperCase();
         String ceaLocalizacion = (String) ceas.getSelectedItem();
 
-        Pattern pat1 = Pattern.compile("^ES[0-9]{12}$");
+        /*Pattern pat1 = Pattern.compile("^ES[0-9]{12}$");
         Matcher mat1 = pat1.matcher(crotal);
-        Matcher mat2 = pat1.matcher(crotalMadre);
+        Matcher mat2 = pat1.matcher(crotalMadre);*/
 
         Pattern pat2 = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
         Matcher mat3 = pat2.matcher(fecha);
 
-        if (!mat1.matches()) {
+        /*if (!mat1.matches()) {
             Snackbar.make(v, "Crotal mal introducido", Snackbar.LENGTH_LONG)
                     .show();
         }
         else if(!mat2.matches()){
             Snackbar.make(v, "Crotal madre mal introducido", Snackbar.LENGTH_LONG)
                     .show();
-        }
-        else if(!mat3.matches()){
+        }*/
+        if(!mat3.matches()){
             Snackbar.make(v, "Fecha mal introducido", Snackbar.LENGTH_LONG)
                     .show();
         }
@@ -146,6 +146,7 @@ public class AltaanimalActivity extends AppCompatActivity {
         //Log.d("CDA", "onBackPressed Called");
         Intent setIntent = new Intent(this, ZonaclienteActivity.class);
         startActivity(setIntent);
+        finish();
     }
 
 }

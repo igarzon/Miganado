@@ -22,6 +22,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionDbHelper;
@@ -51,7 +53,7 @@ public class FichaanimalActivity extends AppCompatActivity {
         LinearLayout linear = (LinearLayout) findViewById(R.id.ficha);
         ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        for(int i = 1; i<datos.getColumnCount()-2;i++) {
+        for(int i = 1; i<datos.getColumnCount()-8;i++) {
             datos.moveToFirst();
             String a = datos.getString(i);
 
@@ -88,18 +90,36 @@ public class FichaanimalActivity extends AppCompatActivity {
         }
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(FichaanimalActivity.this);
-
-        String s = pref.getString("dato1", "");
-
-        TextView aux1 = new TextView(this);
-        aux1.setLayoutParams(lparams);
-        aux1.setText(s);
-        aux1.setTextColor(Color.BLUE);
-        aux1.setTextSize(25);
-
-        linear.addView(aux1);
+        String [] s = new String[6];
+        s[0] = pref.getString("dato1", "").equals("") ? "Dato1" : pref.getString("dato1", "");
+        s[1] = pref.getString("dato2", "").equals("") ? "Dato2" : pref.getString("dato2", "");
+        s[2] = pref.getString("dato3", "").equals("") ? "Dato3" : pref.getString("dato3", "");
+        s[3] = pref.getString("dato4", "").equals("") ? "Dato4" : pref.getString("dato4", "");
+        s[4] = pref.getString("dato5", "").equals("") ? "Dato5" : pref.getString("dato5", "");
+        s[5] = pref.getString("dato6", "").equals("") ? "Dato6" : pref.getString("dato6", "");
 
 
+        for(int i = datos.getColumnCount()-8; i<datos.getColumnCount()-2;i++) {
+            datos.moveToFirst();
+            String a = datos.getString(i);
+
+            TextView aux1 = new TextView(this);
+            aux1.setLayoutParams(lparams);
+            aux1.setText(s[i - (datos.getColumnCount() - 8)]);
+            aux1.setTextColor(Color.BLUE);
+            aux1.setTextSize(25);
+
+            linear.addView(aux1);
+
+            EditText aux2 = new EditText(this);
+            aux2.setLayoutParams(lparams);
+            aux2.setText(datos.getString(i));
+            aux2.setTextColor(Color.BLACK);
+            aux2.setTextSize(25);
+            editText.add(aux2);
+            linear.addView(aux2);
+
+        }
 
     }
 
@@ -173,30 +193,44 @@ public class FichaanimalActivity extends AppCompatActivity {
         Date date = new Date();
         String time = dateFormat.format(date);
 
-        Explotacion vaca = new Explotacion(datos.get(0),
-                datos.get(1),
-                datos.get(2),
-                datos.get(3),
-                datos.get(4),
-                datos.get(5),
-                datos.get(6),
-                datos.get(7),
-                datos.get(8),
-                datos.get(9),
-                datos.get(10),
-                datos.get(11),
-                datos.get(12),
-                datos.get(13),
-                datos.get(14),
-                datos.get(15),
-                datos.get(16),
-                datos.get(17),
-                time,
-                "0");
-        ExplotacionDbHelper mydb;
-        mydb = new ExplotacionDbHelper(this);
-        mydb.deleteCrotal(datos.get(0));
-        mydb.insertVaca(vaca);
+        Pattern pat = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
+        Matcher mat1 = pat.matcher(datos.get(6)); //Fecha nacimiento
+        Matcher mat2 = pat.matcher(datos.get(9)); //Fecha llegada
+
+        if(!mat1.matches()||datos.get(6).equals("vacio")){
+            Snackbar.make(v, "Fecha nacimiento mal introducida", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+        else if(!mat2.matches()||datos.get(9).equals("vacio")){
+            Snackbar.make(v, "Fecha llegada mal introducida", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+        else {
+            Explotacion vaca = new Explotacion(datos.get(0),
+                    datos.get(1),
+                    datos.get(2),
+                    datos.get(3),
+                    datos.get(4),
+                    datos.get(5),
+                    datos.get(6),
+                    datos.get(7),
+                    datos.get(8),
+                    datos.get(9),
+                    datos.get(10),
+                    datos.get(11),
+                    datos.get(12),
+                    datos.get(13),
+                    datos.get(14),
+                    datos.get(15),
+                    datos.get(16),
+                    datos.get(17),
+                    time,
+                    "0");
+            ExplotacionDbHelper mydb;
+            mydb = new ExplotacionDbHelper(this);
+            mydb.deleteCrotal(datos.get(0));
+            mydb.insertVaca(vaca);
+        }
     }
 
     @Override
@@ -216,6 +250,7 @@ public class FichaanimalActivity extends AppCompatActivity {
         //Log.d("CDA", "onBackPressed Called");
         Intent setIntent = new Intent(this, gb.getActivityAnterior());
         startActivity(setIntent);
+        finish();
     }
 
 }

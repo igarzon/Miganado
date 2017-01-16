@@ -38,15 +38,17 @@ public class ExplotacionesActivity extends AppCompatActivity {
 
         for(String key : gbExp){
 
+            ArrayList<String> vacas = mydb.getVacasExplotacion(key);
+
             TextView aux = new TextView(this);
             aux.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            aux.setText(key);
+            String nombreExp = key+"  ("+Integer.toString(vacas.size())+" animales)";
+            aux.setText(nombreExp);
             aux.setTextColor(Color.BLACK);
             aux.setTextSize(20);
             aux.setPadding(1,1,1,1);
             relative.addView(aux);
 
-            ArrayList<String> vacas = mydb.getVacasExplotacion(key);
 
             for(String crotal : vacas){
                 final TextView aux2 = new TextView(this);
@@ -64,6 +66,7 @@ public class ExplotacionesActivity extends AppCompatActivity {
                         intent.putExtras(bun);
                         gb.setActivityAnterior(ExplotacionesActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 });
                 relative.addView(aux2);
@@ -88,5 +91,6 @@ public class ExplotacionesActivity extends AppCompatActivity {
         //Log.d("CDA", "onBackPressed Called");
         Intent setIntent = new Intent(this, ZonaclienteActivity.class);
         startActivity(setIntent);
+        finish();
     }
 }

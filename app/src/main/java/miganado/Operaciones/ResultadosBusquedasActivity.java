@@ -35,6 +35,15 @@ public class ResultadosBusquedasActivity extends AppCompatActivity {
 
         b=gb.getAuxBusqueda();
 
+        TextView coincidencias = new TextView(this);
+        coincidencias.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        String nombreExp = Integer.toString(b.size())+" coincidencias.";
+        coincidencias.setText(nombreExp);
+        coincidencias.setTextColor(Color.BLACK);
+        coincidencias.setTextSize(20);
+        coincidencias.setPadding(1,1,1,1);
+        relative.addView(coincidencias);
+
         for(String key : b){
 
             key1=key;
@@ -54,6 +63,7 @@ public class ResultadosBusquedasActivity extends AppCompatActivity {
                     intent.putExtras(bun);
                     gb.setActivityAnterior(ResultadosBusquedasActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -81,5 +91,6 @@ public class ResultadosBusquedasActivity extends AppCompatActivity {
         //Log.d("CDA", "onBackPressed Called");
         Intent setIntent = new Intent(this, BusquedasActivity.class);
         startActivity(setIntent);
+        finish();
     }
 }

@@ -90,5 +90,6 @@ public class Seleccionanimal extends AppCompatActivity {
         //Log.d("CDA", "onBackPressed Called");
         Intent setIntent = new Intent(this, ZonaclienteActivity.class);
         startActivity(setIntent);
+        finish();
     }
 }

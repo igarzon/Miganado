@@ -87,10 +87,10 @@ public class ZonaclienteActivity extends AppCompatActivity {
             CheckBox aux = new CheckBox(this);
             aux.setLayoutParams(lparams);
             aux.setText(explotaciones.get(i));
-            aux.setTextColor(Color.BLACK);
+            aux.setTextColor(Color.WHITE);
             aux.setTextSize(20);
             aux.setPadding(1, 1, 1, 1);
-            aux.setBackgroundColor(Color.WHITE);
+            aux.setBackgroundColor(Color.TRANSPARENT);
             aux.setId(i); //Añadimos un id para poder referenciarle luego de  0 a n-1 explotaciones
             if(gbExp.contains(explotaciones.get(i))){
                 aux.setChecked(true);
@@ -119,6 +119,7 @@ public class ZonaclienteActivity extends AppCompatActivity {
             gb.actualizarExplotaciones(aux);
             Intent intent = new Intent(this, ExplotacionesActivity.class);
             startActivity(intent);
+            finish();
         }
         else {
             Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
@@ -131,6 +132,7 @@ public class ZonaclienteActivity extends AppCompatActivity {
 
             Intent intent = new Intent(this, PreferenciasActivity.class);
             startActivity(intent);
+
 
     }
 
@@ -149,6 +151,7 @@ public class ZonaclienteActivity extends AppCompatActivity {
             gb.actualizarExplotaciones(aux);
             Intent intent = new Intent(this, Seleccionanimal.class);
             startActivity(intent);
+            finish();
         }
         else {
             Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
@@ -165,9 +168,18 @@ public class ZonaclienteActivity extends AppCompatActivity {
             }
         }
 
-        gb.actualizarExplotaciones(aux);
-        Intent intent = new Intent(this, BusquedasActivity.class);
-        startActivity(intent);
+        if(!aux.isEmpty()){
+
+            gb.actualizarExplotaciones(aux);
+            Intent intent = new Intent(this, BusquedasActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else {
+            Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+
 
     }
 
@@ -180,9 +192,17 @@ public class ZonaclienteActivity extends AppCompatActivity {
             }
         }
 
-        gb.actualizarExplotaciones(aux);
+        if(!aux.isEmpty()){
+
+            gb.actualizarExplotaciones(aux);
             Intent intent = new Intent(this, AltaanimalActivity.class);
             startActivity(intent);
+            finish();
+        }
+        else {
+            Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
+                    .show();
+        }
 
     }
 

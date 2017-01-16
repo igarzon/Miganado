@@ -158,11 +158,29 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
             sexo="%";
         }
 
+        GlobalVariable gb = new GlobalVariable();
+        ArrayList<String> Exp = gb.getExplotaciones();
+        String exps = "(";
+
+        for(int i = 0; i<Exp.size(); i++){
+            exps=exps+"'"+Exp.get(i)+"'";
+            if(i+1<Exp.size()){
+                exps=exps+",";
+            }
+        }
+
+        exps=exps+")";
 
         Cursor res = null;
-        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+","+ExplotacionEntry.FECHA_NACIMIENTO+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE " + ExplotacionEntry.CROTAL + " LIKE '%"+crotal+"%'" + " AND " + ExplotacionEntry.CROTAL_MADRE + " LIKE '%"+crotalMadre+"%'"+ " AND " + ExplotacionEntry.BAJA + " LIKE '%"+baja+"%'"+ " AND " + ExplotacionEntry.SEXO + " LIKE '%"+sexo+"%'",null);
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+","+ExplotacionEntry.FECHA_NACIMIENTO+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE " + ExplotacionEntry.CROTAL + " LIKE '%"+crotal+"%'" + " AND " + ExplotacionEntry.CROTAL_MADRE + " LIKE '%"+crotalMadre+"%'"+ " AND " + ExplotacionEntry.BAJA + " LIKE '%"+baja+"%'"+ " AND " + ExplotacionEntry.SEXO + " LIKE '%"+sexo+"%'"+ " AND " + ExplotacionEntry.CEA_LOCALIZACION + " IN "+exps,null);
         res.moveToFirst();
 
+        try{
+            res.getString(1);
+        }
+        catch (Exception e){
+            return array_list;
+        }
 
         while(!res.isLast()) {
             String a = res.getString(1);
