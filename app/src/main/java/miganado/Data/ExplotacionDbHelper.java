@@ -271,4 +271,11 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert(ExplotacionEntry.TABLE_NAME, null, vaca.toContentValues());
     }
 
+    public void DeleteDatabase()
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.delete(ExplotacionEntry.TABLE_NAME,null,null);
+        db.close();
+    }
+
 }

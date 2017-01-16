@@ -9,6 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.ProgressBar;
+
+
+import android.os.Handler;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -17,6 +25,7 @@ import org.json.JSONException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -29,39 +38,74 @@ import static java.security.AccessController.getContext;
 
 public class Downloaddata extends AppCompatActivity {
 
+    SessionManager sessionManager;
+    private boolean into=false;
+
+    private int progressStatus = 0;
+    private Handler handler = new Handler();
+    private TextView tv ;
+    private ProgressBar pb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_downloaddata);
-        final EditText etUsername = (EditText) findViewById(R.id.etUsername);
-        final Button btDownload = (android.widget.Button) findViewById(R.id.btnDownloaddata);
 
-        final Button btAcceso = (android.widget.Button) findViewById(R.id.btnAcceso);
+        tv = (TextView) findViewById(R.id.tv);
+        pb = (ProgressBar) findViewById(R.id.pb);
 
-        final boolean[] begin = new boolean[1];
+        // Get the widgets reference from XML layout
+        final Button btn = (Button) findViewById(R.id.btnAcceso);
 
+        // Set the progress status zero on each button click
+        progressStatus = 0;
 
+        // Session class instance
+        sessionManager = new SessionManager(getApplicationContext());
 
+                System.out.println(sessionManager.getUserDetails().toString());
 
+                String user = sessionManager.getUserDetails().toString();
+                String user1 = user.replaceAll("\\{", "");
+                String user2 = user1.replaceAll("\\}", "");
 
-        btDownload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String username = etUsername.getText().toString();
+                 //Diseccionamos la cadena
+                String[] users = user2.split("=");
 
-
+                String username = users[1];
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
 
                     @Override
                     public void onResponse(String response) {
                         try {
-
-                            //
                             JSONArray jsonArray = new JSONArray(response);
-                            for(int i=0; i<jsonArray.length(); i++){
-                                System.out.println(jsonArray.get(i));
 
+                           for(int i=0; i<jsonArray.length(); i++){
+
+                               progressStatus=(i*100)/jsonArray.length();
+
+                                System.out.println(jsonArray.get(i));
+// Start the lengthy operation in a background thread
+                               new Thread(new Runnable() {
+                                   @Override
+                                   public void run() {
+                               // Update the progress bar
+                               handler.post(new Runnable() {
+                                   @Override
+                                   public void run() {
+                               pb.setProgress(progressStatus);
+                               // Show the progress on TextView
+                               tv.setText(progressStatus+"");
+                               // If task execution completed
+                               if(progressStatus == 100){
+                                   // Set a message of completion
+                                   tv.setText("Operation completed.");
+                               }
+                                   }
+                               });
+                                   }
+                               }).start();
                                 //Almacenamos linea a linea cada una de las filas de la tabla
                                 String Linea=jsonArray.get(i).toString();
 
@@ -77,7 +121,6 @@ public class Downloaddata extends AppCompatActivity {
 
                                 //Diseccionamos la cadena
                                 String[] parts = newLine.split(":");
-
 
                                 ArrayList<String> datos = new ArrayList<String>();
 
@@ -107,8 +150,6 @@ public class Downloaddata extends AppCompatActivity {
 
                                 darAlta(datos);
 
-                                begin[0] = true;
-
                                 //Actualizamos los String de cada uno de los elementos de la tabla
                                  String crotal = parts[3];
                                  String crotalOriginal = parts[7];
@@ -129,19 +170,25 @@ public class Downloaddata extends AppCompatActivity {
                                  String dato5=parts[67];
                                  String dato6=parts[71];
                                  fechaModificacion=parts[73]+":"+parts[74]+":"+parts[75];
-                                String baja=parts[81];
+                                 String baja=parts[81];
 
 
-                                for (int j = 3; j < parts.length; j+=4) {
+                                /*for (int j = 3; j < parts.length; j+=4) {
                                     System.out.println(parts[j]);
                                 }
 
                                 for (int k = 0; k < parts.length; k+=1) {
                                     System.out.println(k+" :"+parts[k]);
-                                }
+                                }*/
 
-                                Datos[i]=Linea;
+                                //Datos[i]=Linea;
 
+                               if (i == jsonArray.length()-1){
+                                   into=true;
+
+                                   Toast.makeText(getApplicationContext(), "DATOS CORRECTAMENTE DESCARGADOS", Toast.LENGTH_LONG).show();
+
+                               }
 
                             }
 
@@ -149,29 +196,34 @@ public class Downloaddata extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+
+                        if (into==true) {
+                            Intent intent = new Intent(Downloaddata.this, ZonaclienteActivity.class);
+                            Downloaddata.this.startActivity(intent);
+                        }
+
+
                     }
 
                 };
                 DownloaddataRequest DownloaddataRequest = new DownloaddataRequest(username,  responseListener);
                 RequestQueue queue = Volley.newRequestQueue(Downloaddata.this);
-                queue.add(DownloaddataRequest);
+                queue.add(DownloaddataRequest).hasHadResponseDelivered();
+
+
             }
-        });
 
-        btAcceso.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    //Funcion que se realiza al pulsar el boton explotaciones
+    public void Acceso(View v) {
 
-                if(begin[0]==true) {
-                    Intent intent = new Intent(Downloaddata.this, ZonaclienteActivity.class);
-                    Downloaddata.this.startActivity(intent);
-                }
-
-            }});
-
-
+            if (into==true) {
+                Intent intent = new Intent(Downloaddata.this, ZonaclienteActivity.class);
+                Downloaddata.this.startActivity(intent);
+            }
 
     }
+
 
 
     public void darAlta(ArrayList<String> datos) {
