@@ -5,6 +5,7 @@ package miganado.Loginyregistro;
         import android.content.Intent;
         import android.net.Uri;
         import android.os.Bundle;
+        import android.view.KeyEvent;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
@@ -116,6 +117,26 @@ public class LoginActivity extends AppCompatActivity {
                 queue.add(LoginRequest);
             }
         });
+
+    }
+
+
+    public boolean onKeyDown(int keyCode, KeyEvent event)  {
+        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
+                && keyCode == KeyEvent.KEYCODE_BACK
+                && event.getRepeatCount() == 0) {
+            //Log.d("CDA", "onKeyDown Called");
+            onBackPressed();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Log.d("CDA", "onBackPressed Called");
+
+        this.finishAffinity();
 
     }
 
