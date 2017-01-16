@@ -45,6 +45,7 @@ public class Downloaddata extends AppCompatActivity {
     private Handler handler = new Handler();
     private TextView tv ;
     private ProgressBar pb;
+    private JSONArray jsonArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +57,8 @@ public class Downloaddata extends AppCompatActivity {
 
         // Get the widgets reference from XML layout
         final Button btn = (Button) findViewById(R.id.btnAcceso);
+
+
 
         // Set the progress status zero on each button click
         progressStatus = 0;
@@ -79,7 +82,7 @@ public class Downloaddata extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONArray jsonArray = new JSONArray(response);
+                            jsonArray = new JSONArray(response);
 
                            for(int i=0; i<jsonArray.length(); i++){
 
@@ -198,7 +201,7 @@ public class Downloaddata extends AppCompatActivity {
                         }
 
 
-                        if (into==true) {
+                        if (into==true || jsonArray.length()<1) {
                             Intent intent = new Intent(Downloaddata.this, ZonaclienteActivity.class);
                             Downloaddata.this.startActivity(intent);
                         }

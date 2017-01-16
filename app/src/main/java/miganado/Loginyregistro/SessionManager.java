@@ -95,6 +95,8 @@ public class SessionManager {
      * */
     public void logoutUser(){
         // Clearing all data from Shared Preferences
+        // Storing login value as TRUE
+        editor.putBoolean(IS_LOGIN, false);
         editor.clear();
         editor.commit();
 

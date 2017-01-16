@@ -53,7 +53,7 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory android:title="Settings">
+    <PreferenceCategory android:title="Sesion">
         <Preference android:title="Cerrar sesion" android:key="exitlink"/>
     </PreferenceCategory>
 

@@ -73,33 +73,36 @@ public class ZonaclienteActivity extends AppCompatActivity {
         //Bundle b = this.getIntent().getExtras(); //Obtenemos las explotaciones del login
         //Ver si es mejor cogerlas de la base de datos
 
-        ArrayList<String> explotaciones = mydb.getExplotaciones(); //Nombre de las explotaciones
+        if(sessionManager.isLoggedIn()&& mydb.existExplotaciones()){
 
-        //Referencia al layout
-        LinearLayout relative = (LinearLayout) findViewById(R.id.layout_checkbox);
-        LayoutParams lparams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            ArrayList<String> explotaciones = mydb.getExplotaciones(); //Nombre de las explotaciones
 
-        //Tenemos todas las checkBox en el arrayList
+            //Referencia al layout
+            LinearLayout relative = (LinearLayout) findViewById(R.id.layout_checkbox);
+            LayoutParams lparams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+
+            //Tenemos todas las checkBox en el arrayList
 
 
-        for (int i = 0; i < explotaciones.size(); i++) {
+            for (int i = 0; i < explotaciones.size(); i++) {
 
-            CheckBox aux = new CheckBox(this);
-            aux.setLayoutParams(lparams);
-            aux.setText(explotaciones.get(i));
-            aux.setTextColor(Color.WHITE);
-            aux.setTextSize(20);
-            aux.setPadding(1, 1, 1, 1);
-            aux.setBackgroundColor(Color.TRANSPARENT);
-            aux.setId(i); //Añadimos un id para poder referenciarle luego de  0 a n-1 explotaciones
-            if(gbExp.contains(explotaciones.get(i))){
-                aux.setChecked(true);
+                CheckBox aux = new CheckBox(this);
+                aux.setLayoutParams(lparams);
+                aux.setText(explotaciones.get(i));
+                aux.setTextColor(Color.WHITE);
+                aux.setTextSize(20);
+                aux.setPadding(1, 1, 1, 1);
+                aux.setBackgroundColor(Color.TRANSPARENT);
+                aux.setId(i); //Añadimos un id para poder referenciarle luego de  0 a n-1 explotaciones
+                if(gbExp.contains(explotaciones.get(i))){
+                    aux.setChecked(true);
+                }
+                relative.addView(aux);
+                checkBox.add(aux);
+
             }
-            relative.addView(aux);
-            checkBox.add(aux);
 
         }
-
 
 
 
@@ -192,17 +195,13 @@ public class ZonaclienteActivity extends AppCompatActivity {
             }
         }
 
-        if(!aux.isEmpty()){
+
 
             gb.actualizarExplotaciones(aux);
             Intent intent = new Intent(this, AltaanimalActivity.class);
             startActivity(intent);
             finish();
-        }
-        else {
-            Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
-                    .show();
-        }
+
 
     }
 
