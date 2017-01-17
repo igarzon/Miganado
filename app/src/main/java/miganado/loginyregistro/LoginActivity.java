@@ -22,6 +22,10 @@ package miganado.Loginyregistro;
         import org.json.JSONException;
         import org.json.JSONObject;
 
+        import java.text.DateFormat;
+        import java.text.SimpleDateFormat;
+        import java.util.Date;
+
         import miganado.Data.ExplotacionDbHelper;
 
 public class LoginActivity extends AppCompatActivity {
@@ -84,7 +88,11 @@ public class LoginActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
                             if (success) {
 
-                                sessionManager.createLoginSession(username);
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                Date date = new Date();
+                                String time = dateFormat.format(date);
+
+                                sessionManager.createLoginSession(username,time);
 
                                ExplotacionDbHelper mydb;
                                 mydb = new ExplotacionDbHelper(getApplicationContext());

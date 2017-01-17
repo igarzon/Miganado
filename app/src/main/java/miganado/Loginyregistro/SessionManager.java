@@ -30,7 +30,7 @@ public class SessionManager {
     public static final String KEY_NAME = "name";
 
     // Email address (make variable public to access from outside)
-    public static final String KEY_EMAIL = "email";
+    public static final String KEY_DATE = "date";
 
     // Constructor
     public SessionManager(Context context){
@@ -42,12 +42,13 @@ public class SessionManager {
     /**
      * Create login sessionManager
      * */
-    public void createLoginSession(String name){
+    public void createLoginSession(String name, String date){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
         // Storing name in pref
         editor.putString(KEY_NAME, name);
+        editor.putString(KEY_DATE, date);
 
 
         // commit changes
