@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -37,7 +38,7 @@ import miganado.Loginyregistro.ZonaclienteActivity;
 public class AltaanimalActivity extends AppCompatActivity {
 
     private GlobalVariable gb = new GlobalVariable();
-    private EditText etCrotalMadre, etCrotal, in_date;
+    private EditText etCrotalMadre, etCrotal, in_date, etExp;
     private RadioGroup rg;
     private Spinner ceas;
 
@@ -46,6 +47,8 @@ public class AltaanimalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_altaanimal);
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         /*ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
@@ -56,6 +59,7 @@ public class AltaanimalActivity extends AppCompatActivity {
         etCrotalMadre = (EditText) findViewById(R.id.etAltaCrotalMadre);
 
         in_date = (EditText) findViewById(R.id.altadate);
+        etExp = (EditText) findViewById(R.id.etExplotacion);
 
         rg = (RadioGroup) findViewById(R.id.rgAltaSexo);
 
@@ -73,7 +77,7 @@ public class AltaanimalActivity extends AppCompatActivity {
         int aux = rg.getCheckedRadioButtonId();
         RadioButton aux2 = (RadioButton) findViewById(aux);
         String sexo = ((String) aux2.getText()).toUpperCase();
-        String ceaLocalizacion = (String) ceas.getSelectedItem();
+        String ceaLocalizacion = (etExp.getText().toString().equals(""))?(String) ceas.getSelectedItem():etExp.getText().toString();
 
         /*Pattern pat1 = Pattern.compile("^ES[0-9]{12}$");
         Matcher mat1 = pat1.matcher(crotal);

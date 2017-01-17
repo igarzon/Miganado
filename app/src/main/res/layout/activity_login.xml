@@ -50,8 +50,7 @@
                 android:id="@+id/etUsername"
                 android:layout_below="@+id/imgLogogestion"
                 android:layout_marginTop="50dp"
-                android:singleLine="false"
-                android:selectAllOnFocus="false" />
+                android:singleLine="false" />
 
             <EditText
                 android:layout_width="match_parent"

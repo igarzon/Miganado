@@ -195,13 +195,10 @@ public class ZonaclienteActivity extends AppCompatActivity {
             }
         }
 
-
-
-            gb.actualizarExplotaciones(aux);
-            Intent intent = new Intent(this, AltaanimalActivity.class);
-            startActivity(intent);
-            finish();
-
+        gb.actualizarExplotaciones(aux);
+        Intent intent = new Intent(this, AltaanimalActivity.class);
+        startActivity(intent);
+        finish();
 
     }
 

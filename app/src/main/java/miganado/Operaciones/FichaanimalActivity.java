@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -43,6 +44,8 @@ public class FichaanimalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fichaanimal);
 
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
         b = this.getIntent().getExtras();
         //ImageView relative = (ImageView) findViewById(R.id.ivAnimal);
 
@@ -51,7 +54,7 @@ public class FichaanimalActivity extends AppCompatActivity {
         Cursor datos = mydb.getCrotal(b.getString((String) b.keySet().toArray()[0]));
 
         LinearLayout linear = (LinearLayout) findViewById(R.id.ficha);
-        ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
 
         for(int i = 1; i<datos.getColumnCount()-8;i++) {
             datos.moveToFirst();
