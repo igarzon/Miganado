@@ -1,7 +1,8 @@
 
 package miganado.Loginyregistro;
-        import android.icu.text.DateFormat;
-        import android.icu.text.SimpleDateFormat;
+        import java.text.DateFormat;
+        import java.text.SimpleDateFormat;
+        import java.util.Date;
         import android.support.v7.app.AlertDialog;
         import android.support.v7.app.AppCompatActivity;
         import android.content.Intent;
