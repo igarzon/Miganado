@@ -54,7 +54,7 @@ public class ExplotacionesActivity extends AppCompatActivity {
                 final TextView aux2 = new TextView(this);
                 aux2.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 aux2.setText(crotal);
-                aux2.setTextColor(Color.BLUE);
+                aux2.setTextColor(Color.WHITE);
                 aux2.setTextSize(25);
                 aux2.setPadding(1,1,1,1);
                 aux2.setOnClickListener(new View.OnClickListener() {

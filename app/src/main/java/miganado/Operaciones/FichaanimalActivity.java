@@ -19,6 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.database.Cursor;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,10 +30,12 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import miganado.Configuracion.UpdateDataRequest;
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionDbHelper;
 import miganado.Data.GlobalVariable;
 import miganado.Loginyregistro.R;
+import miganado.Loginyregistro.SessionManager;
 import miganado.Loginyregistro.ZonaclienteActivity;
 
 public class FichaanimalActivity extends AppCompatActivity {
@@ -236,6 +242,63 @@ public class FichaanimalActivity extends AppCompatActivity {
             mydb = new ExplotacionDbHelper(this);
             mydb.deleteCrotal(datos.get(0));
             mydb.insertVaca(vaca);
+
+
+            // Session class instance
+            SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+            String user = sessionManager.getUserDetails().toString();
+            String user1 = user.replaceAll("\\{", "");
+            String user2 = user1.replaceAll("\\}", "");
+
+            //Diseccionamos la cadena
+            String[] users = user2.split("=");
+
+            String username = users[1];
+
+            for (int i=0;i<datos.size();i++ ) {
+                System.out.print("Dato "+i+" "+datos.get(i).toString());
+            }
+
+
+
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+
+                    System.out.println("Respuesta: "+response);
+
+
+                }
+
+            };
+            UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,datos.get(0),
+                    datos.get(1),
+                    datos.get(2),
+                    datos.get(3),
+                    datos.get(4),
+                    datos.get(5),
+                    datos.get(6),
+                    datos.get(7),
+                    datos.get(8),
+                    datos.get(9),
+                    datos.get(10),
+                    datos.get(11),
+                    datos.get(12),
+                    datos.get(13),
+                    datos.get(14),
+                    datos.get(15),
+                    datos.get(16),
+                    datos.get(17),
+                    time,
+                    "0",  responseListener);
+            RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
+            queue.add(UpdateDataRequest).hasHadResponseDelivered();
+
+
+
+
         }
     }
 

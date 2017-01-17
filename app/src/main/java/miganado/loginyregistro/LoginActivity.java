@@ -107,21 +107,8 @@ public class LoginActivity extends AppCompatActivity {
                                     String time = dateFormat.format(date);
                                     sessionManager.createLoginSession(username,time);
 
-                                    ExplotacionDbHelper mydb;
-                                    mydb = new ExplotacionDbHelper(getApplicationContext());
-
-                                    System.out.print("DDBB=   " + mydb.existExplotaciones());
-                                    if (mydb.existExplotaciones() == false) {
-
-                                        Intent intent = new Intent(LoginActivity.this, Downloaddata.class);
-                                        LoginActivity.this.startActivity(intent);
-
-                                    }
-                                    if (mydb.existExplotaciones() == true) {
-                                        Intent intent = new Intent(LoginActivity.this, ZonaclienteActivity.class);
-                                        intent.putExtra("username", username);
-                                        LoginActivity.this.startActivity(intent);
-                                    }
+                                    Intent intent = new Intent(LoginActivity.this, Downloaddata.class);
+                                    LoginActivity.this.startActivity(intent);
 
 
                                 } else {
