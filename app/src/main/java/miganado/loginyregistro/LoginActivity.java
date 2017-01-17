@@ -22,6 +22,7 @@ package miganado.Loginyregistro;
         import org.json.JSONException;
         import org.json.JSONObject;
 
+        import miganado.Configuracion.CheckConnectivity;
         import miganado.Data.ExplotacionDbHelper;
 
 public class LoginActivity extends AppCompatActivity {
@@ -38,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -73,52 +75,64 @@ public class LoginActivity extends AppCompatActivity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String username = etUsername.getText().toString();
-                final String password = etPassword.getText().toString();
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
+                CheckConnectivity cc = new CheckConnectivity();
 
-                                sessionManager.createLoginSession(username);
+                if(!(cc.isConnectedMobile(getApplicationContext())||cc.isConnectedWifi(getApplicationContext()))){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setMessage(" No tiene conexión a Internet. ")
+                            .setNegativeButton("Ok", null)
+                            .create()
+                            .show();
+                }
+                else{
+                    final String username = etUsername.getText().toString();
+                    final String password = etPassword.getText().toString();
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                               ExplotacionDbHelper mydb;
-                                mydb = new ExplotacionDbHelper(getApplicationContext());
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                boolean success = jsonResponse.getBoolean("success");
+                                if (success) {
 
-                                System.out.print("DDBB=   " + mydb.existExplotaciones());
-                                if (mydb.existExplotaciones()==false) {
+                                    sessionManager.createLoginSession(username);
 
-                                    Intent intent = new Intent(LoginActivity.this, Downloaddata.class);
-                                    LoginActivity.this.startActivity(intent);
+                                    ExplotacionDbHelper mydb;
+                                    mydb = new ExplotacionDbHelper(getApplicationContext());
 
+                                    System.out.print("DDBB=   " + mydb.existExplotaciones());
+                                    if (mydb.existExplotaciones() == false) {
+
+                                        Intent intent = new Intent(LoginActivity.this, Downloaddata.class);
+                                        LoginActivity.this.startActivity(intent);
+
+                                    }
+                                    if (mydb.existExplotaciones() == true) {
+                                        Intent intent = new Intent(LoginActivity.this, ZonaclienteActivity.class);
+                                        intent.putExtra("username", username);
+                                        LoginActivity.this.startActivity(intent);
+                                    }
+
+
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                    builder.setMessage(" Ha fallado el Login")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
                                 }
-                                if (mydb.existExplotaciones()==true) {
-                                    Intent intent = new Intent(LoginActivity.this, ZonaclienteActivity.class);
-                                    intent.putExtra("username", username);
-                                    LoginActivity.this.startActivity(intent);
-                                }
-
-
-                            }else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                builder.setMessage(" Ha fallado el Login")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
 
-                };
-                LoginRequest LoginRequest = new LoginRequest(username, password, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-                queue.add(LoginRequest);
+                    };
+                    LoginRequest LoginRequest = new LoginRequest(username, password, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+                    queue.add(LoginRequest);
+                }
             }
         });
 
