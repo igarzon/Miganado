@@ -38,7 +38,7 @@ public class FichaanimalActivity extends AppCompatActivity {
     private Bundle b = new Bundle();
     private TextView crotal;
     private GlobalVariable gb = new GlobalVariable();
-    private static final String MI_GANADO_PRIMARY_COLOR = "70ac47";
+    private static final String MI_GANADO_PRIMARY_COLOR = "#70ac47";
 
 
     @Override
