@@ -38,6 +38,8 @@ public class FichaanimalActivity extends AppCompatActivity {
     private Bundle b = new Bundle();
     private TextView crotal;
     private GlobalVariable gb = new GlobalVariable();
+    private static final String MI_GANADO_PRIMARY_COLOR = "70ac47";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +65,8 @@ public class FichaanimalActivity extends AppCompatActivity {
             TextView aux1 = new TextView(this);
             aux1.setLayoutParams(lparams);
             aux1.setText(Character.toUpperCase(datos.getColumnName(i).charAt(0))+datos.getColumnName(i).substring(1));
-            aux1.setTextColor(Color.WHITE);
-            aux1.setBackgroundColor(Color.GREEN);
-            aux1.setTextSize(25);
+            aux1.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
+            aux1.setTextSize(30);
 
             linear.addView(aux1);
 
@@ -74,7 +75,7 @@ public class FichaanimalActivity extends AppCompatActivity {
                 aux2.setLayoutParams(lparams);
                 aux2.setText(datos.getString(i));
                 aux2.setTextColor(Color.WHITE);
-                aux2.setTextSize(25);
+                aux2.setTextSize(23);
                 editText.add(aux2);
                 linear.addView(aux2);
             }
@@ -85,7 +86,7 @@ public class FichaanimalActivity extends AppCompatActivity {
                 crotal.setText(datos.getString(i));
                 crotal.setTextColor(Color.WHITE);
 
-                crotal.setTextSize(25);
+                crotal.setTextSize(23);
                 linear.addView(crotal);
             }
 
@@ -111,7 +112,7 @@ public class FichaanimalActivity extends AppCompatActivity {
             TextView aux1 = new TextView(this);
             aux1.setLayoutParams(lparams);
             aux1.setText(s[i - (datos.getColumnCount() - 8)]);
-            aux1.setTextColor(Color.BLUE);
+            aux1.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
             aux1.setTextSize(25);
 
             linear.addView(aux1);
@@ -119,7 +120,7 @@ public class FichaanimalActivity extends AppCompatActivity {
             EditText aux2 = new EditText(this);
             aux2.setLayoutParams(lparams);
             aux2.setText(datos.getString(i));
-            aux2.setTextColor(Color.BLACK);
+            aux2.setTextColor(Color.WHITE);
             aux2.setTextSize(25);
             editText.add(aux2);
             linear.addView(aux2);

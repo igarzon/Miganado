@@ -21,16 +21,6 @@
             android:gravity="center_horizontal"
             android:layout_height="wrap_content"
             android:weightSum="1">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Gestión de mi ganado"
-                android:id="@+id/ptNombreaplicacion"
-                android:textSize="30sp"
-                android:textStyle="bold|italic"
-                android:background="@color/common_google_signin_btn_text_dark_focused"
-                android:textColor="@color/MiGanado_primary_color"
-                android:textAlignment="center" />
 
             <ImageView
                 android:layout_width="match_parent"
