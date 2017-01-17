@@ -54,7 +54,7 @@ public class FichaanimalActivity extends AppCompatActivity {
         Cursor datos = mydb.getCrotal(b.getString((String) b.keySet().toArray()[0]));
 
         LinearLayout linear = (LinearLayout) findViewById(R.id.ficha);
-        ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         for(int i = 1; i<datos.getColumnCount()-8;i++) {
             datos.moveToFirst();
