@@ -1,5 +1,7 @@
 
 package miganado.Loginyregistro;
+        import android.icu.text.DateFormat;
+        import android.icu.text.SimpleDateFormat;
         import android.support.v7.app.AlertDialog;
         import android.support.v7.app.AppCompatActivity;
         import android.content.Intent;
@@ -21,6 +23,8 @@ package miganado.Loginyregistro;
 
         import org.json.JSONException;
         import org.json.JSONObject;
+
+        import java.util.Date;
 
         import miganado.Configuracion.CheckConnectivity;
         import miganado.Data.ExplotacionDbHelper;
@@ -97,7 +101,10 @@ public class LoginActivity extends AppCompatActivity {
                                 boolean success = jsonResponse.getBoolean("success");
                                 if (success) {
 
-                                    sessionManager.createLoginSession(username);
+                                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                    Date date = new Date();
+                                    String time = dateFormat.format(date);
+                                    sessionManager.createLoginSession(username,time);
 
                                     ExplotacionDbHelper mydb;
                                     mydb = new ExplotacionDbHelper(getApplicationContext());
