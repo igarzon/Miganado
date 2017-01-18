@@ -1,5 +1,8 @@
 
 package miganado.Loginyregistro;
+        import java.text.DateFormat;
+        import java.text.SimpleDateFormat;
+        import java.util.Date;
         import android.support.v7.app.AlertDialog;
         import android.support.v7.app.AppCompatActivity;
         import android.content.Intent;
@@ -26,10 +29,9 @@ package miganado.Loginyregistro;
         import org.json.JSONException;
         import org.json.JSONObject;
 
-        import java.text.DateFormat;
-        import java.text.SimpleDateFormat;
         import java.util.Date;
 
+        import miganado.Configuracion.CheckConnectivity;
         import miganado.Data.ExplotacionDbHelper;
 
 public class LoginActivity extends AppCompatActivity {
@@ -46,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -85,56 +88,54 @@ public class LoginActivity extends AppCompatActivity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String username = etUsername.getText().toString();
-                final String password = etPassword.getText().toString();
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonResponse = new JSONObject(response);
-                            boolean success = jsonResponse.getBoolean("success");
-                            if (success) {
+                CheckConnectivity cc = new CheckConnectivity();
 
-                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                Date date = new Date();
-                                String time = dateFormat.format(date);
+                if(!(cc.isConnectedMobile(getApplicationContext())||cc.isConnectedWifi(getApplicationContext()))){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setMessage(" No tiene conexión a Internet. ")
+                            .setNegativeButton("Ok", null)
+                            .create()
+                            .show();
+                }
+                else{
+                    final String username = etUsername.getText().toString();
+                    final String password = etPassword.getText().toString();
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                                sessionManager.createLoginSession(username,time);
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                JSONObject jsonResponse = new JSONObject(response);
+                                boolean success = jsonResponse.getBoolean("success");
+                                if (success) {
 
-                               ExplotacionDbHelper mydb;
-                                mydb = new ExplotacionDbHelper(getApplicationContext());
-
-                                System.out.print("DDBB=   " + mydb.existExplotaciones());
-                                if (mydb.existExplotaciones()==false) {
+                                    DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                    Date date = new Date();
+                                    String time = dateFormat.format(date);
+                                    sessionManager.createLoginSession(username,time);
 
                                     Intent intent = new Intent(LoginActivity.this, Downloaddata.class);
                                     LoginActivity.this.startActivity(intent);
 
-                                }
-                                if (mydb.existExplotaciones()==true) {
-                                    Intent intent = new Intent(LoginActivity.this, ZonaclienteActivity.class);
-                                    intent.putExtra("username", username);
-                                    LoginActivity.this.startActivity(intent);
-                                }
 
-
-                            }else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                builder.setMessage(" Ha fallado el Login")
-                                        .setNegativeButton("Retry", null)
-                                        .create()
-                                        .show();
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                    builder.setMessage(" Ha fallado el Login")
+                                            .setNegativeButton("Retry", null)
+                                            .create()
+                                            .show();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
-                    }
 
-                };
-                LoginRequest LoginRequest = new LoginRequest(username, password, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-                queue.add(LoginRequest);
+                    };
+                    LoginRequest LoginRequest = new LoginRequest(username, password, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+                    queue.add(LoginRequest);
+                }
             }
         });
 

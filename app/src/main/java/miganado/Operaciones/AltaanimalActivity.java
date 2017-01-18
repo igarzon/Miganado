@@ -20,6 +20,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -28,11 +36,15 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import miganado.Configuracion.UpdateDataRequest;
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionContract;
 import miganado.Data.ExplotacionDbHelper;
 import miganado.Data.GlobalVariable;
+import miganado.Loginyregistro.Downloaddata;
+import miganado.Loginyregistro.DownloaddataRequest;
 import miganado.Loginyregistro.R;
+import miganado.Loginyregistro.SessionManager;
 import miganado.Loginyregistro.ZonaclienteActivity;
 
 public class AltaanimalActivity extends AppCompatActivity {
@@ -131,8 +143,67 @@ public class AltaanimalActivity extends AppCompatActivity {
 
             Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
                     .show();
+
+            // Session class instance
+            SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+            String user = sessionManager.getUserDetails().toString();
+            String user1 = user.replaceAll("\\{", "");
+            String user2 = user1.replaceAll("\\}", "");
+
+            //Diseccionamos la cadena
+            String[] users = user2.split("=");
+
+            String username = users[1];
+
+
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+
+                    System.out.println("Respuesta: "+response);
+
+
+                }
+
+            };
+            UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,crotal,
+                    "vacio",
+                    "vacio",
+                    crotalMadre,
+                    sexo,
+                    "vacio",
+                    fecha,
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    ceaLocalizacion,
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    time,
+                    "0",  responseListener);
+            RequestQueue queue = Volley.newRequestQueue(AltaanimalActivity.this);
+            queue.add(UpdateDataRequest).hasHadResponseDelivered();
+
+
         }
-    }
+
+
+        }
+
+
+
+
+
+
+
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5

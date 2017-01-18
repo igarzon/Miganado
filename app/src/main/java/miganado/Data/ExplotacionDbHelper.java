@@ -108,7 +108,7 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         Cursor mcursor = db.rawQuery(sql, null);
         mcursor.moveToFirst();
         int icount = mcursor.getInt(0);
-        if(icount>1){
+        if(icount>0 && mcursor!=null){
             //hay contenido
             result = true;
 
