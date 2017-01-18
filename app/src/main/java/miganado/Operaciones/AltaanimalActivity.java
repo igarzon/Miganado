@@ -106,7 +106,13 @@ public class AltaanimalActivity extends AppCompatActivity {
             Snackbar.make(v, "Crotal madre mal introducido", Snackbar.LENGTH_LONG)
                     .show();
         }*/
-        if(!mat3.matches()){
+        if(crotal.equals("")){
+            Snackbar.make(v, "Introduzca un crotal", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+
+
+        else if(!mat3.matches()){
             Snackbar.make(v, "Fecha mal introducido", Snackbar.LENGTH_LONG)
                     .show();
         }
@@ -169,25 +175,27 @@ public class AltaanimalActivity extends AppCompatActivity {
 
             };
             UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,crotal,
-                    "vacio",
-                    "vacio",
-                    crotalMadre,
+                    "",
+                    "",
+                    crotalMadre.equals("vacio") ? "" : crotalMadre,
                     sexo,
-                    "vacio",
+                    "",
                     fecha,
-                    "vacio",
-                    "vacio",
-                    "vacio",
+                    "",
+                    "",
+                    "",
                     ceaLocalizacion,
-                    "vacio",
-                    "vacio",
-                    "vacio",
-                    "vacio",
-                    "vacio",
-                    "vacio",
-                    "vacio",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
                     time,
-                    "0",  responseListener);
+                    "0",
+                    "alta",
+                    responseListener);
             RequestQueue queue = Volley.newRequestQueue(AltaanimalActivity.this);
             queue.add(UpdateDataRequest).hasHadResponseDelivered();
 
@@ -196,11 +204,6 @@ public class AltaanimalActivity extends AppCompatActivity {
 
 
         }
-
-
-
-
-
 
 
 

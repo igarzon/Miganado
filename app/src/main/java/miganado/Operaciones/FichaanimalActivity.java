@@ -154,6 +154,58 @@ public class FichaanimalActivity extends AppCompatActivity {
         mydb.deleteCrotal(crotal.getText().toString());
         Snackbar.make(v, "Borrado realizado correctamente", Snackbar.LENGTH_LONG)
                 .show();
+
+        // Session class instance
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+        String user = sessionManager.getUserDetails().toString();
+        String user1 = user.replaceAll("\\{", "");
+        String user2 = user1.replaceAll("\\}", "");
+
+        //Diseccionamos la cadena
+        String[] users = user2.split("=");
+
+        String username = users[1];
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                System.out.println("Respuesta: "+response);
+
+
+            }
+
+        };
+        UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,
+                crotal.getText().toString(),
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "borrar",
+                responseListener);
+        RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
+        queue.add(UpdateDataRequest).hasHadResponseDelivered();
+
+
+
         Intent setIntent = new Intent(this, gb.getActivityAnterior());
         startActivity(setIntent);
     }
@@ -202,6 +254,58 @@ public class FichaanimalActivity extends AppCompatActivity {
         mydb = new ExplotacionDbHelper(this);
         mydb.deleteCrotal(datos.get(0));
         mydb.insertVaca(vaca);
+
+        // Session class instance
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+        String user = sessionManager.getUserDetails().toString();
+        String user1 = user.replaceAll("\\{", "");
+        String user2 = user1.replaceAll("\\}", "");
+
+        //Diseccionamos la cadena
+        String[] users = user2.split("=");
+
+        String username = users[1];
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                System.out.println("Respuesta: "+response);
+
+
+            }
+
+        };
+        UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,
+                (datos.get(0).equals("vacio") ? "" : datos.get(0)),
+                (datos.get(1).equals("vacio") ? "" : datos.get(1)),
+                (datos.get(2).equals("vacio") ? "" : datos.get(2)),
+                (datos.get(3).equals("vacio") ? "" : datos.get(3)),
+                (datos.get(4).equals("vacio") ? "" : datos.get(4)),
+                (datos.get(5).equals("vacio") ? "" : datos.get(5)),
+                (datos.get(6).equals("vacio") ? "" : datos.get(6)),
+                (datos.get(7).equals("vacio") ? "" : datos.get(7)),
+                (datos.get(8).equals("vacio") ? "" : datos.get(8)),
+                (datos.get(9).equals("vacio") ? "" : datos.get(9)),
+                (datos.get(10).equals("vacio") ? "" : datos.get(10)),
+                (datos.get(11).equals("vacio") ? "" : datos.get(11)),
+                (datos.get(12).equals("vacio") ? "" : datos.get(12)),
+                (datos.get(13).equals("vacio") ? "" : datos.get(13)),
+                (datos.get(14).equals("vacio") ? "" : datos.get(14)),
+                (datos.get(15).equals("vacio") ? "" : datos.get(15)),
+                (datos.get(16).equals("vacio") ? "" : datos.get(16)),
+                (datos.get(17).equals("vacio") ? "" : datos.get(17)),
+                time,
+                "1",
+                "modificar",
+                responseListener);
+        RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
+        queue.add(UpdateDataRequest).hasHadResponseDelivered();
+
+
+
     }
 
     public void modificar(View v) {
@@ -269,11 +373,6 @@ public class FichaanimalActivity extends AppCompatActivity {
 
             String username = users[1];
 
-            for (int i=0;i<datos.size();i++ ) {
-                System.out.print("Dato "+i+" "+datos.get(i).toString());
-            }
-
-
 
             Response.Listener<String> responseListener = new Response.Listener<String>() {
 
@@ -286,31 +385,31 @@ public class FichaanimalActivity extends AppCompatActivity {
                 }
 
             };
-            UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,datos.get(0),
-                    datos.get(1),
-                    datos.get(2),
-                    datos.get(3),
-                    datos.get(4),
-                    datos.get(5),
-                    datos.get(6),
-                    datos.get(7),
-                    datos.get(8),
-                    datos.get(9),
-                    datos.get(10),
-                    datos.get(11),
-                    datos.get(12),
-                    datos.get(13),
-                    datos.get(14),
-                    datos.get(15),
-                    datos.get(16),
-                    datos.get(17),
+            UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,
+                    (datos.get(0).equals("vacio") ? "" : datos.get(0)),
+                    (datos.get(1).equals("vacio") ? "" : datos.get(1)),
+                    (datos.get(2).equals("vacio") ? "" : datos.get(2)),
+                    (datos.get(3).equals("vacio") ? "" : datos.get(3)),
+                    (datos.get(4).equals("vacio") ? "" : datos.get(4)),
+                    (datos.get(5).equals("vacio") ? "" : datos.get(5)),
+                    (datos.get(6).equals("vacio") ? "" : datos.get(6)),
+                    (datos.get(7).equals("vacio") ? "" : datos.get(7)),
+                    (datos.get(8).equals("vacio") ? "" : datos.get(8)),
+                    (datos.get(9).equals("vacio") ? "" : datos.get(9)),
+                    (datos.get(10).equals("vacio") ? "" : datos.get(10)),
+                    (datos.get(11).equals("vacio") ? "" : datos.get(11)),
+                    (datos.get(12).equals("vacio") ? "" : datos.get(12)),
+                    (datos.get(13).equals("vacio") ? "" : datos.get(13)),
+                    (datos.get(14).equals("vacio") ? "" : datos.get(14)),
+                    (datos.get(15).equals("vacio") ? "" : datos.get(15)),
+                    (datos.get(16).equals("vacio") ? "" : datos.get(16)),
+                    (datos.get(17).equals("vacio") ? "" : datos.get(17)),
                     time,
-                    "0",  responseListener);
+                    "0",
+                    "modificar",
+                    responseListener);
             RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
             queue.add(UpdateDataRequest).hasHadResponseDelivered();
-
-
-
 
         }
     }
