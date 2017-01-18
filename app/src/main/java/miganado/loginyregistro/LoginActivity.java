@@ -16,6 +16,10 @@ package miganado.Loginyregistro;
         import com.android.volley.toolbox.Volley;
         import com.google.android.gms.common.api.GoogleApiClient;
 
+        import android.graphics.Typeface;
+        import android.text.method.PasswordTransformationMethod;
+
+
         import android.widget.Toast;
 
 
@@ -50,6 +54,10 @@ public class LoginActivity extends AppCompatActivity {
         final Button btLogin = (Button) findViewById(R.id.btnLogin);
         final TextView registerlink = (TextView) findViewById(R.id.tvLinkregistro);
         final TextView resetlink = (TextView) findViewById(R.id.tvLinkreseteopassword);
+
+
+        etPassword.setTypeface(Typeface.DEFAULT);
+        etPassword.setTransformationMethod(new PasswordTransformationMethod());
 
         sessionManager = new SessionManager(getApplicationContext());
 

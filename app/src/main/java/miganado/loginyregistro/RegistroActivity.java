@@ -11,6 +11,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import android.graphics.Typeface;
+import android.text.method.PasswordTransformationMethod;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -39,6 +41,11 @@ public class RegistroActivity extends AppCompatActivity {
         final EditText etDato5 = (EditText) findViewById(R.id.etDato5);
         final EditText etDato6 = (EditText) findViewById(R.id.etDato6);
         final RadioButton rbTitular = (RadioButton) findViewById(R.id.rbTitular);
+
+        etPassword.setTypeface(Typeface.DEFAULT);
+        etPassword.setTransformationMethod(new PasswordTransformationMethod());
+        etPassword2.setTypeface(Typeface.DEFAULT);
+        etPassword2.setTransformationMethod(new PasswordTransformationMethod());
 
         btnRegisro.setOnClickListener(new View.OnClickListener() {
             @Override
