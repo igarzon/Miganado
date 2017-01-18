@@ -8,16 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="miganado.Operaciones.BusquedasActivity">
-
-        <Button
-            android:text="Buscar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnBuscar"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="144dp" />
+    tools:context="miganado.Operaciones.BusquedasActivity"
+    android:background="@android:color/background_dark">
 
         <EditText
             android:layout_width="match_parent"
@@ -25,21 +17,105 @@
             android:ems="12"
             android:id="@+id/etBuscarCrotal"
             android:hint="Crotal"
-            android:background="@android:color/background_light"
             android:layout_marginTop="20dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:elevation="2dp" />
 
-        <EditText
+
+        <Button
+            android:text="Restablecer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnRestablecer"
+            android:layout_marginTop="52dp"
+            android:layout_alignTop="@+id/btnBuscar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/MiGanado_primary_color"/>
+
+
+        <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rgSexo"
+            android:layout_alignTop="@+id/in_date2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+
+                <RadioButton
+                    android:text="Macho"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:id="@+id/rbMacho"
+                    android:layout_weight="1"
+
+                    android:layout_below="@+id/in_date2"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginRight="57dp"
+                    android:layout_marginEnd="57dp"
+                    android:layout_marginTop="46dp" />
+
+                <RadioButton
+                    android:text="Hembra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:id="@+id/rbHembra"
+                    android:layout_weight="1"
+
+                    android:layout_alignBaseline="@+id/rbMacho"
+                    android:layout_alignBottom="@+id/rbMacho"
+                    android:layout_toLeftOf="@+id/rbMacho"
+                    android:layout_toStartOf="@+id/rbMacho"
+                    android:layout_marginRight="32dp"
+                    android:layout_marginEnd="32dp" />
+
+                <RadioButton
+                    android:text="Ambos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:id="@+id/rbAmbos"
+                    android:layout_weight="1"
+                    android:layout_alignBaseline="@+id/rbHembra"
+                    android:layout_alignBottom="@+id/rbHembra"
+                    android:layout_alignLeft="@+id/btnBuscar"
+                    android:layout_alignStart="@+id/btnBuscar" />
+        </RadioGroup>
+
+        <CheckBox
+            android:text="Histórico"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="12"
-            android:id="@+id/etBuscarCrotalMadre"
-            android:hint="Crotal Madre"
-            android:background="@android:color/background_light"
-            android:layout_marginTop="19dp"
-            android:layout_below="@+id/etBuscarCrotal"
+            android:id="@+id/cbHistorico"
+            android:layout_marginTop="14dp"
+            android:layout_below="@+id/rgSexo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:text="Buscar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnBuscar"
+            android:layout_marginTop="13dp"
+            android:layout_below="@+id/cbHistorico"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/MiGanado_primary_color"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/in_date"
+            android:hint="Fecha inferior aaaa-mm-dd"
+            android:elevation="2dp"
+            android:layout_below="@+id/etBuscarCrotalMadre"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
@@ -48,101 +124,24 @@
         <EditText
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:id="@+id/in_date"
-            android:hint="Fecha inferior aaaa-mm-dd"
-            android:background="@android:color/background_light"
-            android:layout_alignBaseline="@+id/btn_date"
-            android:layout_alignBottom="@+id/btn_date"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <EditText
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
             android:id="@+id/in_date2"
             android:hint="Fecha superior aaaa-mm-dd"
-            android:background="@android:color/background_light"
-            android:layout_alignBaseline="@+id/btn_date2"
-            android:layout_alignBottom="@+id/btn_date2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SELECT DATE"
-            android:id="@+id/btn_date2"
-            android:layout_below="@+id/btn_date"
-            android:layout_alignLeft="@+id/btn_date"
-            android:layout_alignStart="@+id/btn_date"
-            android:layout_marginTop="44dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SELECT DATE"
-            android:id="@+id/btn_date"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_below="@+id/etBuscarCrotalMadre"
-            android:layout_toRightOf="@+id/in_date"
-            android:layout_toEndOf="@+id/in_date"
-            android:layout_marginTop="39dp" />
-
-        <CheckBox
-            android:text="Histórico"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="26dp"
-            android:id="@+id/cbHistorico"
-            android:layout_below="@+id/btn_date2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <Button
-            android:text="Restablecer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/btnBuscar"
-            android:layout_marginBottom="28dp"
-            android:id="@+id/btnRestablecer"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-        <RadioGroup
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rgSexo"
-            android:layout_below="@+id/cbHistorico"
+            android:layout_below="@+id/in_date"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="26dp">
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
-                <RadioButton
-                    android:text="Ambos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:id="@+id/rbAmbos"
-                    android:layout_weight="1" />
-
-                <RadioButton
-                    android:text="Hembra"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:id="@+id/rbHembra"
-                    android:layout_weight="1" />
-
-                <RadioButton
-                    android:text="Macho"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    android:id="@+id/rbMacho"
-                    android:layout_weight="1" />
-
-        </RadioGroup>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="12"
+            android:id="@+id/etBuscarCrotalMadre"
+            android:hint="Crotal Madre"
+            android:elevation="1dp"
+            android:layout_below="@+id/etBuscarCrotal"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

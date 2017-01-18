@@ -1,8 +1,10 @@
 package miganado.Operaciones;
 
 import android.app.DatePickerDialog;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -24,6 +26,9 @@ import miganado.Data.ExplotacionDbHelper;
 import miganado.Data.GlobalVariable;
 import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.ZonaclienteActivity;
+
+import android.app.DialogFragment;
+
 
 import static miganado.Loginyregistro.R.id.etBuscarCrotal;
 
@@ -146,6 +151,10 @@ public class BusquedasActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
     }
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5

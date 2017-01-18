@@ -23,13 +23,15 @@ public class ResultadosBusquedasActivity extends AppCompatActivity {
     private ArrayList<String> b;
     private String key1;
     private GlobalVariable gb = new GlobalVariable();
+    private static final String MI_GANADO_PRIMARY_COLOR = "#70ac47";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resultados_busquedas);
 
-        LinearLayout relative = (LinearLayout) findViewById(R.id.activity_resultados_busquedas);
+        LinearLayout relative = (LinearLayout) findViewById(R.id.listado_busquedas);
 
         final Context context = getApplicationContext();
 
@@ -39,7 +41,7 @@ public class ResultadosBusquedasActivity extends AppCompatActivity {
         coincidencias.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         String nombreExp = Integer.toString(b.size())+" coincidencias.";
         coincidencias.setText(nombreExp);
-        coincidencias.setTextColor(Color.BLACK);
+        coincidencias.setTextColor(Color.WHITE);
         coincidencias.setTextSize(20);
         coincidencias.setPadding(1,1,1,1);
         relative.addView(coincidencias);
@@ -49,10 +51,10 @@ public class ResultadosBusquedasActivity extends AppCompatActivity {
             key1=key;
 
             TextView aux = new TextView(this);
-            aux.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            aux.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             aux.setText(key);
-            aux.setTextColor(Color.BLACK);
-            aux.setTextSize(20);
+            aux.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
+            aux.setTextSize(23);
             aux.setPadding(1,1,1,1);
             aux.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -55,10 +55,6 @@ public class Downloaddata extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.tv);
         pb = (ProgressBar) findViewById(R.id.pb);
 
-        // Get the widgets reference from XML layout
-        final Button btn = (Button) findViewById(R.id.btnAcceso);
-
-
 
         // Set the progress status zero on each button click
         progressStatus = 0;

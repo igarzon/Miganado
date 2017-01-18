@@ -24,6 +24,7 @@ import miganado.Loginyregistro.R;
 public class ExplotacionesActivity extends AppCompatActivity {
 
     private GlobalVariable gb = new GlobalVariable();
+    private static final String MI_GANADO_PRIMARY_COLOR = "#70ac47";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class ExplotacionesActivity extends AppCompatActivity {
             aux.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             String nombreExp = key+"  ("+Integer.toString(vacas.size())+" animales)";
             aux.setText(nombreExp);
-            aux.setTextColor(Color.BLACK);
+            aux.setTextColor(Color.WHITE);
             aux.setTextSize(20);
             aux.setPadding(1,1,1,1);
             relative.addView(aux);
@@ -52,9 +53,9 @@ public class ExplotacionesActivity extends AppCompatActivity {
 
             for(String crotal : vacas){
                 final TextView aux2 = new TextView(this);
-                aux2.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                aux2.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 aux2.setText(crotal);
-                aux2.setTextColor(Color.BLUE);
+                aux2.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
                 aux2.setTextSize(25);
                 aux2.setPadding(1,1,1,1);
                 aux2.setOnClickListener(new View.OnClickListener() {

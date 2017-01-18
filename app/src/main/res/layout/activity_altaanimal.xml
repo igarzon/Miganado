@@ -67,9 +67,9 @@
             android:id="@+id/etExplotacion"
             android:hint="Explotacion"
             android:layout_marginTop="20dp"
-            android:background="@android:color/background_light"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:elevation="1dp" />
 
         <RadioGroup
             android:layout_width="wrap_content"

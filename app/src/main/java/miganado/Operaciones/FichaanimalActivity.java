@@ -38,7 +38,7 @@ public class FichaanimalActivity extends AppCompatActivity {
     private Bundle b = new Bundle();
     private TextView crotal;
     private GlobalVariable gb = new GlobalVariable();
-    private static final String MI_GANADO_PRIMARY_COLOR = "70ac47";
+    private static final String MI_GANADO_PRIMARY_COLOR = "#70ac47";
 
 
     @Override
@@ -60,11 +60,10 @@ public class FichaanimalActivity extends AppCompatActivity {
 
         for(int i = 1; i<datos.getColumnCount()-8;i++) {
             datos.moveToFirst();
-            String a = datos.getString(i);
 
             TextView aux1 = new TextView(this);
             aux1.setLayoutParams(lparams);
-            aux1.setText(Character.toUpperCase(datos.getColumnName(i).charAt(0))+datos.getColumnName(i).substring(1));
+            aux1.setText(editarCadenaTexto(datos.getColumnName(i)));
             aux1.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
             aux1.setTextSize(30);
 
@@ -113,7 +112,7 @@ public class FichaanimalActivity extends AppCompatActivity {
             aux1.setLayoutParams(lparams);
             aux1.setText(s[i - (datos.getColumnCount() - 8)]);
             aux1.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
-            aux1.setTextSize(25);
+            aux1.setTextSize(30);
 
             linear.addView(aux1);
 
@@ -126,6 +125,20 @@ public class FichaanimalActivity extends AppCompatActivity {
             linear.addView(aux2);
 
         }
+    }
+
+
+    public String editarCadenaTexto(String s){
+        int contador_mayusculas = 0;
+        for (int i=0;i<s.length();i++)
+            if (Character.isUpperCase(s.charAt(i))){
+                if ( contador_mayusculas == 1){
+                    String textoEditado = s.substring(0, i) + " " + s.substring(i);
+                    return Character.toUpperCase(textoEditado.charAt(0))+textoEditado.substring(1);
+                }
+                contador_mayusculas++;
+            }
+        return s;
 
     }
 
