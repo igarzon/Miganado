@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://gestiondemiganado.com/resetearpassword"));
+                intent.setData(Uri.parse("http://Sample-env.ecc6cmb68n.eu-west-1.elasticbeanstalk.com/resetearpassword.php"));
                 LoginActivity.this.startActivity(intent);
             }
         }));

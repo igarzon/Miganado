@@ -14,7 +14,7 @@ import java.util.Map;
  */
 
 public class DownloaddataRequest extends StringRequest {
-    private static final String DOWNLOADDATA_REQUEST_URL = "http://Sample-env-1.jqgicx3rm6.eu-west-1.elasticbeanstalk.com/movil/downloaddata.php";
+    private static final String DOWNLOADDATA_REQUEST_URL = "http://Sample-env.ecc6cmb68n.eu-west-1.elasticbeanstalk.com/movil/downloaddata.php";
     private Map<String, String> params;
 
     public DownloaddataRequest(String username, Response.Listener<String> Listener){

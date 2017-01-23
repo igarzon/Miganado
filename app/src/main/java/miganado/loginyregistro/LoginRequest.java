@@ -12,7 +12,7 @@ import java.util.Map;
  */
 
 public class LoginRequest extends StringRequest{
-    private static final String LOGIN_REQUEST_URL = "http://Sample-env-1.jqgicx3rm6.eu-west-1.elasticbeanstalk.com/movil/login.php";
+    private static final String LOGIN_REQUEST_URL = "http://Sample-env.ecc6cmb68n.eu-west-1.elasticbeanstalk.com/movil/login.php";
     private Map<String, String> params;
 
     public LoginRequest (String username, String password, Response.Listener<String> Listener){

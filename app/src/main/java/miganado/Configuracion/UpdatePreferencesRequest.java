@@ -12,7 +12,7 @@ import java.util.Map;
  */
 
 public class UpdatePreferencesRequest extends StringRequest {
-    private static final String PREFERENCES_REQUEST_URL = "http://Sample-env-1.jqgicx3rm6.eu-west-1.elasticbeanstalk.com/movil/preferencias.php";
+    private static final String PREFERENCES_REQUEST_URL = "http://Sample-env.ecc6cmb68n.eu-west-1.elasticbeanstalk.com/movil/preferencias.php";
     private Map<String, String> params;
 
     public UpdatePreferencesRequest (String username, String dato1, String dato2, String dato3, String dato4, String dato5, String dato6, Response.Listener<String> Listener){
