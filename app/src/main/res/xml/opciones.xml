@@ -2,11 +2,11 @@
 <PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Ajustes">
+    <PreferenceCategory android:title="Columnas Personalizables">
         <EditTextPreference
             android:key="dato1"
             android:title="Dato 1"
-            android:summary="Descripción de la preferencia 1"
+            android:summary="Pulse aqui para ver el valor de su columna 1"
             android:dialogTitle="Introduce valor"
             android:autoText="false"
             android:cursorVisible="false"
@@ -14,7 +14,7 @@
         <EditTextPreference
             android:key="dato2"
             android:title="Dato 2"
-            android:summary="Descripción de la preferencia 2"
+            android:summary="Pulse aqui para ver el valor de su columna 2"
             android:dialogTitle="Introduce valor"
             android:autoText="false"
             android:cursorVisible="false"
@@ -22,7 +22,7 @@
         <EditTextPreference
             android:key="dato3"
             android:title="Dato 3"
-            android:summary="Descripción de la preferencia 3"
+            android:summary="Pulse aqui para ver el valor de su columna 3"
             android:dialogTitle="Introduce valor"
             android:autoText="false"
             android:cursorVisible="false"
@@ -30,7 +30,7 @@
         <EditTextPreference
             android:key="dato4"
             android:title="Dato 4"
-            android:summary="Descripción de la preferencia 4"
+            android:summary="Pulse aqui para ver el valor de su columna 4"
             android:dialogTitle="Introduce valor"
             android:autoText="false"
             android:cursorVisible="false"
@@ -38,7 +38,7 @@
         <EditTextPreference
             android:key="dato5"
             android:title="Dato 5"
-            android:summary="Descripción de la preferencia 5"
+            android:summary="Pulse aqui para ver el valor de su columna 5"
             android:dialogTitle="Introduce valor"
             android:autoText="false"
             android:cursorVisible="false"
@@ -46,7 +46,7 @@
         <EditTextPreference
             android:key="dato6"
             android:title="Dato 6"
-            android:summary="Descripción de la preferencia 6"
+            android:summary="Pulse aqui para ver el valor de su columna 6"
             android:dialogTitle="Introduce valor"
             android:autoText="false"
             android:cursorVisible="false"
@@ -55,6 +55,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Sesion">
+        <Preference android:title="Actualizar Datos" android:key="updatelink" />
         <Preference android:title="Cerrar sesion" android:key="exitlink"/>
     </PreferenceCategory>
 
