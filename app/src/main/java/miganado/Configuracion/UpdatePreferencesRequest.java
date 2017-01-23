@@ -7,9 +7,6 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by User on 16/01/2017.
- */
 
 public class UpdatePreferencesRequest extends StringRequest {
     private static final String PREFERENCES_REQUEST_URL = "http://Sample-env.ecc6cmb68n.eu-west-1.elasticbeanstalk.com/movil/preferencias.php";

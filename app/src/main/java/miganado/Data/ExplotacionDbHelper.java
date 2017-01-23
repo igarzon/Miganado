@@ -93,6 +93,7 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
             array_list.add(res.getString(0));
         }
         res.close();
+        db.close();
         return array_list;
     }
 
@@ -115,6 +116,8 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         }
 
         System.out.println("RESULTADO: "+result);
+
+        db.close();
 
         return result;
 

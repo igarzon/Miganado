@@ -32,6 +32,16 @@ public class SessionManager {
     // Email address (make variable public to access from outside)
     public static final String KEY_DATE = "date";
 
+
+    public static final String DATO1 = "dato1";
+    public static final String DATO2 = "dato2";
+    public static final String DATO3 = "dato3";
+    public static final String DATO4 = "dato4";
+    public static final String DATO5 = "dato5";
+    public static final String DATO6 = "dato6";
+
+
+
     // Constructor
     public SessionManager(Context context){
         this._context = context;
@@ -50,6 +60,19 @@ public class SessionManager {
         editor.putString(KEY_NAME, name);
         editor.putString(KEY_DATE, date);
 
+
+        // commit changes
+        editor.commit();
+    }
+
+    public void setDatos(String dato1, String dato2, String dato3, String dato4, String dato5, String dato6){
+
+        editor.putString(DATO1, dato1);
+        editor.putString(DATO2, dato2);
+        editor.putString(DATO3, dato3);
+        editor.putString(DATO4, dato4);
+        editor.putString(DATO5, dato5);
+        editor.putString(DATO6, dato6);
 
         // commit changes
         editor.commit();

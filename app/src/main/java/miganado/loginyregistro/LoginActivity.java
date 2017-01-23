@@ -91,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 CheckConnectivity cc = new CheckConnectivity();
 
-                if(!(cc.isConnectedMobile(getApplicationContext())||cc.isConnectedWifi(getApplicationContext()))){
+                if(!(CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))){
                     AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                     builder.setMessage(" No tiene conexión a Internet. ")
                             .setNegativeButton("Ok", null)

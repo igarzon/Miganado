@@ -4,12 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 
-/**
- * Entidad "Explotacion"
- * Aquí definimos la estructura que tendrá nuesta base de datos
- */
-
-
 public class Explotacion {
     private String crotal;
     private String crotalOriginal;
@@ -124,23 +118,6 @@ public class Explotacion {
 
         return values;
     }
-
-    public String getCrotal() {
-        return crotal;
-    }
-
-    public String getCrotalOriginal() {
-        return crotalOriginal;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
 
 
 }

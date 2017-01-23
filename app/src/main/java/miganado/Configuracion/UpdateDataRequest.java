@@ -7,10 +7,6 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by User on 16/01/2017.
- */
-
 public class UpdateDataRequest extends StringRequest {
     private static final String UPDATE_REQUEST_URL = "http://Sample-env.ecc6cmb68n.eu-west-1.elasticbeanstalk.com/movil/updatedata.php";
     private Map<String, String> params;

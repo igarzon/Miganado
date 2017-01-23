@@ -51,7 +51,7 @@ public class ResultadosBusquedasActivity extends AppCompatActivity {
             key1=key;
 
             TextView aux = new TextView(this);
-            aux.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            aux.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             aux.setText(key);
             aux.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
             aux.setTextSize(23);

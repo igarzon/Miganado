@@ -1,7 +1,10 @@
 package miganado.Loginyregistro;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,6 +36,7 @@ import java.util.Arrays;
 
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionDbHelper;
+import miganado.Operaciones.FichaanimalActivity;
 
 import static java.security.AccessController.getContext;
 
@@ -78,33 +82,50 @@ public class Downloaddata extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            jsonArray = new JSONArray(response);
+
+                            //System.out.println(response);
+
+                            //Diseccionamos la cadena
+                            String[] partsDatos = response.split("\\[");
+
+                            String datosusuario=partsDatos[0];
+
+                            //Limpiamos de caracteres las líneas
+                            String newLineuser1 = datosusuario.replaceAll("\"", "");
+                            String newLineuser2= newLineuser1.replaceAll(",", ":");
+                            String newLineuser3 = newLineuser2.replaceAll("\\{", "");
+                            String newLineuser4 = newLineuser3.replaceAll("\\}", "");
+
+                            //Diseccionamos la cadena
+                            String[] partsPreferencias = newLineuser4.split(":");
+
+                            SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(Downloaddata.this);
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("dato1",partsPreferencias[1]);
+                            editor.putString("dato2",partsPreferencias[3]);
+                            editor.putString("dato3",partsPreferencias[5]);
+                            editor.putString("dato4",partsPreferencias[7]);
+                            editor.putString("dato5",partsPreferencias[9]);
+                            editor.putString("dato6",partsPreferencias[11]);
+                            editor.commit();
+
+                            pref.edit();
+
+                            //sessionManager.setDatos(partsPreferencias[1],partsPreferencias[3],partsPreferencias[5],partsPreferencias[7],partsPreferencias[9],partsPreferencias[11]);
+
+                            String respuesta="["+partsDatos[1];
+
+                            System.out.println(datosusuario);
+                            System.out.println(respuesta);
+
+                            jsonArray = new JSONArray(respuesta);
 
                            for(int i=0; i<jsonArray.length(); i++){
 
                                progressStatus=(i*100)/jsonArray.length();
 
                                 System.out.println(jsonArray.get(i));
-// Start the lengthy operation in a background thread
-                               new Thread(new Runnable() {
-                                   @Override
-                                   public void run() {
-                               // Update the progress bar
-                               handler.post(new Runnable() {
-                                   @Override
-                                   public void run() {
-                               pb.setProgress(progressStatus);
-                               // Show the progress on TextView
-                               tv.setText(progressStatus+"");
-                               // If task execution completed
-                               if(progressStatus == 100){
-                                   // Set a message of completion
-                                   tv.setText("Operation completed.");
-                               }
-                                   }
-                               });
-                                   }
-                               }).start();
+
                                 //Almacenamos linea a linea cada una de las filas de la tabla
                                 String Linea=jsonArray.get(i).toString();
 
@@ -251,6 +272,7 @@ public class Downloaddata extends AppCompatActivity {
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         mydb.insertVaca(vaca);
+        mydb.close();
 
     }
 }

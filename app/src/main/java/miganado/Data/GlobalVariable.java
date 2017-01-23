@@ -18,24 +18,24 @@ public class GlobalVariable {
     }
 
     public void addExplotaciones(String exp){
-        this.explotaciones.add(exp);
+        explotaciones.add(exp);
     }
 
     public ArrayList<String> getAuxBusqueda(){
         return auxBusqueda;
     }
 
-    public void setAuxBusqueda(ArrayList<String> resultado){ this.auxBusqueda = resultado;}
+    public void setAuxBusqueda(ArrayList<String> resultado){ auxBusqueda = resultado;}
 
     public void actualizarExplotaciones(ArrayList<String> exp){
-        this.explotaciones=exp;
+        explotaciones=exp;
     }
 
     public void setActivityAnterior(Class activity){
-        this.activityAnterior=activity;
+        activityAnterior=activity;
     }
 
     public Class getActivityAnterior(){
-        return this.activityAnterior;
+        return activityAnterior;
     }
 }
