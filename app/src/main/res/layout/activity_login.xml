@@ -23,8 +23,8 @@
             android:weightSum="1">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="160dp"
+                android:layout_height="141dp"
                 app:srcCompat="@drawable/logogestion"
                 android:layout_marginTop="33dp"
                 android:id="@+id/imgLogogestion"

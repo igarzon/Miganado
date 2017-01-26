@@ -7,24 +7,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Menu;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import miganado.Configuracion.ActionBarActivity;
 import miganado.Data.ExplotacionDbHelper;
 import miganado.Data.GlobalVariable;
 import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.ZonaclienteActivity;
 
-public class ResultadosBusquedasActivity extends AppCompatActivity {
+public class ResultadosBusquedasActivity extends ActionBarActivity {
 
     private ArrayList<String> b;
     private String key1;
     private GlobalVariable gb = new GlobalVariable();
-    private static final String MI_GANADO_PRIMARY_COLOR = "#70ac47";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

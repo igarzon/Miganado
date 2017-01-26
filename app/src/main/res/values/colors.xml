@@ -6,4 +6,7 @@
     <color name="MiGanado_primary_color">#70ac47</color>
     <color name="MiGanado_primary_color_dark">#358200</color>
     <color name="MiGanado_transparente">#00ffffff</color>
+    <color name="MiGanado_restaurar">#efac4e</color>
+    <color name="MiGanado_borrar">#d8534f</color>
+    <color name="MiGanado_dar_de_baja">#98a2a3</color>
 </resources>

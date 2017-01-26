@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Menu;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import miganado.Configuracion.ActionBarActivity;
 import miganado.Data.ExplotacionDbHelper;
 import miganado.Data.GlobalVariable;
 import miganado.Loginyregistro.R;
@@ -32,7 +34,7 @@ import android.app.DialogFragment;
 
 import static miganado.Loginyregistro.R.id.etBuscarCrotal;
 
-public class BusquedasActivity extends AppCompatActivity {
+public class BusquedasActivity extends ActionBarActivity {
 
 
     private String textCrotal;

@@ -15,19 +15,21 @@
         android:id="@+id/tv"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:text="Estamos descargando sus datos..."
         android:fontFamily="sans-serif-condensed"
         android:textColor="#676a6b"
         android:gravity="center"
         android:textAlignment="gravity"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/pb"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="11dp" />
 
     <ProgressBar
         style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pb"
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="78dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

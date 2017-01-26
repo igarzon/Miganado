@@ -37,10 +37,11 @@ import java.util.Arrays;
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionDbHelper;
 import miganado.Operaciones.FichaanimalActivity;
+import miganado.Configuracion.ActionBarActivity;
 
 import static java.security.AccessController.getContext;
 
-public class Downloaddata extends AppCompatActivity {
+public class Downloaddata extends ActionBarActivity {
 
     SessionManager sessionManager;
     private boolean into=false;
@@ -59,6 +60,8 @@ public class Downloaddata extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.tv);
         pb = (ProgressBar) findViewById(R.id.pb);
 
+        getSupportActionBar().hide();
+
 
         // Set the progress status zero on each button click
         progressStatus = 0;
@@ -67,7 +70,6 @@ public class Downloaddata extends AppCompatActivity {
         sessionManager = new SessionManager(getApplicationContext());
 
                 System.out.println(sessionManager.getUserDetails().toString());
-
                 String user = sessionManager.getUserDetails().toString();
                 String user1 = user.replaceAll("\\{", "");
                 String user2 = user1.replaceAll("\\}", "");
@@ -76,6 +78,7 @@ public class Downloaddata extends AppCompatActivity {
                 String[] users = user2.split("=");
 
                 String username = users[1];
+
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
 

@@ -2,10 +2,12 @@ package miganado.Operaciones;
 
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Menu;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -15,12 +17,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import miganado.Configuracion.ActionBarActivity;
 import miganado.Data.ExplotacionDbHelper;
 import miganado.Data.GlobalVariable;
 import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.ZonaclienteActivity;
 
-public class Seleccionanimal extends AppCompatActivity {
+public class Seleccionanimal extends ActionBarActivity {
 
     private Spinner spinner;
     private GlobalVariable gb = new GlobalVariable();
@@ -40,7 +43,6 @@ public class Seleccionanimal extends AppCompatActivity {
             //Aqui obtendriamos las explotaciones seleccionadas
             ArrayList<String> vacas = mydb.getVacasExplotacion(key);
             spin.addAll(vacas);
-
 
         }
 

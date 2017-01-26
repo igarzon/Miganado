@@ -25,41 +25,40 @@
         <Button
             android:id="@+id/btnRestablecer"
             android:onClick="restablecer"
-            android:layout_column="1"
+            android:layout_column="0"
             android:layout_gravity="fill_horizontal|top"
+            android:layout_width="170dp"
             android:layout_row="0"
-            android:text="Restablecer"
-            android:background="@color/MiGanado_primary_color_dark"/>
+            android:text="Restaurar"
+            android:background="@color/MiGanado_restaurar"/>
 
         <Button
             android:id="@+id/btnModificar"
             android:onClick="modificar"
-            android:layout_column="0"
-            android:layout_gravity="left|top"
-            android:layout_width="170dp"
-            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_gravity="fill_horizontal|top" android:layout_row="0"
             android:text="Modificar"
-            android:background="@color/MiGanado_primary_color_dark"/>
+            android:background="@color/MiGanado_primary_color"/>
 
-        <Button
-            android:id="@+id/btnBaja"
-            android:onClick="darBaja"
-            android:layout_column="0"
-            android:layout_gravity="left|top"
-            android:layout_width="170dp"
-            android:layout_row="0"
-            android:text="Dar baja"
-            android:background="@color/MiGanado_primary_color" />
 
         <Button
             android:id="@+id/btnBorrar"
             android:onClick="borrar"
+            android:layout_column="0"
+            android:layout_gravity="left|top"
+            android:layout_row="1"
+            android:layout_width="170dp"
+            android:text="Eliminar"
+            android:background="@color/MiGanado_borrar"/>
+
+        <Button
+            android:id="@+id/btnBaja"
+            android:onClick="darBaja"
             android:layout_column="1"
             android:layout_gravity="fill_horizontal|top"
             android:layout_row="1"
-            android:text="Eliminar"
-            android:background="@color/MiGanado_primary_color"/>
-
+            android:text="Dar baja"
+            android:background="@color/MiGanado_dar_de_baja" />
     </GridLayout>
     <ScrollView
         android:layout_width="match_parent"

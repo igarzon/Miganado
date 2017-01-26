@@ -36,6 +36,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import miganado.Configuracion.ActionBarActivity;
 import miganado.Configuracion.UpdateDataRequest;
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionContract;
@@ -47,7 +48,9 @@ import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.SessionManager;
 import miganado.Loginyregistro.ZonaclienteActivity;
 
-public class AltaanimalActivity extends AppCompatActivity {
+import android.view.Menu;
+
+public class AltaanimalActivity extends ActionBarActivity {
 
     private GlobalVariable gb = new GlobalVariable();
     private EditText etCrotalMadre, etCrotal, in_date, etExp;
@@ -227,5 +230,4 @@ public class AltaanimalActivity extends AppCompatActivity {
         startActivity(setIntent);
         finish();
     }
-
 }

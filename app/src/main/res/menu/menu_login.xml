@@ -1,10 +1,23 @@
+
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="miganado.Loginyregistro.LoginActivity">
-    <item
-        android:id="@+id/action_settings"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item android:id="@+id/action_nuevo"
+        android:title="Nuevo animal"
+        android:icon="@drawable/ic_nuevo"
         android:orderInCategory="100"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_buscar"
+        android:title="Buscar"
+        android:icon="@drawable/ic_buscar"
+        android:orderInCategory="101"
+        app:showAsAction="always" />
+
+    <item android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:orderInCategory="102"
+        app:showAsAction = "always" />
 </menu>

@@ -27,6 +27,8 @@ public class RegistroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
