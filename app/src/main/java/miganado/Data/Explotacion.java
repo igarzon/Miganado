@@ -25,6 +25,7 @@ public class Explotacion {
     private String dato6;
     private String fechaModificacion;
     private String baja;
+    private String modificado;
 
     public Explotacion(String crotal,
              String crotalOriginal,
@@ -45,7 +46,8 @@ public class Explotacion {
              String dato5,
              String dato6,
              String fechaModificacion,
-             String baja) {
+             String baja,
+             String modificado) {
 
         this.crotal=crotal;
         this.crotalOriginal=crotalOriginal;
@@ -67,6 +69,7 @@ public class Explotacion {
         this.dato6=dato6;
         this.fechaModificacion=fechaModificacion;
         this.baja=baja;
+        this.modificado=modificado;
     }
 
     public Explotacion(Cursor cursor) {
@@ -90,6 +93,7 @@ public class Explotacion {
         dato6 = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.DATO6));
         fechaModificacion = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.FECHA_MODIFICACION));
         baja = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.BAJA));
+        modificado = cursor.getString(cursor.getColumnIndex(ExplotacionContract.ExplotacionEntry.MODIFICADO));
     }
 
     public ContentValues toContentValues() {
@@ -114,6 +118,7 @@ public class Explotacion {
         values.put(ExplotacionContract.ExplotacionEntry.DATO6, dato6);
         values.put(ExplotacionContract.ExplotacionEntry.FECHA_MODIFICACION, fechaModificacion);
         values.put(ExplotacionContract.ExplotacionEntry.BAJA, baja);
+        values.put(ExplotacionContract.ExplotacionEntry.MODIFICADO, modificado);
 
 
         return values;

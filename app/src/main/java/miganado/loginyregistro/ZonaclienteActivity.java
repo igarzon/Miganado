@@ -3,6 +3,7 @@ package miganado.Loginyregistro;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Color;
@@ -23,8 +24,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import miganado.Configuracion.CheckConnectivity;
 import miganado.Configuracion.PreferenciasActivity;
+import miganado.Configuracion.UpdateDataRequest;
+import miganado.Data.Explotacion;
 import miganado.Data.GlobalVariable;
+import miganado.Operaciones.FichaanimalActivity;
 import miganado.Operaciones.Seleccionanimal;
 import miganado.Operaciones.AltaanimalActivity;
 import miganado.Operaciones.BusquedasActivity;
@@ -41,6 +51,7 @@ public class ZonaclienteActivity extends AppCompatActivity {
     private ArrayList<String> gbExp = gb.getExplotaciones();
 
     SessionManager sessionManager;
+    RequestQueue queue;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +60,9 @@ public class ZonaclienteActivity extends AppCompatActivity {
 
         // Session class instance
         sessionManager = new SessionManager(getApplicationContext());
+
+
+        queue = Volley.newRequestQueue(ZonaclienteActivity.this);
 
 
         Toast.makeText(getApplicationContext(), "User Login Status: " + sessionManager.isLoggedIn(), Toast.LENGTH_LONG).show();
@@ -102,9 +116,17 @@ public class ZonaclienteActivity extends AppCompatActivity {
 
             }
 
+
+            if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))){
+
+                ExplotacionDbHelper mydb;
+                mydb = new ExplotacionDbHelper(getApplicationContext());
+
+                ArrayList<String> array_list_mod = new ArrayList<String>();
+                array_list_mod=mydb.getVacasModificado();
+
+                if (!array_list_mod.isEmpty())actualizacion(array_list_mod);}
         }
-
-
 
     }
 
@@ -238,4 +260,98 @@ public class ZonaclienteActivity extends AppCompatActivity {
         this.finishAffinity();
 
     }
+
+
+    public void actualizacion(ArrayList<String> array_list_mod){
+
+            ExplotacionDbHelper mydb;
+            mydb = new ExplotacionDbHelper(getApplicationContext());
+
+            // Session class instance
+            SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+            String user = sessionManager.getUserDetails().toString();
+            String user1 = user.replaceAll("\\{", "");
+            String user2 = user1.replaceAll("\\}", "");
+
+            //Diseccionamos la cadena
+            String[] users = user2.split("=");
+
+            String username = users[1];
+
+            //MODIFICAR
+            for (int i = 0 ; i<array_list_mod.size(); i++) {
+                Cursor datos = mydb.getCrotal(array_list_mod.get(i).toString());
+                datos.moveToFirst();
+
+                System.out.println("Datos: "+ datos.getString(1));
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+
+                        System.out.println("Respuesta: "+response);
+
+
+                    }
+
+                };
+                UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,
+                        (datos.getString(1).equals("vacio") ? "" : datos.getString(1)),
+                        (datos.getString(2).equals("vacio") ? "" : datos.getString(2)),
+                        (datos.getString(3).equals("vacio") ? "" : datos.getString(3)),
+                        (datos.getString(4).equals("vacio") ? "" : datos.getString(4)),
+                        (datos.getString(5).equals("vacio") ? "" : datos.getString(5)),
+                        (datos.getString(6).equals("vacio") ? "" : datos.getString(6)),
+                        (datos.getString(7).equals("vacio") ? "" : datos.getString(7)),
+                        (datos.getString(8).equals("vacio") ? "" : datos.getString(8)),
+                        (datos.getString(9).equals("vacio") ? "" : datos.getString(9)),
+                        (datos.getString(10).equals("vacio") ? "" : datos.getString(10)),
+                        (datos.getString(11).equals("vacio") ? "" : datos.getString(11)),
+                        (datos.getString(12).equals("vacio") ? "" : datos.getString(12)),
+                        (datos.getString(13).equals("vacio") ? "" : datos.getString(13)),
+                        (datos.getString(14).equals("vacio") ? "" : datos.getString(14)),
+                        (datos.getString(15).equals("vacio") ? "" : datos.getString(15)),
+                        (datos.getString(16).equals("vacio") ? "" : datos.getString(16)),
+                        (datos.getString(17).equals("vacio") ? "" : datos.getString(17)),
+                        (datos.getString(18).equals("vacio") ? "" : datos.getString(18)),
+                        (datos.getString(19).equals("vacio") ? "" : datos.getString(19)),
+                        (datos.getString(20).equals("vacio") ? "" : datos.getString(20)),
+                        datos.getString(21),
+                        responseListener);
+
+                queue.add(UpdateDataRequest).hasHadResponseDelivered();
+
+
+                Explotacion vaca = new Explotacion(
+                        datos.getString(1),
+                        datos.getString(2),
+                        datos.getString(3),
+                        datos.getString(4),
+                        datos.getString(5),
+                        datos.getString(6),
+                        datos.getString(7),
+                        datos.getString(8),
+                        datos.getString(9),
+                        datos.getString(10),
+                        datos.getString(11),
+                        datos.getString(12),
+                        datos.getString(13),
+                        datos.getString(14),
+                        datos.getString(15),
+                        datos.getString(16),
+                        datos.getString(17),
+                        datos.getString(18),
+                        datos.getString(19),
+                        datos.getString(20),
+                        "0");
+
+                mydb.deleteCrotal(datos.getString(0));
+                mydb.insertVaca(vaca);
+
+            }
+
+    }
+
 }

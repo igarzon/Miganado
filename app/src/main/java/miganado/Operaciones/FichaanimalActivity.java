@@ -18,11 +18,21 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.database.Cursor;
+import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.CacheRequest;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,6 +40,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import miganado.Configuracion.CheckConnectivity;
 import miganado.Configuracion.UpdateDataRequest;
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionDbHelper;
@@ -46,11 +57,14 @@ public class FichaanimalActivity extends AppCompatActivity {
     private GlobalVariable gb = new GlobalVariable();
     private static final String MI_GANADO_PRIMARY_COLOR = "#70ac47";
 
+    RequestQueue queue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fichaanimal);
+
+        queue = Volley.newRequestQueue(FichaanimalActivity.this);
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
@@ -64,7 +78,7 @@ public class FichaanimalActivity extends AppCompatActivity {
         LinearLayout linear = (LinearLayout) findViewById(R.id.ficha);
         ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
-        for(int i = 1; i<datos.getColumnCount()-8;i++) {
+        for(int i = 1; i<datos.getColumnCount()-9;i++) {
             datos.moveToFirst();
 
             TextView aux1 = new TextView(this);
@@ -95,9 +109,6 @@ public class FichaanimalActivity extends AppCompatActivity {
                 linear.addView(crotal);
             }
 
-
-
-
         }
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(FichaanimalActivity.this);
@@ -110,13 +121,13 @@ public class FichaanimalActivity extends AppCompatActivity {
         s[5] = pref.getString("dato6", "").equals("") ? "Dato6" : pref.getString("dato6", "");
 
 
-        for(int i = datos.getColumnCount()-8; i<datos.getColumnCount()-2;i++) {
+        for(int i = datos.getColumnCount()-9; i<datos.getColumnCount()-3;i++) {
             datos.moveToFirst();
             String a = datos.getString(i);
 
             TextView aux1 = new TextView(this);
             aux1.setLayoutParams(lparams);
-            aux1.setText(s[i - (datos.getColumnCount() - 8)]);
+            aux1.setText(s[i - (datos.getColumnCount() - 9)]);
             aux1.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
             aux1.setTextSize(30);
 
@@ -151,6 +162,11 @@ public class FichaanimalActivity extends AppCompatActivity {
     public void borrar(View v) {
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
+
+        CheckConnectivity cc = new CheckConnectivity();
+
+        if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))){
+
         mydb.deleteCrotal(crotal.getText().toString());
         Snackbar.make(v, "Borrado realizado correctamente", Snackbar.LENGTH_LONG)
                 .show();
@@ -167,42 +183,95 @@ public class FichaanimalActivity extends AppCompatActivity {
 
         String username = users[1];
 
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
-
-                System.out.println("Respuesta: "+response);
 
 
+            System.out.println("Si hay conexion");
+
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+
+                    System.out.println("Respuesta: "+response);
+
+
+                }
+
+            };
+            UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,
+                    crotal.getText().toString(),
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "",
+                    "borrar",
+                    responseListener);
+
+            UpdateDataRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            queue.add(UpdateDataRequest).hasHadResponseDelivered();
+
+        }
+        else{
+
+            System.out.println("No hay conexion");
+
+
+            ArrayList<String> datos = new ArrayList<String>();
+            datos.add(crotal.getText().toString());
+            for(int i = 0; i<editText.size(); i++){
+                if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
+                    datos.add(editText.get(i).getText().toString());
+                else
+                    datos.add("vacio");
             }
 
-        };
-        UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,
-                crotal.getText().toString(),
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "borrar",
-                responseListener);
-        RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
-        queue.add(UpdateDataRequest).hasHadResponseDelivered();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            String time = dateFormat.format(date);
+
+            Explotacion vaca = new Explotacion(datos.get(0),
+                    datos.get(1),
+                    datos.get(2),
+                    datos.get(3),
+                    datos.get(4),
+                    datos.get(5),
+                    datos.get(6),
+                    datos.get(7),
+                    datos.get(8),
+                    datos.get(9),
+                    datos.get(10),
+                    datos.get(11),
+                    datos.get(12),
+                    datos.get(13),
+                    datos.get(14),
+                    datos.get(15),
+                    datos.get(16),
+                    datos.get(17),
+                    time,
+                    "1",
+                    "3");
+
+            mydb.deleteCrotal(datos.get(0));
+            mydb.insertVaca(vaca);
+
+        }
+
+
 
 
 
@@ -249,7 +318,8 @@ public class FichaanimalActivity extends AppCompatActivity {
                 datos.get(16),
                 datos.get(17),
                 time,
-                "1");
+                "1",
+                "");
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         mydb.deleteCrotal(datos.get(0));
@@ -301,7 +371,8 @@ public class FichaanimalActivity extends AppCompatActivity {
                 "1",
                 "modificar",
                 responseListener);
-        RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
+        //RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
+        UpdateDataRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         queue.add(UpdateDataRequest).hasHadResponseDelivered();
 
 
@@ -310,6 +381,8 @@ public class FichaanimalActivity extends AppCompatActivity {
 
     public void modificar(View v) {
         ArrayList<String> datos = new ArrayList<String>();
+
+
         datos.add(crotal.getText().toString());
         for(int i = 0; i<editText.size(); i++){
             if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
@@ -354,63 +427,70 @@ public class FichaanimalActivity extends AppCompatActivity {
                     datos.get(16),
                     datos.get(17),
                     time,
-                    "0");
+                    "0",
+                    "modificar");
             ExplotacionDbHelper mydb;
             mydb = new ExplotacionDbHelper(this);
             mydb.deleteCrotal(datos.get(0));
             mydb.insertVaca(vaca);
 
+            CheckConnectivity cc = new CheckConnectivity();
 
-            // Session class instance
-            SessionManager sessionManager = new SessionManager(getApplicationContext());
+            if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))) {
+                // Session class instance
+                SessionManager sessionManager = new SessionManager(getApplicationContext());
 
-            String user = sessionManager.getUserDetails().toString();
-            String user1 = user.replaceAll("\\{", "");
-            String user2 = user1.replaceAll("\\}", "");
+                String user = sessionManager.getUserDetails().toString();
+                String user1 = user.replaceAll("\\{", "");
+                String user2 = user1.replaceAll("\\}", "");
 
-            //Diseccionamos la cadena
-            String[] users = user2.split("=");
+                //Diseccionamos la cadena
+                String[] users = user2.split("=");
 
-            String username = users[1];
-
-
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
-
-                @Override
-                public void onResponse(String response) {
-
-                    System.out.println("Respuesta: "+response);
+                String username = users[1];
 
 
-                }
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-            };
-            UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,
-                    (datos.get(0).equals("vacio") ? "" : datos.get(0)),
-                    (datos.get(1).equals("vacio") ? "" : datos.get(1)),
-                    (datos.get(2).equals("vacio") ? "" : datos.get(2)),
-                    (datos.get(3).equals("vacio") ? "" : datos.get(3)),
-                    (datos.get(4).equals("vacio") ? "" : datos.get(4)),
-                    (datos.get(5).equals("vacio") ? "" : datos.get(5)),
-                    (datos.get(6).equals("vacio") ? "" : datos.get(6)),
-                    (datos.get(7).equals("vacio") ? "" : datos.get(7)),
-                    (datos.get(8).equals("vacio") ? "" : datos.get(8)),
-                    (datos.get(9).equals("vacio") ? "" : datos.get(9)),
-                    (datos.get(10).equals("vacio") ? "" : datos.get(10)),
-                    (datos.get(11).equals("vacio") ? "" : datos.get(11)),
-                    (datos.get(12).equals("vacio") ? "" : datos.get(12)),
-                    (datos.get(13).equals("vacio") ? "" : datos.get(13)),
-                    (datos.get(14).equals("vacio") ? "" : datos.get(14)),
-                    (datos.get(15).equals("vacio") ? "" : datos.get(15)),
-                    (datos.get(16).equals("vacio") ? "" : datos.get(16)),
-                    (datos.get(17).equals("vacio") ? "" : datos.get(17)),
-                    time,
-                    "0",
-                    "modificar",
-                    responseListener);
-            RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
-            queue.add(UpdateDataRequest).hasHadResponseDelivered();
+                    @Override
+                    public void onResponse(String response) {
 
+                        System.out.println("Respuesta: " + response);
+
+
+                    }
+
+                };
+
+
+                UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,
+                        (datos.get(0).equals("vacio") ? "" : datos.get(0)),
+                        (datos.get(1).equals("vacio") ? "" : datos.get(1)),
+                        (datos.get(2).equals("vacio") ? "" : datos.get(2)),
+                        (datos.get(3).equals("vacio") ? "" : datos.get(3)),
+                        (datos.get(4).equals("vacio") ? "" : datos.get(4)),
+                        (datos.get(5).equals("vacio") ? "" : datos.get(5)),
+                        (datos.get(6).equals("vacio") ? "" : datos.get(6)),
+                        (datos.get(7).equals("vacio") ? "" : datos.get(7)),
+                        (datos.get(8).equals("vacio") ? "" : datos.get(8)),
+                        (datos.get(9).equals("vacio") ? "" : datos.get(9)),
+                        (datos.get(10).equals("vacio") ? "" : datos.get(10)),
+                        (datos.get(11).equals("vacio") ? "" : datos.get(11)),
+                        (datos.get(12).equals("vacio") ? "" : datos.get(12)),
+                        (datos.get(13).equals("vacio") ? "" : datos.get(13)),
+                        (datos.get(14).equals("vacio") ? "" : datos.get(14)),
+                        (datos.get(15).equals("vacio") ? "" : datos.get(15)),
+                        (datos.get(16).equals("vacio") ? "" : datos.get(16)),
+                        (datos.get(17).equals("vacio") ? "" : datos.get(17)),
+                        time,
+                        "0",
+                        "modificar",
+                        responseListener);
+                //RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
+                UpdateDataRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                queue.add(UpdateDataRequest).hasHadResponseDelivered();
+                //queue.getCache().initialize();
+            }
         }
     }
 

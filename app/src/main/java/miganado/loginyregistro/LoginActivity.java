@@ -3,6 +3,8 @@ package miganado.Loginyregistro;
         import java.text.DateFormat;
         import java.text.SimpleDateFormat;
         import java.util.Date;
+
+        import android.os.AsyncTask;
         import android.support.v7.app.AlertDialog;
         import android.support.v7.app.AppCompatActivity;
         import android.content.Intent;
@@ -142,6 +144,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+
+
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
                 && keyCode == KeyEvent.KEYCODE_BACK
@@ -161,4 +165,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+
+
 }
+
+

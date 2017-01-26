@@ -142,7 +142,8 @@ public class AltaanimalActivity extends AppCompatActivity {
                     "vacio",
                     "vacio",
                     time,
-                    "0");
+                    "0",
+                    "");
             ExplotacionDbHelper mydb;
             mydb = new ExplotacionDbHelper(this);
             mydb.insertVaca(vaca);

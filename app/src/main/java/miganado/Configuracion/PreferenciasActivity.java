@@ -20,6 +20,8 @@ public class PreferenciasActivity extends PreferenceActivity {
         addPreferencesFromResource(R.xml.opciones);
 
         Preference button = getPreferenceManager().findPreference("exitlink");
+        Preference button2 = getPreferenceManager().findPreference("updatelink");
+
         if (button != null) {
             button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
@@ -33,6 +35,18 @@ public class PreferenciasActivity extends PreferenceActivity {
                     mydb.DeleteDatabase();
 
                     sessionManager.logoutUser();
+
+                    return true;
+                }
+            });
+        }
+
+        if (button2 != null) {
+            button2.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference arg0) {
+
+
 
                     return true;
                 }

@@ -83,7 +83,11 @@ public class Downloaddata extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
 
-                            //System.out.println(response);
+                            System.out.println(response.length());
+
+                            System.out.println(response);
+
+
 
                             //Diseccionamos la cadena
                             String[] partsDatos = response.split("\\[");
@@ -162,6 +166,7 @@ public class Downloaddata extends AppCompatActivity {
                                 datos.add(parts[63]);
                                 datos.add(parts[67]);
                                 datos.add(parts[71]);
+
 
                                 String fechaModificacion=parts[73]+":"+parts[74]+":"+parts[75];
 
@@ -268,7 +273,8 @@ public class Downloaddata extends AppCompatActivity {
                 datos.get(16),
                 datos.get(17),
                 datos.get(18),
-                datos.get(19));
+                datos.get(19),
+                "0");
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
         mydb.insertVaca(vaca);

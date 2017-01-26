@@ -45,6 +45,7 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
                 + ExplotacionEntry.DATO6 + " TEXT NOT NULL,"
                 + ExplotacionEntry.FECHA_MODIFICACION + " TEXT NOT NULL,"
                 + ExplotacionEntry.BAJA + " TEXT NOT NULL,"
+                + ExplotacionEntry.MODIFICADO + " TEXT NOT NULL,"
                 + "UNIQUE (" + ExplotacionEntry.CROTAL + "))");
 
     }
@@ -142,6 +143,50 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         res.close();
         return array_list;
     }
+
+    public ArrayList<String> getVacasBorrar() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res = null;
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.MODIFICADO+" LIKE '3'",null);
+        res.moveToFirst();
+
+        while(!res.isLast()&&res!=null&&res.getCount()>0){
+            String a = res.getString(0);
+            array_list.add(a);
+            res.moveToNext();
+            array_list.add(res.getString(0));
+        }
+
+
+        res.close();
+        return array_list;
+    }
+
+    public ArrayList<String> getVacasModificado() {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res = null;
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.MODIFICADO+" LIKE 'modificar'",null);
+        res.moveToFirst();
+
+        while(!res.isLast()&&res!=null&&res.getCount()>0){
+            String a = res.getString(0);
+            array_list.add(a);
+            res.moveToNext();
+            array_list.add(res.getString(0));
+        }
+
+
+        res.close();
+        return array_list;
+    }
+
+
 
 
     public ArrayList<String> Busqueda(String crotal, String crotalMadre, String fecha1, String fecha2,String baja, String sexo) {

@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SessionManager {
@@ -32,15 +34,12 @@ public class SessionManager {
     // Email address (make variable public to access from outside)
     public static final String KEY_DATE = "date";
 
-
     public static final String DATO1 = "dato1";
     public static final String DATO2 = "dato2";
     public static final String DATO3 = "dato3";
     public static final String DATO4 = "dato4";
     public static final String DATO5 = "dato5";
     public static final String DATO6 = "dato6";
-
-
 
     // Constructor
     public SessionManager(Context context){
@@ -78,6 +77,7 @@ public class SessionManager {
         editor.commit();
     }
 
+
     /**
      * Check login method wil check user login status
      * If false it will redirect user to login page
@@ -99,8 +99,6 @@ public class SessionManager {
         }
 
     }
-
-
 
     /**
      * Get stored sessionManager data
