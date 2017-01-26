@@ -15,6 +15,7 @@ package miganado.Loginyregistro;
         import android.view.WindowManager;
         import android.widget.Button;
         import android.widget.EditText;
+        import android.widget.ImageView;
         import android.widget.TextView;
         import com.android.volley.RequestQueue;
         import com.android.volley.Response;
@@ -33,10 +34,11 @@ package miganado.Loginyregistro;
 
         import java.util.Date;
 
+        import miganado.Configuracion.ActionBarActivity;
         import miganado.Configuracion.CheckConnectivity;
         import miganado.Data.ExplotacionDbHelper;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends ActionBarActivity {
 
 
     /**
@@ -51,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        getSupportActionBar().hide();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         final EditText etUsername = (EditText) findViewById(R.id.etUsername);
@@ -59,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         final Button btLogin = (Button) findViewById(R.id.btnLogin);
         final TextView registerlink = (TextView) findViewById(R.id.tvLinkregistro);
         final TextView resetlink = (TextView) findViewById(R.id.tvLinkreseteopassword);
-
+        final ImageView room714link= (ImageView) findViewById(R.id.imglogoroom);
 
         etPassword.setTypeface(Typeface.DEFAULT);
         etPassword.setTransformationMethod(new PasswordTransformationMethod());
@@ -82,6 +84,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("http://Sample-env.ecc6cmb68n.eu-west-1.elasticbeanstalk.com/resetearpassword.php"));
+                LoginActivity.this.startActivity(intent);
+            }
+        }));
+
+        room714link.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://www.room714.com/"));
                 LoginActivity.this.startActivity(intent);
             }
         }));

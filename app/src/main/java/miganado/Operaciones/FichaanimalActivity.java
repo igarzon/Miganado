@@ -40,6 +40,7 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import miganado.Configuracion.ActionBarActivity;
 import miganado.Configuracion.CheckConnectivity;
 import miganado.Configuracion.UpdateDataRequest;
 import miganado.Data.Explotacion;
@@ -49,7 +50,7 @@ import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.SessionManager;
 import miganado.Loginyregistro.ZonaclienteActivity;
 
-public class FichaanimalActivity extends AppCompatActivity {
+public class FichaanimalActivity extends ActionBarActivity {
 
     private ArrayList<EditText> editText = new ArrayList<EditText>();
     private Bundle b = new Bundle();
@@ -84,7 +85,7 @@ public class FichaanimalActivity extends AppCompatActivity {
             TextView aux1 = new TextView(this);
             aux1.setLayoutParams(lparams);
             aux1.setText(editarCadenaTexto(datos.getColumnName(i)));
-            aux1.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
+            aux1.setTextColor(Color.parseColor(super.MI_GANADO_PRIMARY_COLOR));
             aux1.setTextSize(30);
 
             linear.addView(aux1);
@@ -128,7 +129,7 @@ public class FichaanimalActivity extends AppCompatActivity {
             TextView aux1 = new TextView(this);
             aux1.setLayoutParams(lparams);
             aux1.setText(s[i - (datos.getColumnCount() - 9)]);
-            aux1.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
+            aux1.setTextColor(Color.parseColor(super.MI_GANADO_PRIMARY_COLOR));
             aux1.setTextSize(30);
 
             linear.addView(aux1);

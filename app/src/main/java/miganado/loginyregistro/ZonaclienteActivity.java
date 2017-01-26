@@ -29,6 +29,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import miganado.Configuracion.ActionBarActivity;
 import miganado.Configuracion.CheckConnectivity;
 import miganado.Configuracion.PreferenciasActivity;
 import miganado.Configuracion.UpdateDataRequest;
@@ -41,7 +42,7 @@ import miganado.Operaciones.BusquedasActivity;
 import miganado.Operaciones.ExplotacionesActivity;
 import miganado.Data.ExplotacionDbHelper;
 
-public class ZonaclienteActivity extends AppCompatActivity {
+public class ZonaclienteActivity extends ActionBarActivity {
 
 
     //Hacemos checkBox global para poder acceder desde las funciones
