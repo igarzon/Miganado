@@ -130,7 +130,7 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor res = null;
-        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CEA_LOCALIZACION+" LIKE '"+exp+"' AND "+ExplotacionEntry.BAJA+" LIKE '0'",null);
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CEA_LOCALIZACION+" LIKE '"+exp+"' AND "+ExplotacionEntry.BAJA+" LIKE '0'"+" AND "+ExplotacionEntry.MODIFICADO+" NOT LIKE 'borrar'",null);
         res.moveToFirst();
 
         while(!res.isLast()){
@@ -168,24 +168,64 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
     public ArrayList<String> getVacasModificado() {
         ArrayList<String> array_list = new ArrayList<String>();
 
+        System.out.println("Aqui 1");
+
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor res = null;
-        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.MODIFICADO+" LIKE 'modificar'",null);
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.MODIFICADO+" NOT LIKE '0'",null);
+
+
+        System.out.println("Aqui 2 "+ res.getCount());
+
         res.moveToFirst();
 
-        while(!res.isLast()&&res!=null&&res.getCount()>0){
-            String a = res.getString(0);
-            array_list.add(a);
-            res.moveToNext();
-            array_list.add(res.getString(0));
+        if (res.getCount() == 0){
+            //vacio
+        } else{
+
+            do{
+                String a = res.getString(0);
+                array_list.add(a);
+                //res.moveToNext();
+
+            } while( res.moveToNext()!= false && res.getCount() > 0);
+
+
+
         }
 
+
+
+        System.out.println("Aqui 3 "+ array_list.size());
 
         res.close();
         return array_list;
     }
 
+    public String getBaja(String crotal) {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res = null;
+        res = db.rawQuery("SELECT "+ExplotacionEntry.BAJA+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CROTAL+" LIKE '" + crotal + "'",null);
+        res.moveToFirst();
+
+        return res.getString(0);
+    }
+
+    public String getAccion(String crotal) {
+        ArrayList<String> array_list = new ArrayList<String>();
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor res = null;
+        res = db.rawQuery("SELECT "+ExplotacionEntry.MODIFICADO+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CROTAL+" LIKE '" + crotal + "'",null);
+        res.moveToFirst();
+
+        return res.getString(0);
+    }
 
 
 

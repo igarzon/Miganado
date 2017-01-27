@@ -37,6 +37,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import miganado.Configuracion.ActionBarActivity;
+import miganado.Configuracion.CheckConnectivity;
 import miganado.Configuracion.UpdateDataRequest;
 import miganado.Data.Explotacion;
 import miganado.Data.ExplotacionContract;
@@ -86,6 +87,13 @@ public class AltaanimalActivity extends ActionBarActivity {
 
     public void darAlta(View v) {
 
+        ExplotacionDbHelper mydb;
+        mydb = new ExplotacionDbHelper(this);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String time = dateFormat.format(date);
+
         String crotal = etCrotal.getText().toString();
         String crotalMadre = etCrotalMadre.getText().toString();
         String fecha = in_date.getText().toString();
@@ -119,12 +127,10 @@ public class AltaanimalActivity extends ActionBarActivity {
             Snackbar.make(v, "Fecha mal introducido", Snackbar.LENGTH_LONG)
                     .show();
         }
-        else {
+        else if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))) {
             //char a = crotal.toCharArray()[0];
 
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = new Date();
-            String time = dateFormat.format(date);
+
 
             Explotacion vaca = new Explotacion(crotal,
                     "vacio",
@@ -146,9 +152,8 @@ public class AltaanimalActivity extends ActionBarActivity {
                     "vacio",
                     time,
                     "0",
-                    "");
-            ExplotacionDbHelper mydb;
-            mydb = new ExplotacionDbHelper(this);
+                    "0");
+
             mydb.insertVaca(vaca);
 
             Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
@@ -202,6 +207,36 @@ public class AltaanimalActivity extends ActionBarActivity {
                     responseListener);
             RequestQueue queue = Volley.newRequestQueue(AltaanimalActivity.this);
             queue.add(UpdateDataRequest).hasHadResponseDelivered();
+
+
+        } else{
+
+            Explotacion vaca = new Explotacion(crotal,
+                    "vacio",
+                    "vacio",
+                    crotalMadre,
+                    sexo,
+                    "vacio",
+                    fecha,
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    ceaLocalizacion,
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    "vacio",
+                    time,
+                    "0",
+                    "alta");
+
+            mydb.insertVaca(vaca);
+
+            Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
+                    .show();
 
 
         }

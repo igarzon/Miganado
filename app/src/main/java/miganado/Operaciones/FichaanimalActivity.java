@@ -185,7 +185,6 @@ public class FichaanimalActivity extends ActionBarActivity {
         String username = users[1];
 
 
-
             System.out.println("Si hay conexion");
 
             Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -245,7 +244,69 @@ public class FichaanimalActivity extends ActionBarActivity {
             Date date = new Date();
             String time = dateFormat.format(date);
 
-            Explotacion vaca = new Explotacion(datos.get(0),
+            Explotacion vaca = new Explotacion(
+                    datos.get(0),
+                    datos.get(1),
+                    datos.get(2),
+                    datos.get(3),
+                    datos.get(4),
+                    datos.get(5),
+                    datos.get(6),
+                    datos.get(7),
+                    datos.get(8),
+                    datos.get(9),
+                    datos.get(10),
+                    datos.get(11),
+                    datos.get(12),
+                    datos.get(13),
+                    datos.get(14),
+                    datos.get(15),
+                    datos.get(16),
+                    datos.get(17),
+                    time,
+                    "",
+                    "borrar");
+
+            mydb.deleteCrotal(datos.get(0));
+            mydb.insertVaca(vaca);
+
+        }
+
+
+        Intent setIntent = new Intent(this, gb.getActivityAnterior());
+        startActivity(setIntent);
+    }
+
+    public void restablecer(View v) {
+        Intent setIntent = new Intent(this, FichaanimalActivity.class);
+        setIntent.putExtras(b);
+        startActivity(setIntent);
+    }
+
+    public void darBaja(View v) {
+
+        ExplotacionDbHelper mydb;
+        mydb = new ExplotacionDbHelper(this);
+
+        CheckConnectivity cc = new CheckConnectivity();
+
+        if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))) {
+
+            ArrayList<String> datos = new ArrayList<String>();
+            datos.add(crotal.getText().toString());
+            for (int i = 0; i < editText.size(); i++) {
+                if (editText.get(i).getText().toString() != null && !editText.get(i).getText().toString().equals(""))
+                    datos.add(editText.get(i).getText().toString());
+                else
+                    datos.add("vacio");
+            }
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            String time = dateFormat.format(date);
+
+            Explotacion vaca = new Explotacion(
+                    datos.get(0),
                     datos.get(1),
                     datos.get(2),
                     datos.get(3),
@@ -265,124 +326,118 @@ public class FichaanimalActivity extends ActionBarActivity {
                     datos.get(17),
                     time,
                     "1",
-                    "3");
+                    "0");
+
+            mydb.deleteCrotal(datos.get(0));
+            mydb.insertVaca(vaca);
+
+            // Session class instance
+            SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+            String user = sessionManager.getUserDetails().toString();
+            String user1 = user.replaceAll("\\{", "");
+            String user2 = user1.replaceAll("\\}", "");
+
+            //Diseccionamos la cadena
+            String[] users = user2.split("=");
+
+            String username = users[1];
+
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+
+                    System.out.println("Respuesta: " + response);
+
+
+                }
+
+            };
+            UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,
+                    (datos.get(0).equals("vacio") ? "" : datos.get(0)),
+                    (datos.get(1).equals("vacio") ? "" : datos.get(1)),
+                    (datos.get(2).equals("vacio") ? "" : datos.get(2)),
+                    (datos.get(3).equals("vacio") ? "" : datos.get(3)),
+                    (datos.get(4).equals("vacio") ? "" : datos.get(4)),
+                    (datos.get(5).equals("vacio") ? "" : datos.get(5)),
+                    (datos.get(6).equals("vacio") ? "" : datos.get(6)),
+                    (datos.get(7).equals("vacio") ? "" : datos.get(7)),
+                    (datos.get(8).equals("vacio") ? "" : datos.get(8)),
+                    (datos.get(9).equals("vacio") ? "" : datos.get(9)),
+                    (datos.get(10).equals("vacio") ? "" : datos.get(10)),
+                    (datos.get(11).equals("vacio") ? "" : datos.get(11)),
+                    (datos.get(12).equals("vacio") ? "" : datos.get(12)),
+                    (datos.get(13).equals("vacio") ? "" : datos.get(13)),
+                    (datos.get(14).equals("vacio") ? "" : datos.get(14)),
+                    (datos.get(15).equals("vacio") ? "" : datos.get(15)),
+                    (datos.get(16).equals("vacio") ? "" : datos.get(16)),
+                    (datos.get(17).equals("vacio") ? "" : datos.get(17)),
+                    time,
+                    "1",
+                    "modificar",
+                    responseListener);
+            //RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
+            //UpdateDataRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            queue.add(UpdateDataRequest).hasHadResponseDelivered();
+
+        }
+
+        else{
+
+            System.out.println("No hay conexion");
+
+
+            ArrayList<String> datos = new ArrayList<String>();
+            datos.add(crotal.getText().toString());
+            for(int i = 0; i<editText.size(); i++){
+                if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
+                    datos.add(editText.get(i).getText().toString());
+                else
+                    datos.add("vacio");
+            }
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = new Date();
+            String time = dateFormat.format(date);
+
+            Explotacion vaca = new Explotacion(
+                    datos.get(0),
+                    datos.get(1),
+                    datos.get(2),
+                    datos.get(3),
+                    datos.get(4),
+                    datos.get(5),
+                    datos.get(6),
+                    datos.get(7),
+                    datos.get(8),
+                    datos.get(9),
+                    datos.get(10),
+                    datos.get(11),
+                    datos.get(12),
+                    datos.get(13),
+                    datos.get(14),
+                    datos.get(15),
+                    datos.get(16),
+                    datos.get(17),
+                    time,
+                    "1",
+                    "modificar");
 
             mydb.deleteCrotal(datos.get(0));
             mydb.insertVaca(vaca);
 
         }
 
-
-
-
-
-        Intent setIntent = new Intent(this, gb.getActivityAnterior());
-        startActivity(setIntent);
-    }
-
-    public void restablecer(View v) {
-        Intent setIntent = new Intent(this, FichaanimalActivity.class);
-        setIntent.putExtras(b);
-        startActivity(setIntent);
-    }
-
-    public void darBaja(View v) {
-        ArrayList<String> datos = new ArrayList<String>();
-        datos.add(crotal.getText().toString());
-        for(int i = 0; i<editText.size(); i++){
-            if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
-                datos.add(editText.get(i).getText().toString());
-            else
-                datos.add("vacio");
-        }
-
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = new Date();
-        String time = dateFormat.format(date);
-
-        Explotacion vaca = new Explotacion(datos.get(0),
-                datos.get(1),
-                datos.get(2),
-                datos.get(3),
-                datos.get(4),
-                datos.get(5),
-                datos.get(6),
-                datos.get(7),
-                datos.get(8),
-                datos.get(9),
-                datos.get(10),
-                datos.get(11),
-                datos.get(12),
-                datos.get(13),
-                datos.get(14),
-                datos.get(15),
-                datos.get(16),
-                datos.get(17),
-                time,
-                "1",
-                "");
-        ExplotacionDbHelper mydb;
-        mydb = new ExplotacionDbHelper(this);
-        mydb.deleteCrotal(datos.get(0));
-        mydb.insertVaca(vaca);
-
-        // Session class instance
-        SessionManager sessionManager = new SessionManager(getApplicationContext());
-
-        String user = sessionManager.getUserDetails().toString();
-        String user1 = user.replaceAll("\\{", "");
-        String user2 = user1.replaceAll("\\}", "");
-
-        //Diseccionamos la cadena
-        String[] users = user2.split("=");
-
-        String username = users[1];
-
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
-
-                System.out.println("Respuesta: "+response);
-
-
-            }
-
-        };
-        UpdateDataRequest UpdateDataRequest = new UpdateDataRequest(username,
-                (datos.get(0).equals("vacio") ? "" : datos.get(0)),
-                (datos.get(1).equals("vacio") ? "" : datos.get(1)),
-                (datos.get(2).equals("vacio") ? "" : datos.get(2)),
-                (datos.get(3).equals("vacio") ? "" : datos.get(3)),
-                (datos.get(4).equals("vacio") ? "" : datos.get(4)),
-                (datos.get(5).equals("vacio") ? "" : datos.get(5)),
-                (datos.get(6).equals("vacio") ? "" : datos.get(6)),
-                (datos.get(7).equals("vacio") ? "" : datos.get(7)),
-                (datos.get(8).equals("vacio") ? "" : datos.get(8)),
-                (datos.get(9).equals("vacio") ? "" : datos.get(9)),
-                (datos.get(10).equals("vacio") ? "" : datos.get(10)),
-                (datos.get(11).equals("vacio") ? "" : datos.get(11)),
-                (datos.get(12).equals("vacio") ? "" : datos.get(12)),
-                (datos.get(13).equals("vacio") ? "" : datos.get(13)),
-                (datos.get(14).equals("vacio") ? "" : datos.get(14)),
-                (datos.get(15).equals("vacio") ? "" : datos.get(15)),
-                (datos.get(16).equals("vacio") ? "" : datos.get(16)),
-                (datos.get(17).equals("vacio") ? "" : datos.get(17)),
-                time,
-                "1",
-                "modificar",
-                responseListener);
-        //RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
-        UpdateDataRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-        queue.add(UpdateDataRequest).hasHadResponseDelivered();
-
-
-
     }
 
     public void modificar(View v) {
         ArrayList<String> datos = new ArrayList<String>();
 
+        ExplotacionDbHelper mydb;
+        mydb = new ExplotacionDbHelper(this);
+
+        CheckConnectivity cc = new CheckConnectivity();
 
         datos.add(crotal.getText().toString());
         for(int i = 0; i<editText.size(); i++){
@@ -404,11 +459,11 @@ public class FichaanimalActivity extends ActionBarActivity {
             Snackbar.make(v, "Fecha nacimiento mal introducida", Snackbar.LENGTH_LONG)
                     .show();
         }
-        else if(!mat2.matches()||datos.get(9).equals("vacio")){
+        else if(!mat2.matches()&&!datos.get(9).equals("vacio")){
             Snackbar.make(v, "Fecha llegada mal introducida", Snackbar.LENGTH_LONG)
                     .show();
         }
-        else {
+        else if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))) {
             Explotacion vaca = new Explotacion(datos.get(0),
                     datos.get(1),
                     datos.get(2),
@@ -428,16 +483,12 @@ public class FichaanimalActivity extends ActionBarActivity {
                     datos.get(16),
                     datos.get(17),
                     time,
-                    "0",
-                    "modificar");
-            ExplotacionDbHelper mydb;
-            mydb = new ExplotacionDbHelper(this);
+                    mydb.getBaja(datos.get(0)),
+                    "0");
+
             mydb.deleteCrotal(datos.get(0));
             mydb.insertVaca(vaca);
 
-            CheckConnectivity cc = new CheckConnectivity();
-
-            if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))) {
                 // Session class instance
                 SessionManager sessionManager = new SessionManager(getApplicationContext());
 
@@ -484,14 +535,47 @@ public class FichaanimalActivity extends ActionBarActivity {
                         (datos.get(16).equals("vacio") ? "" : datos.get(16)),
                         (datos.get(17).equals("vacio") ? "" : datos.get(17)),
                         time,
-                        "0",
+                        (mydb.getBaja(datos.get(0)).equals("vacio") ? "" : mydb.getBaja(datos.get(0))),
                         "modificar",
                         responseListener);
                 //RequestQueue queue = Volley.newRequestQueue(FichaanimalActivity.this);
-                UpdateDataRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+                //UpdateDataRequest.setRetryPolicy(new DefaultRetryPolicy(DefaultRetryPolicy.DEFAULT_TIMEOUT_MS, 10, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                 queue.add(UpdateDataRequest).hasHadResponseDelivered();
                 //queue.getCache().initialize();
+            } else {
+
+            System.out.println("No hay conexion");
+
+            for(int k=0; k<datos.size();k++){
+                System.out.println("dato " + datos.get(k));
             }
+
+            Explotacion vaca = new Explotacion(datos.get(0),
+                    datos.get(1),
+                    datos.get(2),
+                    datos.get(3),
+                    datos.get(4),
+                    datos.get(5),
+                    datos.get(6),
+                    datos.get(7),
+                    datos.get(8),
+                    datos.get(9),
+                    datos.get(10),
+                    datos.get(11),
+                    datos.get(12),
+                    datos.get(13),
+                    datos.get(14),
+                    datos.get(15),
+                    datos.get(16),
+                    datos.get(17),
+                    time,
+                    mydb.getBaja(datos.get(0)),
+                    (mydb.getAccion(datos.get(0)).equals("alta") ? "alta" : "modificar"));
+
+            mydb.deleteCrotal(datos.get(0));
+            mydb.insertVaca(vaca);
+            mydb.close();
+
         }
     }
 

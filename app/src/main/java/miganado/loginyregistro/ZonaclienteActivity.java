@@ -1,9 +1,11 @@
 package miganado.Loginyregistro;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Color;
@@ -33,6 +35,7 @@ import miganado.Configuracion.ActionBarActivity;
 import miganado.Configuracion.CheckConnectivity;
 import miganado.Configuracion.PreferenciasActivity;
 import miganado.Configuracion.UpdateDataRequest;
+import miganado.Configuracion.UpdatePreferencesRequest;
 import miganado.Data.Explotacion;
 import miganado.Data.GlobalVariable;
 import miganado.Operaciones.FichaanimalActivity;
@@ -74,6 +77,7 @@ public class ZonaclienteActivity extends ActionBarActivity {
          * This will redirect user to LoginActivity is he is not
          * logged in
          * */
+
         sessionManager.checkLogin();
 
         //Intent intent = getIntent();
@@ -120,13 +124,17 @@ public class ZonaclienteActivity extends ActionBarActivity {
 
             if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))){
 
+
                 ExplotacionDbHelper mydb;
                 mydb = new ExplotacionDbHelper(getApplicationContext());
 
                 ArrayList<String> array_list_mod = new ArrayList<String>();
                 array_list_mod=mydb.getVacasModificado();
 
-                if (!array_list_mod.isEmpty())actualizacion(array_list_mod);}
+                if (!array_list_mod.isEmpty())actualizacion(array_list_mod);
+
+                actualizacionPref();
+            }
         }
 
     }
@@ -262,6 +270,53 @@ public class ZonaclienteActivity extends ActionBarActivity {
 
     }
 
+    public void actualizacionPref(){
+
+        // Session class instance
+        SessionManager sessionManager = new SessionManager(getApplicationContext());
+
+        String user = sessionManager.getUserDetails().toString();
+        String user1 = user.replaceAll("\\{", "");
+        String user2 = user1.replaceAll("\\}", "");
+
+        //Diseccionamos la cadena
+        String[] users = user2.split("=");
+
+        String username = users[1];
+
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(ZonaclienteActivity.this);
+        String [] s = new String[6];
+        s[0] = pref.getString("dato1", "");
+        s[1] = pref.getString("dato2", "");
+        s[2] = pref.getString("dato3", "");
+        s[3] = pref.getString("dato4", "");
+        s[4] = pref.getString("dato5", "");
+        s[5] = pref.getString("dato6", "");
+
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                System.out.println("Respuesta preferencias: "+response);
+
+            }
+
+        };
+        UpdatePreferencesRequest updatePreferencesRequest = new UpdatePreferencesRequest(username,
+                s[0],
+                s[1],
+                s[2],
+                s[3],
+                s[4],
+                s[5],
+                responseListener);
+
+        queue.add(updatePreferencesRequest).hasHadResponseDelivered();
+
+    }
+
 
     public void actualizacion(ArrayList<String> array_list_mod){
 
@@ -293,7 +348,6 @@ public class ZonaclienteActivity extends ActionBarActivity {
                     public void onResponse(String response) {
 
                         System.out.println("Respuesta: "+response);
-
 
                     }
 
@@ -348,8 +402,8 @@ public class ZonaclienteActivity extends ActionBarActivity {
                         datos.getString(20),
                         "0");
 
-                mydb.deleteCrotal(datos.getString(0));
-                mydb.insertVaca(vaca);
+                mydb.deleteCrotal(datos.getString(1));
+                if(!(datos.getString(21).equals("borrar")))mydb.insertVaca(vaca);
 
             }
 
