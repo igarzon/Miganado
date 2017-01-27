@@ -25,7 +25,7 @@
             <ImageView
                 android:layout_width="160dp"
                 android:layout_height="141dp"
-                app:srcCompat="@drawable/logogestion"
+                app:srcCompat="@drawable/logo_miganado"
                 android:layout_marginTop="33dp"
                 android:id="@+id/imgLogogestion"
                 android:layout_below="@+id/ptNombreaplicacion"

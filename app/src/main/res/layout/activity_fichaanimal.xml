@@ -30,15 +30,19 @@
             android:layout_width="170dp"
             android:layout_row="0"
             android:text="Restaurar"
-            android:background="@color/MiGanado_restaurar"/>
+            android:drawableLeft="@drawable/icono_restaurar"
+            android:background="@color/MiGanado_restaurar"
+            android:layout_margin="3dp"/>
 
         <Button
             android:id="@+id/btnModificar"
             android:onClick="modificar"
             android:layout_column="1"
             android:layout_gravity="fill_horizontal|top" android:layout_row="0"
+            android:drawableLeft="@drawable/icono_guardar"
             android:text="Modificar"
-            android:background="@color/MiGanado_primary_color"/>
+            android:background="@color/MiGanado_actualizar"
+            android:layout_margin="3dp"/>
 
 
         <Button
@@ -48,17 +52,21 @@
             android:layout_gravity="left|top"
             android:layout_row="1"
             android:layout_width="170dp"
+            android:drawableLeft="@drawable/icono_borrar"
             android:text="Eliminar"
-            android:background="@color/MiGanado_borrar"/>
+            android:background="@color/MiGanado_borrar"
+            android:layout_margin="3dp"/>
 
         <Button
             android:id="@+id/btnBaja"
             android:onClick="darBaja"
             android:layout_column="1"
             android:layout_gravity="fill_horizontal|top"
+            android:drawableLeft="@drawable/icono_dar_baja"
             android:layout_row="1"
             android:text="Dar baja"
-            android:background="@color/MiGanado_dar_de_baja" />
+            android:background="@color/MiGanado_dar_de_baja"
+            android:layout_margin="3dp"/>
     </GridLayout>
     <ScrollView
         android:layout_width="match_parent"
