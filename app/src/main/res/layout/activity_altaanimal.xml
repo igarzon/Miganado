@@ -19,7 +19,9 @@
         android:id="@+id/alta"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <EditText
             android:layout_width="match_parent"
@@ -55,6 +57,16 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
+        <TextView
+            android:text=" Seleccione explotación"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvSelectexplotacion"
+            android:textSize="18sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/etExplotacion"
-            android:hint="Explotacion"
+            android:hint="Crear nueva explotación"
             android:layout_marginTop="20dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
