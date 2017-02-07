@@ -293,6 +293,11 @@ public class ZonaclienteActivity extends ActionBarActivity {
         s[4] = pref.getString("dato5", "");
         s[5] = pref.getString("dato6", "");
 
+        for (int i = 0; i < s.length; i++) {
+            System.out.println(s[i]);
+        }
+
+
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
 

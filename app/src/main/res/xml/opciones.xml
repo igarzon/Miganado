@@ -55,7 +55,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Sesion">
-        <Preference android:title="Actualizar Datos" android:key="updatelink" />
+
         <Preference android:title="Cerrar sesion" android:key="exitlink"/>
     </PreferenceCategory>
 

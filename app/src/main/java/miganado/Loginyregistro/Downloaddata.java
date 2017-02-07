@@ -98,22 +98,33 @@ public class Downloaddata extends ActionBarActivity {
                             String datosusuario=partsDatos[0];
 
                             //Limpiamos de caracteres las líneas
-                            //String newLineuser1 = datosusuario.replaceAll("\"", "");
-                            String newLineuser2= datosusuario.replaceAll(",", ":");
+                            String newLineuser1 = datosusuario.replaceAll("\"\"", "vacio");
+                            System.out.println(newLineuser1);
+                            String newLineuser2= newLineuser1.replaceAll(",", ":");
+                            System.out.println(newLineuser2);
                             String newLineuser3 = newLineuser2.replaceAll("\\{", "");
+                            System.out.println(newLineuser3);
                             String newLineuser4 = newLineuser3.replaceAll("\\}", "");
+                            System.out.println(newLineuser4);
+                            String newLineuser5 = newLineuser4.replaceAll("\"", "");
+                            System.out.println(newLineuser5);
 
                             //Diseccionamos la cadena
-                            String[] partsPreferencias = newLineuser4.split(":");
+                            String[] partsPreferencias = newLineuser5.split(":");
 
                             SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(Downloaddata.this);
                             SharedPreferences.Editor editor = pref.edit();
-                            editor.putString("dato1",partsPreferencias[1].equals("\"\"") ? "Dato 1" : partsPreferencias[1].substring(1,partsPreferencias[1].length()-1));
-                            editor.putString("dato2",partsPreferencias[3].equals("\"\"") ? "Dato 2" : partsPreferencias[3].substring(1,partsPreferencias[3].length()-1));
-                            editor.putString("dato3",partsPreferencias[5].equals("\"\"") ? "Dato 3" : partsPreferencias[5].substring(1,partsPreferencias[5].length()-1));
-                            editor.putString("dato4",partsPreferencias[7].equals("\"\"") ? "Dato 4" : partsPreferencias[7].substring(1,partsPreferencias[7].length()-1));
-                            editor.putString("dato5",partsPreferencias[9].equals("\"\"") ? "Dato 5" : partsPreferencias[9].substring(1,partsPreferencias[9].length()-1));
-                            editor.putString("dato6",partsPreferencias[11].equals("\"\"") ? "Dato 6" : partsPreferencias[11].substring(1,partsPreferencias[11].length()-1));
+
+                            for (int i = 1; i < 12; i+=2) {
+                                System.out.println(partsPreferencias[i]);
+                            }
+
+                            editor.putString("dato1",partsPreferencias[1].equals("vacio") ? "Dato 1" : partsPreferencias[1]);
+                            editor.putString("dato2",partsPreferencias[3].equals("vacio") ? "Dato 2" : partsPreferencias[3]);
+                            editor.putString("dato3",partsPreferencias[5].equals("vacio") ? "Dato 3" : partsPreferencias[5]);
+                            editor.putString("dato4",partsPreferencias[7].equals("vacio") ? "Dato 4" : partsPreferencias[7]);
+                            editor.putString("dato5",partsPreferencias[9].equals("vacio") ? "Dato 5" : partsPreferencias[9]);
+                            editor.putString("dato6",partsPreferencias[11].equals("vacio") ? "Dato 6" : partsPreferencias[11]);
                             editor.commit();
 
                             pref.edit();
