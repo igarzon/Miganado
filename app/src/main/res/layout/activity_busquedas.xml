@@ -52,7 +52,6 @@
                     android:checked="false"
                     android:id="@+id/rbMacho"
                     android:layout_weight="1"
-
                     android:layout_below="@+id/in_date2"
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
@@ -67,7 +66,6 @@
                     android:checked="false"
                     android:id="@+id/rbHembra"
                     android:layout_weight="1"
-
                     android:layout_alignBaseline="@+id/rbMacho"
                     android:layout_alignBottom="@+id/rbMacho"
                     android:layout_toLeftOf="@+id/rbMacho"
@@ -75,17 +73,6 @@
                     android:layout_marginRight="32dp"
                     android:layout_marginEnd="32dp" />
 
-                <RadioButton
-                    android:text="Ambos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:id="@+id/rbAmbos"
-                    android:layout_weight="1"
-                    android:layout_alignBaseline="@+id/rbHembra"
-                    android:layout_alignBottom="@+id/rbHembra"
-                    android:layout_alignLeft="@+id/btnBuscar"
-                    android:layout_alignStart="@+id/btnBuscar" />
         </RadioGroup>
 
         <CheckBox

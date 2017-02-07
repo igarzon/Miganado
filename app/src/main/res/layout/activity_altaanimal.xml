@@ -12,24 +12,24 @@
     android:orientation="vertical"
     tools:context="miganado.Operaciones.AltaanimalActivity">
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <LinearLayout
+        <LinearLayout
         android:id="@+id/alta"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:focusable="true"
         android:focusableInTouchMode="true">
-
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="12"
             android:id="@+id/etAltaCrotal"
             android:hint="Crotal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -40,7 +40,7 @@
             android:ems="12"
             android:id="@+id/etAltaCrotalMadre"
             android:hint="Crotal Madre"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="5dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentRight="true"
@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/altadate"
             android:hint="Fecha nacimiento aaaa-mm-dd"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_alignBaseline="@+id/btn_date"
             android:layout_alignBottom="@+id/btn_date"
             android:layout_alignParentLeft="true"
@@ -59,10 +59,11 @@
 
         <TextView
             android:text=" Seleccione explotación"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tvSelectexplotacion"
+            android:textColor="@color/MiGanado_primary_color"
             android:textSize="18sp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"/>
@@ -70,7 +71,7 @@
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/spExp" />
 
         <EditText
@@ -78,7 +79,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/etExplotacion"
             android:hint="Crear nueva explotación"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:elevation="1dp" />
@@ -89,7 +90,7 @@
             android:id="@+id/rgAltaSexo"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="26dp">
+            android:layout_marginTop="5dp">
 
             <RadioButton
                 android:text="Hembra"
@@ -112,7 +113,6 @@
 
     </LinearLayout>
     </ScrollView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -128,5 +128,6 @@
             android:layout_gravity="center_horizontal"
             />
     </LinearLayout>
+
 
 </LinearLayout>

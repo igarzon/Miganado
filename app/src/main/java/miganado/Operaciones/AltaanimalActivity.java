@@ -21,6 +21,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import 	android.widget.AdapterView;
+import 	android.widget.AdapterView.OnItemSelectedListener;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -81,7 +83,8 @@ public class AltaanimalActivity extends ActionBarActivity {
 
         ceas = (Spinner) findViewById(R.id.spExp);
         String[] valores = gb.getExplotaciones().toArray(new String [gb.getExplotaciones().size()]);
-        ceas.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
+        ceas.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item, valores));
+
 
     }
 

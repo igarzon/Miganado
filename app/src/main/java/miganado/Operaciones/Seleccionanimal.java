@@ -56,7 +56,7 @@ public class Seleccionanimal extends ActionBarActivity {
         spinner = (Spinner) findViewById(R.id.spinner);
         //Estos valores serian los crotales que habria que obtenerlos de la base de datos
         String[] valores = spin.toArray(new String [spin.size()]);
-        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
+        spinner.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item, valores));
 
     }
 

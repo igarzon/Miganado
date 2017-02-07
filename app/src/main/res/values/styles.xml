@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/MiGanado_actualizar</item>
         <item name="colorPrimaryDark">@color/MiGanado_primary_color_dark</item>
         <item name="colorAccent">@color/MiGanado_primary_color</item>
-        <item name="android:colorBackground">@android:color/secondary_text_light</item>
+        <item name="android:colorBackground">@android:color/background_light</item>
         <item name="android:textColorPrimary">@android:color/primary_text_dark</item>
         <item name="android:textColorPrimaryInverse">@android:color/primary_text_light</item>
         <item name="android:textColorSecondaryInverse">@android:color/secondary_text_light</item>

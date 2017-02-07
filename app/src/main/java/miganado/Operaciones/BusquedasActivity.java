@@ -70,6 +70,8 @@ public class BusquedasActivity extends ActionBarActivity {
         final CheckBox historico = (CheckBox) findViewById(R.id.cbHistorico);
         final RadioGroup rg = (RadioGroup) findViewById(R.id.rgSexo);
 
+        //Desseleccionamos los dos radioButtons
+        rg.clearCheck();
 
         Button btnBuscar = (Button) findViewById(R.id.btnBuscar);
         Button btnRestablecer = (Button) findViewById(R.id.btnRestablecer);
@@ -85,7 +87,10 @@ public class BusquedasActivity extends ActionBarActivity {
                 baja = (historico.isChecked())?"1":"0";
                 int aux = rg.getCheckedRadioButtonId();
                 RadioButton aux2 = (RadioButton) findViewById(aux);
-                sexo = ((String) aux2.getText()).toUpperCase();
+                //Si no está seleccionado, buscará en ambos sexos
+                if (aux != -1)
+                    sexo = ((String) aux2.getText()).toUpperCase();
+                else sexo = "AMBOS";
 
                 if(fecha1.equals("")){
                     fecha1="0000-00-00";
