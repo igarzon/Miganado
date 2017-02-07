@@ -80,11 +80,14 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor res = null;
-        res = db.rawQuery("SELECT "+ExplotacionEntry.CEA_LOCALIZACION+" FROM "+ExplotacionEntry.TABLE_NAME,null);
+        res = db.rawQuery("SELECT "+ExplotacionEntry.CEA_LOCALIZACION+" FROM "+ExplotacionEntry.TABLE_NAME +" WHERE "+ExplotacionEntry.MODIFICADO+" NOT LIKE 'borrar'",null);
         res.moveToFirst();
 
         while(!res.isLast()){
             String a = res.getString(0);
+
+
+
             if(!array_list.contains(a)) {
                 array_list.add(a);
             }
@@ -116,7 +119,59 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
 
         }
 
+        //System.out.println("RESULTADO: "+result);
+
+        db.close();
+
+        return result;
+
+    }
+
+    public boolean existCrotal(String crotal) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        boolean result = false;
+
+        String sql = "SELECT COUNT (*) FROM " + ExplotacionEntry.TABLE_NAME + " WHERE " + ExplotacionEntry.CROTAL + " like '"+crotal+"'";
+
+        Cursor mcursor = db.rawQuery(sql, null);
+        mcursor.moveToFirst();
+        int icount = mcursor.getInt(0);
+        if(icount>0 && mcursor!=null){
+            //hay contenido
+            result = true;
+
+        }
+
         System.out.println("RESULTADO: "+result);
+        System.out.println("icount: "+icount);
+
+        db.close();
+
+        return result;
+
+    }
+
+    public boolean existExplotacionesVacas(String cea) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        boolean result = false;
+
+        String sql = "SELECT COUNT (*) FROM " + ExplotacionEntry.TABLE_NAME + " WHERE " + ExplotacionEntry.CEA_LOCALIZACION + " like '"+cea+"' AND "+ExplotacionEntry.BAJA + " LIKE '0'";
+
+        Cursor mcursor = db.rawQuery(sql, null);
+        mcursor.moveToFirst();
+        int icount = mcursor.getInt(0);
+        if(icount>0 && mcursor!=null){
+            //hay contenido
+            result = true;
+
+        }
+
+        System.out.println("RESULTADO: "+result);
+        System.out.println("icount: "+icount);
 
         db.close();
 
@@ -133,13 +188,17 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
         res = db.rawQuery("SELECT "+ExplotacionEntry.CROTAL+" FROM "+ExplotacionEntry.TABLE_NAME+" WHERE "+ExplotacionEntry.CEA_LOCALIZACION+" LIKE '"+exp+"' AND "+ExplotacionEntry.BAJA+" LIKE '0'"+" AND "+ExplotacionEntry.MODIFICADO+" NOT LIKE 'borrar'",null);
         res.moveToFirst();
 
-        while(!res.isLast()){
-            String a = res.getString(0);
-            array_list.add(a);
-            res.moveToNext();
-        }
+        if (existExplotacionesVacas(exp)) {
+
+            while (!res.isLast()) {
+                String a = res.getString(0);
+                array_list.add(a);
+                res.moveToNext();
+            }
+
         array_list.add(res.getString(0));
 
+        }
         res.close();
         return array_list;
     }
@@ -191,11 +250,7 @@ public class ExplotacionDbHelper extends SQLiteOpenHelper {
 
             } while( res.moveToNext()!= false && res.getCount() > 0);
 
-
-
         }
-
-
 
         System.out.println("Aqui 3 "+ array_list.size());
 

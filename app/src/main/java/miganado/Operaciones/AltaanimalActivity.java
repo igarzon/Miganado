@@ -157,10 +157,15 @@ public class AltaanimalActivity extends ActionBarActivity {
                     "0",
                     "0");
 
-            mydb.insertVaca(vaca);
+            if(!mydb.existCrotal(crotal)){
+                mydb.insertVaca(vaca);
+                Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
+                        .show();
+            } else{
+                Snackbar.make(v, "Crotal ya existente", Snackbar.LENGTH_LONG)
+                        .show();
+            }
 
-            Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
-                    .show();
 
             // Session class instance
             SessionManager sessionManager = new SessionManager(getApplicationContext());
@@ -236,10 +241,16 @@ public class AltaanimalActivity extends ActionBarActivity {
                     "0",
                     "alta");
 
-            mydb.insertVaca(vaca);
+            if(!mydb.existCrotal(crotal)){
+                mydb.insertVaca(vaca);
+                Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
+                        .show();
+            } else{
+                Snackbar.make(v, "Crotal ya existente", Snackbar.LENGTH_LONG)
+                        .show();
+            }
 
-            Snackbar.make(v, "Alta realizada correctamente", Snackbar.LENGTH_LONG)
-                    .show();
+
 
 
         }

@@ -164,6 +164,16 @@ public class FichaanimalActivity extends ActionBarActivity {
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
 
+        ArrayList<String> datos = new ArrayList<String>();
+
+        datos.add(crotal.getText().toString());
+        for(int i = 0; i<editText.size(); i++){
+            if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
+                datos.add(editText.get(i).getText().toString());
+            else
+                datos.add("vacio");
+        }
+
         CheckConnectivity cc = new CheckConnectivity();
 
         if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))){
@@ -231,14 +241,6 @@ public class FichaanimalActivity extends ActionBarActivity {
             System.out.println("No hay conexion");
 
 
-            ArrayList<String> datos = new ArrayList<String>();
-            datos.add(crotal.getText().toString());
-            for(int i = 0; i<editText.size(); i++){
-                if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
-                    datos.add(editText.get(i).getText().toString());
-                else
-                    datos.add("vacio");
-            }
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date();
@@ -270,11 +272,28 @@ public class FichaanimalActivity extends ActionBarActivity {
             mydb.deleteCrotal(datos.get(0));
             mydb.insertVaca(vaca);
 
+
+
         }
 
+        if(gb.getAuxBusqueda().contains(datos.get(0))) gb.getAuxBusqueda().remove(datos.get(0));
 
-        Intent setIntent = new Intent(this, gb.getActivityAnterior());
-        startActivity(setIntent);
+        Toast.makeText(getApplicationContext(), "Crotal borrado correctamente", Toast.LENGTH_LONG).show();
+
+        ArrayList<String> datosAux = new ArrayList<String>();
+
+        datosAux = mydb.getExplotaciones();
+
+        if(datosAux.contains( datos.get(11))){
+
+            Intent setIntent = new Intent(this, ZonaclienteActivity.class);
+            startActivity(setIntent);
+
+        } else{
+            Intent setIntent = new Intent(this, gb.getActivityAnterior());
+            startActivity(setIntent);
+        }
+
     }
 
     public void restablecer(View v) {
@@ -288,11 +307,20 @@ public class FichaanimalActivity extends ActionBarActivity {
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
 
+        ArrayList<String> datos = new ArrayList<String>();
+        datos.add(crotal.getText().toString());
+        for(int i = 0; i<editText.size(); i++){
+            if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
+                datos.add(editText.get(i).getText().toString());
+            else
+                datos.add("vacio");
+        }
+
         CheckConnectivity cc = new CheckConnectivity();
 
         if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))) {
 
-            ArrayList<String> datos = new ArrayList<String>();
+
             datos.add(crotal.getText().toString());
             for (int i = 0; i < editText.size(); i++) {
                 if (editText.get(i).getText().toString() != null && !editText.get(i).getText().toString().equals(""))
@@ -388,14 +416,7 @@ public class FichaanimalActivity extends ActionBarActivity {
             System.out.println("No hay conexion");
 
 
-            ArrayList<String> datos = new ArrayList<String>();
-            datos.add(crotal.getText().toString());
-            for(int i = 0; i<editText.size(); i++){
-                if(editText.get(i).getText().toString()!=null && !editText.get(i).getText().toString().equals(""))
-                    datos.add(editText.get(i).getText().toString());
-                else
-                    datos.add("vacio");
-            }
+
 
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Date date = new Date();
@@ -426,6 +447,17 @@ public class FichaanimalActivity extends ActionBarActivity {
 
             mydb.deleteCrotal(datos.get(0));
             mydb.insertVaca(vaca);
+
+        }
+
+        Toast.makeText(getApplicationContext(), "Baja realizada correctamente", Toast.LENGTH_LONG).show();
+
+        try{
+            ArrayList<String> vacas = mydb.getVacasExplotacion(datos.get(11));
+        }catch (Exception e){
+
+            Intent setIntent = new Intent(this, ZonaclienteActivity.class);
+            startActivity(setIntent);
 
         }
 
@@ -577,6 +609,8 @@ public class FichaanimalActivity extends ActionBarActivity {
             mydb.close();
 
         }
+
+        Toast.makeText(getApplicationContext(), "Modificación realizada correctamente", Toast.LENGTH_LONG).show();
     }
 
     @Override

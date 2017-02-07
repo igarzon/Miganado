@@ -69,7 +69,7 @@ public class ZonaclienteActivity extends ActionBarActivity {
         queue = Volley.newRequestQueue(ZonaclienteActivity.this);
 
 
-        Toast.makeText(getApplicationContext(), "User Login Status: " + sessionManager.isLoggedIn(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "User Login Status: " + sessionManager.isLoggedIn(), Toast.LENGTH_LONG).show();
 
 
         /**
@@ -94,6 +94,21 @@ public class ZonaclienteActivity extends ActionBarActivity {
 
         if(sessionManager.isLoggedIn()&& mydb.existExplotaciones()){
 
+
+            if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))){
+
+
+                ExplotacionDbHelper mydb;
+                mydb = new ExplotacionDbHelper(getApplicationContext());
+
+                ArrayList<String> array_list_mod = new ArrayList<String>();
+                array_list_mod=mydb.getVacasModificado();
+
+                if (!array_list_mod.isEmpty())actualizacion(array_list_mod);
+
+                actualizacionPref();
+            }
+
             ArrayList<String> explotaciones = mydb.getExplotaciones(); //Nombre de las explotaciones
 
             //Referencia al layout
@@ -101,6 +116,8 @@ public class ZonaclienteActivity extends ActionBarActivity {
             LayoutParams lparams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
             //Tenemos todas las checkBox en el arrayList
+
+
 
 
             for (int i = 0; i < explotaciones.size(); i++) {
@@ -122,19 +139,7 @@ public class ZonaclienteActivity extends ActionBarActivity {
             }
 
 
-            if((CheckConnectivity.isConnectedMobile(getApplicationContext())|| CheckConnectivity.isConnectedWifi(getApplicationContext()))){
 
-
-                ExplotacionDbHelper mydb;
-                mydb = new ExplotacionDbHelper(getApplicationContext());
-
-                ArrayList<String> array_list_mod = new ArrayList<String>();
-                array_list_mod=mydb.getVacasModificado();
-
-                if (!array_list_mod.isEmpty())actualizacion(array_list_mod);
-
-                actualizacionPref();
-            }
         }
 
     }
@@ -142,22 +147,43 @@ public class ZonaclienteActivity extends ActionBarActivity {
     //Funcion que se realiza al pulsar el boton explotaciones
     public void clickExplotaciones(View v) {
 
+        ExplotacionDbHelper mydb;
+        mydb = new ExplotacionDbHelper(getApplicationContext());
+
+
+        //boolean auxBool = false;
         ArrayList<String> aux = new ArrayList<String>();
         for(int i=0; i<checkBox.size(); i++){
             if(checkBox.get(i).isChecked()) {
                 aux.add((String) checkBox.get(i).getText());
             }
         }
+        /*for(int i = 0; i<aux.size(); i++){
+            auxBool=auxBool||mydb.existExplotacionesVacas(aux.get(i));
+            System.out.println("Estoy aqui 1");
 
-        if(!aux.isEmpty()){
+
+            if(!mydb.existExplotacionesVacas(aux.get(i))){
+                aux.remove(aux.get(i));
+
+                for (int j = 0; j <aux.size() ; j++) {
+                    System.out.println("AUX " + aux.get(j));
+                }
+
+            }
+        }*/
+        if(!aux.isEmpty()/*&&auxBool*/){
             gb.actualizarExplotaciones(aux);
             Intent intent = new Intent(this, ExplotacionesActivity.class);
             startActivity(intent);
             finish();
         }
-        else {
+
+        else{
+
             Snackbar.make(v, "Debes seleccionar alguna explotación", Snackbar.LENGTH_LONG)
                     .show();
+
         }
     }
 
