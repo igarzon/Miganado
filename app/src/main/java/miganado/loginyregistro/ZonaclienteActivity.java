@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -53,22 +54,29 @@ public class ZonaclienteActivity extends ActionBarActivity {
     private ExplotacionDbHelper mydb;
     private GlobalVariable gb = new GlobalVariable();
     private ArrayList<String> gbExp = gb.getExplotaciones();
-
     SessionManager sessionManager;
     RequestQueue queue;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zonacliente);
-
+        final TextView weblink = (TextView) findViewById(R.id.tvLinkweb);
 
         // Session class instance
         sessionManager = new SessionManager(getApplicationContext());
 
+        weblink.setOnClickListener((new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://www.gestiondemiganado.com"));
+                ZonaclienteActivity.this.startActivity(intent);
+            }
+        }));
 
         queue = Volley.newRequestQueue(ZonaclienteActivity.this);
 
-
+        
         //Toast.makeText(getApplicationContext(), "User Login Status: " + sessionManager.isLoggedIn(), Toast.LENGTH_LONG).show();
 
 

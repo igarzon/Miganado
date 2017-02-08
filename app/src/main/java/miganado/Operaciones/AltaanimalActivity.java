@@ -66,6 +66,34 @@ public class AltaanimalActivity extends ActionBarActivity {
     private RadioGroup rg;
     private Spinner ceas;
 
+    public class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener{
+
+        @Override
+
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            //long vista = getArguments().getLong("vista");
+            // Do something with the date chosen by the user
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = new Date (year-1900,month,day);
+            in_date.setText(String.valueOf(df.format(fecha)));
+
+        }
+
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,7 +112,6 @@ public class AltaanimalActivity extends ActionBarActivity {
 
         in_date = (EditText) findViewById(R.id.altadate);
         etExp = (EditText) findViewById(R.id.etExplotacion);
-
         rg = (RadioGroup) findViewById(R.id.rgAltaSexo);
 
         ceas = (Spinner) findViewById(R.id.spExp);
@@ -283,10 +310,10 @@ public class AltaanimalActivity extends ActionBarActivity {
     }
     public void onDateSet(View v) {
         DialogFragment newFragment = new DatePickerFragment();
-        Bundle args = new Bundle();
+        //Bundle args = new Bundle();
 
-        int vista = v.getBottom(); //.getId();
-        newFragment.setArguments(args);
+       // int vista = v.getBottom(); //.getId();
+        //newFragment.setArguments(args);
         newFragment.show(getFragmentManager(), "datePicker");
 
 

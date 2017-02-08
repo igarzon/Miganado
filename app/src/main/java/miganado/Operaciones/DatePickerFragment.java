@@ -9,6 +9,9 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.TextView;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,22 +42,21 @@ public class DatePickerFragment extends DialogFragment
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-
-        long vista = getArguments().getLong("vista");
+        //long vista = getArguments().getLong("vista");
         // Do something with the date chosen by the user
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         Date fecha = new Date (year-1900,month,day);
 
-        if (vista == altadate) {
+       // if (vista == altadate) {
+       //     in_date.setText(String.valueOf(df.format(fecha)));
+       // }
+       // else if (vista == in_date){
             //in_date.setText(String.valueOf(df.format(fecha)));
-        }
-        else if (vista == in_date){
-            //in_date.setText(String.valueOf(df.format(fecha)));
-        }
-        else if (vista == in_date2){
+        //}
+        //else if (vista == in_date2){
             //in_date2.setText(String.valueOf(df.format(fecha)));
 
-        }
+        //}
     }
 
 

@@ -60,9 +60,41 @@ public class BusquedasActivity extends ActionBarActivity {
     EditText txtDate;
     private int mYear, mMonth, mDay;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-
+    private EditText  in_firstdate, in_lastdate;
     private TextView dateSetText;
     private DatePicker datePicker;
+
+    public class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener{
+        private String Infecha;
+
+        @Override
+
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            //long vista = getArguments().getLong("vista");
+            // Do something with the date chosen by the user
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            Date fecha = new Date (year-1900,month,day);
+            //in_firstdate.setText(String.valueOf(df.format(fecha)));
+
+        }
+
+
+
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +106,8 @@ public class BusquedasActivity extends ActionBarActivity {
         final EditText etBuscarCrotal = (EditText) findViewById(R.id.etBuscarCrotal);
         final EditText etBuscarCrotalMadre = (EditText) findViewById(R.id.etBuscarCrotalMadre);
 
-        final EditText in_date = (EditText) findViewById(R.id.in_date);
-        final EditText in_date2 = (EditText) findViewById(R.id.in_date2);
+        final EditText in_firstdate = (EditText) findViewById(R.id.in_date);
+        final EditText in_lastdate = (EditText) findViewById(R.id.in_date2);
 
         final CheckBox historico = (CheckBox) findViewById(R.id.cbHistorico);
         final RadioGroup rg = (RadioGroup) findViewById(R.id.rgSexo);
@@ -92,8 +124,8 @@ public class BusquedasActivity extends ActionBarActivity {
 
                 textCrotal =etBuscarCrotal.getText().toString();
                 textCrotalMadre = etBuscarCrotalMadre.getText().toString();
-                fecha1 = in_date.getText().toString();
-                fecha2 = in_date2.getText().toString();
+                fecha1 = in_firstdate.getText().toString();
+                fecha2 = in_lastdate.getText().toString();
                 baja = (historico.isChecked())?"1":"0";
                 int aux = rg.getCheckedRadioButtonId();
                 RadioButton aux2 = (RadioButton) findViewById(aux);
@@ -193,13 +225,11 @@ public class BusquedasActivity extends ActionBarActivity {
     }
     public void onDateSet(View v) {
         DialogFragment newFragment = new DatePickerFragment();
-        Bundle args = new Bundle();
-        int vista = v.getBottom(); //.getId();
-        args.putLong("vista",vista);
-        newFragment.setArguments(args);
+        //Bundle args = new Bundle();
+        //int vista = v.getId();
+        //args.putLong("vista",vista);
+        //newFragment.setArguments(args);
         newFragment.show(getFragmentManager(), "datePicker");
-
-
     }
 
 }
