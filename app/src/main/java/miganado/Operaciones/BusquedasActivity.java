@@ -19,7 +19,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,11 +32,19 @@ import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.ZonaclienteActivity;
 
 import android.app.DialogFragment;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.os.Bundle;
+import android.widget.DatePicker;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import static miganado.Loginyregistro.R.id.etBuscarCrotal;
 
 public class BusquedasActivity extends ActionBarActivity {
+
 
 
     private String textCrotal;
@@ -160,9 +170,9 @@ public class BusquedasActivity extends ActionBarActivity {
 
     }
 
-    public void showDatePickerDialog(View v) {
+  /*  public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
-    }
+    }*/
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
                 && keyCode == KeyEvent.KEYCODE_BACK
@@ -181,4 +191,15 @@ public class BusquedasActivity extends ActionBarActivity {
         startActivity(setIntent);
         finish();
     }
+    public void onDateSet(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        Bundle args = new Bundle();
+        int vista = v.getBottom(); //.getId();
+        args.putLong("vista",vista);
+        newFragment.setArguments(args);
+        newFragment.show(getFragmentManager(), "datePicker");
+
+
+    }
+
 }

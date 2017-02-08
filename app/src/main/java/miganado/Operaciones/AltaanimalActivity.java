@@ -21,8 +21,6 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import 	android.widget.AdapterView;
-import 	android.widget.AdapterView.OnItemSelectedListener;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -50,7 +48,15 @@ import miganado.Loginyregistro.DownloaddataRequest;
 import miganado.Loginyregistro.R;
 import miganado.Loginyregistro.SessionManager;
 import miganado.Loginyregistro.ZonaclienteActivity;
-
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.os.Bundle;
+import android.widget.DatePicker;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import android.view.Menu;
 
 public class AltaanimalActivity extends ActionBarActivity {
@@ -83,8 +89,7 @@ public class AltaanimalActivity extends ActionBarActivity {
 
         ceas = (Spinner) findViewById(R.id.spExp);
         String[] valores = gb.getExplotaciones().toArray(new String [gb.getExplotaciones().size()]);
-        ceas.setAdapter(new ArrayAdapter<String>(this, R.layout.spinner_item, valores));
-
+        ceas.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, valores));
 
     }
 
@@ -96,7 +101,6 @@ public class AltaanimalActivity extends ActionBarActivity {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         String time = dateFormat.format(date);
-
         String crotal = etCrotal.getText().toString();
         String crotalMadre = etCrotalMadre.getText().toString();
         String fecha = in_date.getText().toString();
@@ -258,8 +262,6 @@ public class AltaanimalActivity extends ActionBarActivity {
 
         }
 
-
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
@@ -279,4 +281,15 @@ public class AltaanimalActivity extends ActionBarActivity {
         startActivity(setIntent);
         finish();
     }
+    public void onDateSet(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        Bundle args = new Bundle();
+
+        int vista = v.getBottom(); //.getId();
+        newFragment.setArguments(args);
+        newFragment.show(getFragmentManager(), "datePicker");
+
+
+    }
+
 }
