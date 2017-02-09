@@ -69,7 +69,6 @@ public class BusquedasActivity extends ActionBarActivity {
         private String Infecha;
 
         @Override
-
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             // Use the current date as the default date in the picker
             final Calendar c = Calendar.getInstance();
@@ -82,11 +81,14 @@ public class BusquedasActivity extends ActionBarActivity {
         }
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
-            //long vista = getArguments().getLong("vista");
+            long vista = getArguments().getLong("vista");
             // Do something with the date chosen by the user
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             Date fecha = new Date (year-1900,month,day);
-            //in_firstdate.setText(String.valueOf(df.format(fecha)));
+            if(R.id.in_date == vista)
+                in_firstdate.setText(String.valueOf(df.format(fecha)));
+            if(R.id.in_date2 == vista)
+                in_lastdate.setText(String.valueOf(df.format(fecha)));
 
         }
 
@@ -106,8 +108,8 @@ public class BusquedasActivity extends ActionBarActivity {
         final EditText etBuscarCrotal = (EditText) findViewById(R.id.etBuscarCrotal);
         final EditText etBuscarCrotalMadre = (EditText) findViewById(R.id.etBuscarCrotalMadre);
 
-        final EditText in_firstdate = (EditText) findViewById(R.id.in_date);
-        final EditText in_lastdate = (EditText) findViewById(R.id.in_date2);
+        in_firstdate = (EditText) findViewById(R.id.in_date);
+        in_lastdate = (EditText) findViewById(R.id.in_date2);
 
         final CheckBox historico = (CheckBox) findViewById(R.id.cbHistorico);
         final RadioGroup rg = (RadioGroup) findViewById(R.id.rgSexo);
@@ -202,9 +204,6 @@ public class BusquedasActivity extends ActionBarActivity {
 
     }
 
-  /*  public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-    }*/
     public boolean onKeyDown(int keyCode, KeyEvent event)  {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
                 && keyCode == KeyEvent.KEYCODE_BACK
@@ -225,10 +224,11 @@ public class BusquedasActivity extends ActionBarActivity {
     }
     public void onDateSet(View v) {
         DialogFragment newFragment = new DatePickerFragment();
-        //Bundle args = new Bundle();
-        //int vista = v.getId();
-        //args.putLong("vista",vista);
-        //newFragment.setArguments(args);
+        Bundle args = new Bundle();
+        int vista = v.getId();
+        args.putLong("vista",vista);
+        newFragment.setArguments(args);
+
         newFragment.show(getFragmentManager(), "datePicker");
     }
 
