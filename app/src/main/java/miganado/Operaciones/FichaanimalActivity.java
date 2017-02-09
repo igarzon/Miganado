@@ -282,6 +282,9 @@ public class FichaanimalActivity extends ActionBarActivity {
 
         ArrayList<String> datosAux = new ArrayList<String>();
 
+        if(mydb.existExplotaciones()){
+
+
         datosAux = mydb.getExplotaciones();
 
         if(datosAux.contains( datos.get(11))){
@@ -291,6 +294,11 @@ public class FichaanimalActivity extends ActionBarActivity {
 
         } else{
             Intent setIntent = new Intent(this, gb.getActivityAnterior());
+            startActivity(setIntent);
+        }
+
+        } else {
+            Intent setIntent = new Intent(this, ZonaclienteActivity.class);
             startActivity(setIntent);
         }
 
