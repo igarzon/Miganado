@@ -46,13 +46,12 @@ public class ResultadosBusquedasActivity extends ActionBarActivity {
         coincidencias.setPadding(1,1,1,1);
         relative.addView(coincidencias);
 
-        for(String key : b){
+        for(int i = 0; i<b.size(); i++){
 
-            key1=key;
 
-            TextView aux = new TextView(this);
+            final TextView aux = new TextView(this);
             aux.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            aux.setText(key);
+            aux.setText(b.get(i));
             aux.setTextColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
             aux.setTextSize(23);
             aux.setPadding(1,1,1,1);
@@ -60,7 +59,7 @@ public class ResultadosBusquedasActivity extends ActionBarActivity {
                 @Override
                 public void onClick(View v) {
                     Bundle bun = new Bundle();
-                    bun.putString(key1, key1);
+                    bun.putString((String) aux.getText(), (String) aux.getText());
                     Intent intent = new Intent(context, FichaanimalActivity.class);
                     intent.putExtras(bun);
                     gb.setActivityAnterior(ResultadosBusquedasActivity.class);
