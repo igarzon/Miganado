@@ -60,11 +60,11 @@ public class BusquedasActivity extends ActionBarActivity {
     EditText txtDate;
     private int mYear, mMonth, mDay;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    private EditText  in_firstdate, in_lastdate;
+    private static EditText  in_firstdate, in_lastdate;
     private TextView dateSetText;
     private DatePicker datePicker;
 
-    public class DatePickerFragment extends DialogFragment
+    public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener{
         private String Infecha;
 

@@ -62,11 +62,12 @@ import android.view.Menu;
 public class AltaanimalActivity extends ActionBarActivity {
 
     private GlobalVariable gb = new GlobalVariable();
-    private EditText etCrotalMadre, etCrotal, in_date, etExp;
+    private EditText etCrotalMadre, etCrotal, etExp;
+    private static EditText in_date;
     private RadioGroup rg;
     private Spinner ceas;
 
-    public class DatePickerFragment extends DialogFragment
+    public static class DatePickerFragment extends DialogFragment
             implements DatePickerDialog.OnDateSetListener{
 
         @Override
