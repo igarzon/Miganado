@@ -83,9 +83,15 @@ public class RegistroActivity extends AppCompatActivity {
                             boolean success = jsonResponse.getBoolean("success");
                             String error=jsonResponse.getString("message");
                             if (success){
-                                Intent intent=new Intent(RegistroActivity.this, LoginActivity.class);
-                                intent.putExtra("username", username);
-                                RegistroActivity.this.startActivity(intent);
+                                AlertDialog.Builder builder = new AlertDialog.Builder (RegistroActivity.this);
+                                builder.setMessage( "Se ha registrado correctamente, ya puede acceder con su usuario y password")
+                                        //.setNegativeButton("Ir a pagina de acceso",null)
+                                        .create()
+                                        .show();
+
+                                //Intent intent=new Intent(RegistroActivity.this, LoginActivity.class);
+                                //intent.putExtra("username", username);
+                                //RegistroActivity.this.startActivity(intent);
                             } else {
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder (RegistroActivity.this);
