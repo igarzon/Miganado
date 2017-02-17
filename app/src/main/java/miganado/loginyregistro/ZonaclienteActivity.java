@@ -2,10 +2,12 @@ package miganado.Loginyregistro;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -76,7 +78,7 @@ public class ZonaclienteActivity extends ActionBarActivity {
 
         queue = Volley.newRequestQueue(ZonaclienteActivity.this);
 
-        
+
         //Toast.makeText(getApplicationContext(), "User Login Status: " + sessionManager.isLoggedIn(), Toast.LENGTH_LONG).show();
 
 
@@ -134,9 +136,13 @@ public class ZonaclienteActivity extends ActionBarActivity {
                 aux.setLayoutParams(lparams);
                 aux.setText(explotaciones.get(i));
                 aux.setTextColor(Color.WHITE);
+                //aux.setcolo
                 aux.setTextSize(20);
                 aux.setPadding(1, 1, 1, 1);
-                aux.setBackgroundColor(Color.TRANSPARENT);
+                if(Build.VERSION.SDK_INT<Build.VERSION_CODES.LOLLIPOP)
+                    aux.setBackgroundColor(Color.parseColor(MI_GANADO_PRIMARY_COLOR));
+                else
+                    aux.setBackgroundColor(Color.TRANSPARENT);
                 aux.setId(i); //Añadimos un id para poder referenciarle luego de  0 a n-1 explotaciones
                 if(gbExp.contains(explotaciones.get(i))){
                     aux.setChecked(true);

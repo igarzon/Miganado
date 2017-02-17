@@ -131,28 +131,47 @@ public class Downloaddata extends ActionBarActivity {
 
                             //sessionManager.setDatos(partsPreferencias[1],partsPreferencias[3],partsPreferencias[5],partsPreferencias[7],partsPreferencias[9],partsPreferencias[11]);
 
-                            String respuesta="["+partsDatos[1];
+                            String respuesta1="["+partsDatos[1];
 
-                            System.out.println(datosusuario);
-                            System.out.println(respuesta);
+                            /*System.out.println(datosusuario);
+                            System.out.println(respuesta);*/
 
-                            jsonArray = new JSONArray(respuesta);
+
+
+                            String respuesta=partsDatos[1].replaceAll("\\]", "");
+                            //Diseccionamos la cadena
+                            jsonArray = new JSONArray(respuesta1);
+                            String[] partsDatosJson = respuesta.split("\\}");
+
+
+
+
 
                            for(int i=0; i<jsonArray.length(); i++){
 
                                progressStatus=(i*100)/jsonArray.length();
+                                //jsonArray.getString(i);
 
-                                System.out.println(jsonArray.get(i));
+                                //System.out.println(jsonArray.getString(i));
 
                                 //Almacenamos linea a linea cada una de las filas de la tabla
-                                String Linea=jsonArray.get(i).toString();
+                                //String Linea=jsonArray.get(i).toString();
+                               String Linea = partsDatosJson[i];
+                               System.out.println("Linea=   " + Linea);
+
 
                                 //Limpiamos de caracteres las líneas
                                 String newLine1 = Linea.replaceAll("\"\"", "vacio");
+
+                               //System.out.println("aaaaaaaaa:  " + newLine1);
                                 String newLine2 = newLine1.replaceAll("\"", "");
+                               //System.out.println("bbbbbbbbb:  " + newLine2);
                                 String newLine3 = newLine2.replaceAll("\\{", "");
-                                String newLine4 = newLine3.replaceAll("\\}", "");
+                               //System.out.println("cccccccc:  " + newLine3);
+                                String newLine4 = newLine3.substring(1);
+                               //System.out.println("dddddddddddd:  " + newLine3);
                                 String newLine = newLine4.replaceAll(",", ":");
+                               //System.out.println("eeeeeeeeee:  " + newLine);
 
                                 //Estructura para diseccionar la cadena
                                 String Datos[] = new String[jsonArray.length()];
