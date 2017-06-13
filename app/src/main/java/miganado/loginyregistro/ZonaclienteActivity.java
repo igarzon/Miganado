@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Color;
@@ -126,8 +127,6 @@ public class ZonaclienteActivity extends ActionBarActivity {
             LayoutParams lparams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
             //Tenemos todas las checkBox en el arrayList
-
-
 
 
             for (int i = 0; i < explotaciones.size(); i++) {

@@ -43,20 +43,6 @@
         android:layout_toEndOf="@+id/etDato3" />
 
     <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="Dato 6"
-        android:ems="10"
-        android:id="@+id/etDato6"
-        android:layout_alignBaseline="@+id/etDato5"
-        android:layout_alignBottom="@+id/etDato5"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_toRightOf="@+id/etDato5"
-        android:layout_toEndOf="@+id/etDato5" />
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
@@ -192,6 +178,17 @@
         android:id="@+id/btnRegistro"
         android:background="@color/MiGanado_primary_color"
         android:layout_below="@+id/etDato6"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Dato 6"
+        android:ems="10"
+        android:id="@+id/etDato6"
+        android:layout_below="@+id/etDato5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 

@@ -80,35 +80,34 @@ public class FichaanimalActivity extends ActionBarActivity {
         ViewGroup.LayoutParams lparams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 
         for(int i = 1; i<datos.getColumnCount()-9;i++) {
-            datos.moveToFirst();
 
-            TextView aux1 = new TextView(this);
-            aux1.setLayoutParams(lparams);
-            aux1.setText(editarCadenaTexto(datos.getColumnName(i)));
-            aux1.setTextColor(Color.parseColor(super.MI_GANADO_PRIMARY_COLOR));
-            aux1.setTextSize(30);
+                    datos.moveToFirst();
 
-            linear.addView(aux1);
+                    TextView aux1 = new TextView(this);
+                    aux1.setLayoutParams(lparams);
+                    aux1.setText(editarCadenaTexto(datos.getColumnName(i)));
+                    aux1.setTextColor(Color.parseColor(super.MI_GANADO_PRIMARY_COLOR));
+                    aux1.setTextSize(30);
 
-            if(i>1) {
-                EditText aux2 = new EditText(this);
-                aux2.setLayoutParams(lparams);
-                aux2.setText(datos.getString(i));
-                aux2.setTextColor(Color.WHITE);
-                aux2.setTextSize(23);
-                editText.add(aux2);
-                linear.addView(aux2);
-            }
+                    linear.addView(aux1);
 
-            else{
-                crotal = new TextView(this);
-                crotal.setLayoutParams(lparams);
-                crotal.setText(datos.getString(i));
-                crotal.setTextColor(Color.WHITE);
+                    if (i > 1) {
+                        EditText aux2 = new EditText(this);
+                        aux2.setLayoutParams(lparams);
+                        aux2.setText(datos.getString(i));
+                        aux2.setTextColor(Color.WHITE);
+                        aux2.setTextSize(23);
+                        editText.add(aux2);
+                        linear.addView(aux2);
+                    } else {
+                        crotal = new TextView(this);
+                        crotal.setLayoutParams(lparams);
+                        crotal.setText(datos.getString(i));
+                        crotal.setTextColor(Color.WHITE);
 
-                crotal.setTextSize(23);
-                linear.addView(crotal);
-            }
+                        crotal.setTextSize(23);
+                        linear.addView(crotal);
+                    }
 
         }
 
