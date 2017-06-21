@@ -188,8 +188,10 @@
         android:hint="Dato 6"
         android:ems="10"
         android:id="@+id/etDato6"
-        android:layout_below="@+id/etDato5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignBaseline="@+id/etDato5"
+        android:layout_alignBottom="@+id/etDato5"
+        android:layout_toRightOf="@+id/etDato5"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
