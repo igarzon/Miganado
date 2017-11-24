@@ -83,7 +83,7 @@ public class LoginActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://Sample-env.ecc6cmb68n.eu-west-1.elasticbeanstalk.com/resetearpassword.php"));
+                intent.setData(Uri.parse("http://www.gestiondemiganado.com/resetearpassword.php"));
                 LoginActivity.this.startActivity(intent);
             }
         }));

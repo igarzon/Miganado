@@ -14,7 +14,7 @@ import java.util.Map;
  */
 
 public class RegisterRequest extends StringRequest {
-    private static final String REGISTER_REQUEST_URL = "http://Sample-env.ecc6cmb68n.eu-west-1.elasticbeanstalk.com/movil/registro.php";
+    private static final String REGISTER_REQUEST_URL = "http://www.gestiondemiganado.com/movil/registro.php";
     private Map<String, String> params;
 
     public RegisterRequest (String username, String password, String password2 ,String nombre, String tipoacceso, String dato1, String dato2, String dato3, String dato4, String dato5, String dato6, Response.Listener<String> Listener){
