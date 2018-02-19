@@ -21,9 +21,14 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class RegistroActivity extends AppCompatActivity {
 
+    SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +97,18 @@ public class RegistroActivity extends AppCompatActivity {
                                 //Intent intent=new Intent(RegistroActivity.this, LoginActivity.class);
                                 //intent.putExtra("username", username);
                                 //RegistroActivity.this.startActivity(intent);
+
+                                sessionManager = new SessionManager(getApplicationContext());
+
+                                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                Date date = new Date();
+                                String time = dateFormat.format(date);
+                                sessionManager.createLoginSession(username,time);
+
+                                Intent intent = new Intent(RegistroActivity.this, Downloaddata.class);
+                                RegistroActivity.this.startActivity(intent);
+
+
                             } else {
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder (RegistroActivity.this);

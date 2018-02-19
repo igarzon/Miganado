@@ -34,8 +34,8 @@ public class ExplotacionContract {
         public static final String TABLE_NAME ="Miganado";
 
         public static final String CROTAL = "Crotal";
-        public static final String CROTAL_ORIGINAL = "CrotalOriginal";
-        public static final String MARCA_LIDIA = "MarcaLidia";
+        public static final String CROTAL_ORIGINAL = "CrotalTernero";
+        public static final String MARCA_LIDIA = "Comentarios";
         public static final String CROTAL_MADRE = "CrotalMadre";
         public static final String SEXO = "Sexo";
         public static final String RAZA = "Raza";

@@ -310,6 +310,7 @@ public class Downloaddata extends ActionBarActivity {
                 "0");
         ExplotacionDbHelper mydb;
         mydb = new ExplotacionDbHelper(this);
+        mydb.deleteCrotal(datos.get(0));
         mydb.insertVaca(vaca);
         mydb.close();
 

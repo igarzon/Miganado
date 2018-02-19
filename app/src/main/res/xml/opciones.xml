@@ -2,7 +2,7 @@
 <PreferenceScreen xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Columnas Personalizables">
+    <PreferenceCategory android:title="Datos Personalizables">
         <EditTextPreference
             android:key="dato1"
             android:title="Dato 1"
